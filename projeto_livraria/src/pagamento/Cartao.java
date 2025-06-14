@@ -1,5 +1,11 @@
 package pagamento;
 
+/*
+    Classe Cartao que servirá como um dos atributos de cliente.
+    Possui como atributos as informações de um cartão e o tipo (crédito ou débito).
+    O seu metodo pedeSenha apenas verifica se o valor numa compra exige senha ou não.
+ */
+
 public class Cartao {
     private final int numero;
     private final int codigo_de_seguranca;
@@ -27,5 +33,9 @@ public class Cartao {
 
     public TipoCartao getTipoCartao() {
         return tipoCartao;
+    }
+
+    public boolean pedeSenha(int valor){
+        return tipoCartao.getValor_limite_sem_senha() > valor;
     }
 }
