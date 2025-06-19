@@ -1,22 +1,25 @@
 package pessoa;
 
+import pagamento.MetodoPagamento;
+
 public class Funcionario extends Pessoa{
     private final String id;
 
     public Funcionario(String nome, String CPF, int idade, String data_nascimento, String email, String id, String login, String senha) {
         super(nome, CPF, idade, data_nascimento, email, login, senha);
         this.id = id;
+        UserManager.writeFuncionarioToFile(this);
     }
 
     public String getId() {
         return id;
     }
 
-    public void cadastraCliente(){
-
+    public void cadastraCliente(Cliente cliente){
+        UserManager.writeClientToFile(cliente);
     }
 
-    public void efetuaPagamento(){
+    public void efetuaPagamento(MetodoPagamento metodoPagamento){
 
     }
 }
