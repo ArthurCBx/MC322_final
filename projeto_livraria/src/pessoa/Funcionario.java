@@ -1,7 +1,7 @@
 package pessoa;
 
 import Gerencia.Caixa.Caixa;
-import pagamento.MetodoPagamento;
+import pagamento.TipoPagamento;
 
 public class Funcionario extends Pessoa{
     private final String id;
@@ -20,8 +20,8 @@ public class Funcionario extends Pessoa{
         UserManager.writeClientToFile(cliente);
     }
 
-    public void efetuaPagamento(MetodoPagamento metodoPagamento){
-        Caixa.s
+    public void efetuaPagamento(TipoPagamento tipo){
+        Caixa.registrarVenda();
     }
 
 }

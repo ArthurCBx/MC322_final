@@ -14,4 +14,9 @@ public class Cliente extends Pessoa{
         this.telefone = telefone;
     }
 
+    public buscaLivro(String titulo){
+
+    }
+
+
 }

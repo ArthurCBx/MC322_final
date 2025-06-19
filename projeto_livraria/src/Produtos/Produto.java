@@ -1,7 +1,5 @@
 package Produtos;
 
-import pagamento.MetodoPagamento;
-
 import java.util.ArrayList;
 
 public class Produto {
