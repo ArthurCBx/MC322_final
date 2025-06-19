@@ -4,15 +4,19 @@ public abstract class Pessoa {
     private String CPF;
     private int idade;
     private final String data_nascimento;
+    private final String nome;
     private String email;
-    private int numero_celular;
+    private String login;
+    private String senha;
 
-    public Pessoa(String CPF, int idade, String data_nascimento, String email, int numero_celular) {
+    public Pessoa(String nome, String CPF, int idade, String data_nascimento, String email, String login, String senha) {
         this.CPF = CPF;
         this.idade = idade;
         this.data_nascimento = data_nascimento;
         this.email = email;
-        this.numero_celular = numero_celular;
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
     }
 
     public String getCPF() {
@@ -31,12 +35,8 @@ public abstract class Pessoa {
         this.CPF = CPF;
     }
 
-    public int getNumero_celular() {
-        return numero_celular;
-    }
-
-    public void setNumero_celular(int numero_celular) {
-        this.numero_celular = numero_celular;
+    public String getNome() {
+        return nome;
     }
 
     public String getData_nascimento() {
@@ -50,4 +50,21 @@ public abstract class Pessoa {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
 }
