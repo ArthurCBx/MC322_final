@@ -21,7 +21,7 @@ public class Funcionario extends Pessoa{
     }
 
     public void efetuaPagamento(TipoPagamento tipo){
-        Caixa.registrarVenda();
+        Caixa.registrarVenda(tipo);
     }
 
 }
