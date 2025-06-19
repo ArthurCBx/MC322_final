@@ -2,14 +2,16 @@ package Gerencia.Caixa;
 
 import Gerencia.Estoque.Entrada;
 import Gerencia.Estoque.GerenciadorEstoque;
+import Gerencia.GerenciadorGeral;
 import Produtos.IntProduto;
 import excecoes.ProdutoNaoEncontrado;
 import excecoes.SemEstoque;
+import pagamento.TipoPagamento;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class Caixa {
+public class Caixa extends GerenciadorGeral {
 
     private static float saldo;
 
@@ -92,7 +94,7 @@ public class Caixa {
     /**
      * Interpreta a lista de comprasVendas como vendas e efetua a alteração de saldo, estoque e registra no arquivo "Transações.txt"
      */
-    public static void registrarVenda() {
+    public static void registrarVenda(TipoPagamento pagamento) {
 
         int valor = 0;
         Entrada entrada;

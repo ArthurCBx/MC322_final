@@ -1,12 +1,13 @@
 package Gerencia.Estoque;
 
+import Gerencia.GerenciadorGeral;
 import Produtos.IntProduto;
 import excecoes.ProdutoNaoEncontrado;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class GerenciadorEstoque {
+public class GerenciadorEstoque extends GerenciadorGeral {
 
     private static IntProduto produto;
     private static ArrayList<Entrada> entradas = new ArrayList<>();

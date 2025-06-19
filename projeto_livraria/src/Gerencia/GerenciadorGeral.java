@@ -41,25 +41,8 @@ public class GerenciadorGeral {
     }
 
 
-
-    public static void adicionarProduto(String id){
-        getProdutos().add(GerenciadorEstoque.getEntradas().get(GerenciadorEstoque.buscaProduto(id)).getProduto());
-    }
-
-    public static void removerProduto(int pos){
-        getProdutos().remove(pos);
-    }
-
-
-    public static void realizarCompra(){
-
-    }
-
-    public static void realizarVenda(){}
-
     public static void realizarBusca(){}
 
-    public static void realizarAlteracao(){}
 
 
 
