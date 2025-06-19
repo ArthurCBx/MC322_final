@@ -1,17 +1,19 @@
 package pessoa;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
 public abstract class Pessoa {
     private String CPF;
-    private int idade;
     private final String data_nascimento;
     private final String nome;
     private String email;
     private String login;
     private String senha;
 
-    public Pessoa(String nome, String CPF, int idade, String data_nascimento, String email, String login, String senha) {
+    public Pessoa(String nome, String CPF, String data_nascimento, String email, String login, String senha) {
         this.CPF = CPF;
-        this.idade = idade;
         this.data_nascimento = data_nascimento;
         this.email = email;
         this.nome = nome;
@@ -24,11 +26,10 @@ public abstract class Pessoa {
     }
 
     public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate nascimento = LocalDate.parse(data_nascimento, formatter);
+        LocalDate hoje = LocalDate.now();
+        return Period.between(nascimento, hoje).getYears();
     }
 
     public void setCPF(String CPF) {
