@@ -1,5 +1,6 @@
 package Gerencia;
 
+import Gerencia.Estoque.GerenciadorEstoque;
 import Produtos.IntProduto;
 import pessoa.Cliente;
 import pessoa.Funcionario;
@@ -46,7 +47,9 @@ public class GerenciadorGeral {
         getProdutos().remove(pos);
     }
 
-    public static void realizarCompra(){}
+    public static void realizarCompra(){
+
+    }
 
     public static void realizarVenda(){}
 

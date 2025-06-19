@@ -1,4 +1,4 @@
-package Gerencia;
+package Gerencia.Estoque;
 
 import Produtos.IntProduto;
 import excecoes.ProdutoNaoEncontrado;
@@ -19,7 +19,7 @@ public class GerenciadorEstoque {
         GerenciadorEstoque.produto = produto;
     }
 
-    public static ArrayList<Entrada> getEntradas() {
+    public static ArrayList<Gerencia.Estoque.Entrada> getEntradas() {
         return entradas;
     }
 /*
@@ -38,7 +38,7 @@ public class GerenciadorEstoque {
     // Adiciona uma entrada de produto na lista de produtos (produto da propriedade)
 
     public static void appendProduto() {
-        getEntradas().add(new Entrada(getProduto(),-1));
+        getEntradas().add(new Entrada(getProduto(),true,-1));
     }
 
     // Remove uma entrada de produto na lista de produtos
@@ -52,7 +52,7 @@ public class GerenciadorEstoque {
     public static int buscaProduto(String id) {
         int index;
         try {
-            index = getEntradas().indexOf(getEntradas().stream().filter(entrada -> entrada.getProduto().getID().equals(id)).map(Entrada::getProduto).findFirst().get())
+            index = getEntradas().indexOf(getEntradas().stream().filter(entrada -> entrada.getProduto().getID().equals(id)).map(Entrada::getProduto).findFirst().get());
         } catch (NoSuchElementException e) {
             throw new ProdutoNaoEncontrado("Produto: '" + id + "' nao foi encontrado");
         }
