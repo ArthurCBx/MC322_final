@@ -1,4 +1,4 @@
-package Gerencia;
+package Gerencia.Estoque;
 
 import Produtos.IntProduto;
 import excecoes.ProdutoNaoEncontrado;
@@ -52,7 +52,7 @@ public class GerenciadorEstoque {
     public static int buscaProduto(String id) {
         int index;
         try {
-            index = getEntradas().indexOf(getEntradas().stream().filter(entrada -> entrada.getProduto().getID().equals(id)).map(Entrada::getProduto).findFirst().get())
+            index = getEntradas().indexOf(getEntradas().stream().map(Entrada::getProduto).filter(produto -> produto.getID().equals(id)).findFirst().get());
         } catch (NoSuchElementException e) {
             throw new ProdutoNaoEncontrado("Produto: '" + id + "' nao foi encontrado");
         }

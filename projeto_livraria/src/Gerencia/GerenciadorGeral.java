@@ -1,5 +1,6 @@
 package Gerencia;
 
+import Gerencia.Estoque.GerenciadorEstoque;
 import Produtos.IntProduto;
 import pessoa.Cliente;
 import pessoa.Funcionario;

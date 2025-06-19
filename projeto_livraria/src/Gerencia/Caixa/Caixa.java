@@ -1,4 +1,4 @@
-package Gerencia;
+package Gerencia.Caixa;
 
 public class Caixa {
 
@@ -13,9 +13,9 @@ public class Caixa {
     }
 
 
-    public void registrarCompra(String msg){}
+    public void registrarCompra(String msg, int valor){}
 
-    public void registrarVenda(String msg){}
+    public void registrarVenda(String msg, int valor){}
 
 
 
