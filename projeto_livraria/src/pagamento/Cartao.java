@@ -6,7 +6,7 @@ package pagamento;
     O seu metodo pedeSenha apenas verifica se o valor numa compra exige senha ou não.
  */
 
-public class Cartao {
+public class Cartao implements MetodoPagamento{
     private final int numero;
     private final int codigo_de_seguranca;
     private final String validade;
