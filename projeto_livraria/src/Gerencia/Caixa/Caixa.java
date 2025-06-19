@@ -48,7 +48,7 @@ public class Caixa {
     }
 
     /**
-     * Adiciona uma compraVenda na lista de compraVenda
+     * Adiciona uma compraVenda na lista de comprasVendas
      * @param produto O produto a ser adicionado
      * @param quantidade quantidade de produto a ser adicionado
      */
@@ -57,16 +57,17 @@ public class Caixa {
     }
 
     /**
-     * Remove
-     * @param id
+     * Remove uma compraVenda da lista de comprasVendas
+     * @param id ID do produto a ser removido da lista
      */
     public void removerCompraVenda(String id) {
         getComprasvendas().remove(buscaCompraVenda(id));
     }
 
-    // Interpreta a lista de compravenda como compras
-
-    public void registrarCompra(String msg) {
+    /**
+     * Interpreta a lista de comprasVendas como compras e efetua a alteração de saldo, estoque e registra no arquivo "Transações.txt"
+     */
+    public static void registrarCompra() {
         int valor = 0;
         Entrada entrada;
         for (CompraVenda compra : getComprasvendas()) {
@@ -87,8 +88,10 @@ public class Caixa {
 
     }
 
-    // Interpreta a lista de compravenda como vendas
 
+    /**
+     * Interpreta a lista de comprasVendas como vendas e efetua a alteração de saldo, estoque e registra no arquivo "Transações.txt"
+     */
     public static void registrarVenda() {
 
         int valor = 0;
