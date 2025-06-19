@@ -50,15 +50,6 @@ public class GerenciadorGeral {
         getProdutos().remove(pos);
     }
 
-    public static int buscaProduto(Elemento ,String id) {
-        int index;
-        try {
-            index = getEntradas().indexOf(getEntradas().stream().map(Entrada::getProduto).filter(entradaProduto -> entradaProduto.getID().equals(id)).findFirst().get());
-        } catch (NoSuchElementException e) {
-            throw new ProdutoNaoEncontrado("Produto: '" + id + "' nao foi encontrado");
-        }
-        return index;
-    }
 
     public static void realizarCompra(){
 

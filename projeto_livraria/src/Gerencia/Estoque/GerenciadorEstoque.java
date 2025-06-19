@@ -22,17 +22,13 @@ public class GerenciadorEstoque {
     public static ArrayList<Gerencia.Estoque.Entrada> getEntradas() {
         return entradas;
     }
-/*
-    public static void criaProduto(String nome,....){
-        setProduto(....);
-
-    }
-
- */
 
     // Carrega produtos de txt para lista
 
     public static void carregarLista() {
+
+        // LEITURA DE ARQUIVO
+
     }
 
     // Adiciona uma entrada de produto na lista de produtos (produto da propriedade)
@@ -49,6 +45,12 @@ public class GerenciadorEstoque {
 
     // Busca um produto na lista de produtos
 
+
+    /**
+     * Busca um produto por ID na lista do estoque (entradas), retorna seu indice ou joga Produto Não
+     * @param id
+     * @return
+     */
     public static int buscaProduto(String id) {
         int index;
         try {
@@ -59,24 +61,38 @@ public class GerenciadorEstoque {
         return index;
     }
 
-    // Carrega dados de um produto no propriedade produto
-
+    /**
+     * Carrega uma interface produto via ID na propriedade "produto" do Gerenciador
+     * @param id um ID de produto
+     */
     public static void carregaProduto(String id) {
         setProduto(GerenciadorEstoque.getEntradas().get(buscaProduto(id)).getProduto());
     }
 
+    /**
+     * Carrega uma interface produto na propriedade "produto" do Gerenciador
+     * @param produto uma interface produto
+     */
     public static void carregaProduto(IntProduto produto) {
         setProduto(produto);
     }
 
-    // Sobrescreve o txt de produtos com o conteudo da lista de produtos
-
+    /**
+     * Registra a lista de entradas no arquivo texto "Estoque"
+     */
     public static void salvaProduto() {
+
+        // ESCRITA DE ARQUIVO
+
+
     }
 
-    // Altera o produto carregado
-
-    //public static void alteraProduto(String id,){}
-
+    /**
+     *
+     * @param quantidade
+     */
+    public static void alteraProduto(int quantidade) {
+        getEntradas().get(getEntradas().indexOf(getProduto())).setQuantiade(quantidade);
+    }
 
 }
