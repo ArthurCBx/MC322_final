@@ -80,6 +80,44 @@ public class UserManager {
         }
     }
 
+    /**
+     * Remove um funcionário do ArrayList pelo ID e atualiza o arquivo de logins.
+     * @param Id O ID do funcionário a ser removido.
+     */
+    public static void removeFuncionario(String Id){
+        Funcionario funcionarioToRemove = null;
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getId().equals(Id)) {
+                funcionarioToRemove = funcionario;
+                funcionarios.remove(funcionario);
+                break;
+            }
+        }
+        if (funcionarioToRemove == null) {
+            return;
+        }
+
+        String line;
+        StringBuilder s = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(funcionarioLogFile))){
+            while((line = reader.readLine()) != null) {
+                if (line.contains("Funcionario: " + funcionarioToRemove.getNome() + " - id: " + funcionarioToRemove.getId())) {
+                    reader.readLine(); // Pula a linha do login
+                    reader.readLine(); // Pula a linha da senha
+                    continue;          // Não adiciona as linhas do funcionário removido
+                }
+                s.append(line).append(System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(funcionarioLogFile, false))) {
+            writer.write(s.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Verifica se o login e senha existem no arquivo de logins.
