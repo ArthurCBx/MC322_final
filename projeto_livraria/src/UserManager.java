@@ -1,10 +1,7 @@
 import pessoa.Cliente;
 import pessoa.Funcionario;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class UserManager {
@@ -25,6 +22,10 @@ public class UserManager {
         return funcionarios;
     }
 
+    /**
+     * Escreve as informações de um cliente no arquivo de login.
+     * @param cliente O cliente cujas informações serão escritas.
+     */
     public static void writeClientToFile(Cliente cliente) {
         if(clientes.contains(cliente)){
             return;
@@ -42,8 +43,8 @@ public class UserManager {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(clienteLogFile, true))) {
             StringBuilder s = new StringBuilder();
             s.append("Cliente: ").append(cliente).append("\n")
-                    .append(cliente.getLogin()).append("\n")
-                    .append(cliente.getSenha()).append("\n\n");
+                    .append("Login: ").append(cliente.getLogin()).append("\n")
+                    .append("Senha: ").append(cliente.getSenha()).append("\n\n");
             writer.write(s.toString());
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,6 +52,10 @@ public class UserManager {
         }
     }
 
+    /**
+     * Escreve as informações de um funcionário no arquivo de login.
+     * @param funcionario O funcionário cujas informações serão escritas.
+     */
     public static void writeFuncionarioToFile(Funcionario funcionario) {
         if(funcionarios.contains(funcionario)){
             return;
@@ -68,8 +73,8 @@ public class UserManager {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(funcionarioLogFile, true))) {
             StringBuilder s = new StringBuilder();
             s.append("Funcionario: ").append(funcionario).append(" - id: ").append(funcionario.getId()).append("\n")
-                    .append(funcionario.getLogin()).append("\n")
-                    .append(funcionario.getSenha()).append("\n\n");
+                    .append("Login: ").append(funcionario.getLogin()).append("\n")
+                    .append("Senha: ").append(funcionario.getSenha()).append("\n\n");
             writer.write(s.toString());
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,5 +82,56 @@ public class UserManager {
         }
     }
 
-    
+
+    /**
+     * Verifica se o login e senha existem no arquivo de logins.
+     * @param login O login a ser verificado.
+     * @param senha A senha a ser verificada.
+     * @param tipo O tipo de usuário ("cliente" ou "funcionario").
+     * @return Um array de Boolean onde o primeiro elemento indica se o login existe e o segundo se a senha está correta para o login.
+     */
+    public static Boolean[] loginExists(String login, String senha, String tipo){
+        String filepath;
+        boolean loginFound = false;
+        boolean senhaCorreta = false;
+        Boolean[] verify = new Boolean[2];
+
+        if (tipo.equals("cliente")){
+            filepath = clienteLogFile;
+        }else if (tipo.equals("funcionario")) {
+            filepath = funcionarioLogFile;
+        }else{
+            return null; // Tipo inválido, não faz nada
+        }
+
+        try(BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("Login: ")){
+                    String loginLine = line.substring(7).trim();
+                    String senhaLine = null;
+                    line = reader.readLine();
+
+                    if (line != null && line.startsWith("Senha: ")) {
+                        senhaLine = line.substring(7).trim();
+                    }
+
+                    if (loginLine.equals(login)){
+                        verify[0] = true;
+                        if (senhaLine != null && senhaLine.equals(senha)) {
+                            verify[1] = true;
+                        } else {
+                            verify[1] = false; // Senha incorreta
+                        }
+                        return verify; // Login e senha corretos
+                    }
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        verify[0] = false; verify[1] = false;
+        return verify;
+    }
 }
