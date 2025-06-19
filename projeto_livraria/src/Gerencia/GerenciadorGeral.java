@@ -12,17 +12,8 @@ import java.util.NoSuchElementException;
 
 public class GerenciadorGeral {
 
-    private static ArrayList<IntProduto> produtos;
     private static Funcionario funcionario;
     private static Cliente cliente;
-
-    public static ArrayList<IntProduto> getProdutos() {
-        return produtos;
-    }
-
-    public static void setProdutos(ArrayList<IntProduto> produtos) {
-        GerenciadorGeral.produtos = produtos;
-    }
 
     public static Funcionario getFuncionario() {
         return funcionario;
@@ -41,7 +32,15 @@ public class GerenciadorGeral {
     }
 
 
-    public static void realizarBusca(){}
+    public static void realizarBusca(String nome){
+        int index;
+        try {
+            index = GerenciadorEstoque.getEntradas().indexOf(GerenciadorEstoque.getEntradas().stream().map(Entrada::getProduto).filter(entradaProduto -> entradaProduto.getID().equals(id)).findFirst().get());
+        } catch (NoSuchElementException e) {
+            throw new ProdutoNaoEncontrado("Produto: '" + id + "' nao foi encontrado");
+        }
+        return index;
+    }
 
 
 

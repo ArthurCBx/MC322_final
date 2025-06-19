@@ -11,7 +11,7 @@ import pagamento.TipoPagamento;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class Caixa extends GerenciadorGeral {
+public class Caixa{
 
     private static float saldo;
 
@@ -54,7 +54,7 @@ public class Caixa extends GerenciadorGeral {
      * @param produto O produto a ser adicionado
      * @param quantidade quantidade de produto a ser adicionado
      */
-    public void adiconarCompraVenda(IntProduto produto, int quantidade) {
+    public static void adiconarCompraVenda(IntProduto produto, int quantidade) {
         getComprasvendas().add(new CompraVenda(produto, quantidade));
     }
 
@@ -62,7 +62,7 @@ public class Caixa extends GerenciadorGeral {
      * Remove uma compraVenda da lista de comprasVendas
      * @param id ID do produto a ser removido da lista
      */
-    public void removerCompraVenda(String id) {
+    public static void removerCompraVenda(String id) {
         getComprasvendas().remove(buscaCompraVenda(id));
     }
 

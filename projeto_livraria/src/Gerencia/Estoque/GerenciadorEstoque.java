@@ -7,7 +7,7 @@ import excecoes.ProdutoNaoEncontrado;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class GerenciadorEstoque extends GerenciadorGeral {
+public class GerenciadorEstoque{
 
     private static IntProduto produto;
     private static ArrayList<Entrada> entradas = new ArrayList<>();
