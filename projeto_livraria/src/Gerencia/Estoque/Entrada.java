@@ -1,14 +1,15 @@
 package Gerencia.Estoque;
 
+import Gerencia.Caixa.CompraVenda;
 import Gerencia.Elemento;
 import Produtos.IntProduto;
 
-public class Entrada extends Elemento {
+public class Entrada extends CompraVenda {
     private boolean modificado;
     private int linha;
 
-    protected Entrada(IntProduto produto,boolean modificado, int linha) {
-        super(produto);
+    protected Entrada(IntProduto produto, int quantidade, boolean modificado, int linha) {
+        super(produto, quantidade);
         this.modificado = modificado;
         this.linha = linha;
     }

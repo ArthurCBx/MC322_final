@@ -1,11 +1,14 @@
 package Gerencia;
 
+import Gerencia.Estoque.Entrada;
 import Gerencia.Estoque.GerenciadorEstoque;
 import Produtos.IntProduto;
+import excecoes.ProdutoNaoEncontrado;
 import pessoa.Cliente;
 import pessoa.Funcionario;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class GerenciadorGeral {
 
@@ -45,6 +48,16 @@ public class GerenciadorGeral {
 
     public static void removerProduto(int pos){
         getProdutos().remove(pos);
+    }
+
+    public static int buscaProduto(Elemento ,String id) {
+        int index;
+        try {
+            index = getEntradas().indexOf(getEntradas().stream().map(Entrada::getProduto).filter(entradaProduto -> entradaProduto.getID().equals(id)).findFirst().get());
+        } catch (NoSuchElementException e) {
+            throw new ProdutoNaoEncontrado("Produto: '" + id + "' nao foi encontrado");
+        }
+        return index;
     }
 
     public static void realizarCompra(){

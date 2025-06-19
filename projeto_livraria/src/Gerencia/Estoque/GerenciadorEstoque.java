@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 public class GerenciadorEstoque {
 
     private static IntProduto produto;
-    private static ArrayList<Entrada> entradas;
+    private static ArrayList<Entrada> entradas = new ArrayList<>();
 
     public static IntProduto getProduto() {
         return produto;
@@ -37,8 +37,8 @@ public class GerenciadorEstoque {
 
     // Adiciona uma entrada de produto na lista de produtos (produto da propriedade)
 
-    public static void appendProduto() {
-        getEntradas().add(new Entrada(getProduto(),true,-1));
+    public static void appendProduto(int quantidade) {
+        getEntradas().add(new Entrada(getProduto(),quantidade,true,-1));
     }
 
     // Remove uma entrada de produto na lista de produtos
@@ -63,6 +63,10 @@ public class GerenciadorEstoque {
 
     public static void carregaProduto(String id) {
         setProduto(GerenciadorEstoque.getEntradas().get(buscaProduto(id)).getProduto());
+    }
+
+    public static void carregaProduto(IntProduto produto) {
+        setProduto(produto);
     }
 
     // Sobrescreve o txt de produtos com o conteudo da lista de produtos
