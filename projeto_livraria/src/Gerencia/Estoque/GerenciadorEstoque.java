@@ -9,8 +9,16 @@ import java.util.NoSuchElementException;
 
 public class GerenciadorEstoque{
 
+    /**
+     * Produto carregado e utilizado para a operação na lista de Entradas
+     */
     private static IntProduto produto;
+    /**
+     * Lista de entradas de produtos, diz se um produto teve suas caracteristias alteradas e em qual linha do .txt está armazenado
+     */
     private static ArrayList<Entrada> entradas = new ArrayList<>();
+
+    // Getters e Setters:
 
     public static IntProduto getProduto() {
         return produto;

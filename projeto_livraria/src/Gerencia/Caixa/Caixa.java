@@ -13,9 +13,17 @@ import java.util.NoSuchElementException;
 
 public class Caixa{
 
+    /**
+     * Saldo da livraria
+     */
     private static float saldo;
 
+    /**
+     * Lista que armazena uma dupla de um produto e uma quantiadade
+     */
     private static ArrayList<CompraVenda> comprasvendas = new ArrayList<>();
+
+    // Getters e Setters:
 
     public static float getSaldo() {
         return saldo;

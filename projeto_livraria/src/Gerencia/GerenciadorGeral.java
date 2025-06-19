@@ -11,9 +11,16 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class GerenciadorGeral {
-
+    /**
+     * Funcionario  logado e realizando opreções
+     */
     private static Funcionario funcionario;
+    /**
+     * Cliente participando de compra ou realizando busca
+     */
     private static Cliente cliente;
+
+    // Getters e Setters:
 
     public static Funcionario getFuncionario() {
         return funcionario;
@@ -31,7 +38,11 @@ public class GerenciadorGeral {
         GerenciadorGeral.cliente = cliente;
     }
 
-
+    /**
+     * Realiza uma busca por nome de produto e retorna a interface do produto
+     * @param nome nome do produto
+     * @return Retorna a interface do produto
+     */
     public static IntProduto realizarBusca(String nome){
         IntProduto produto;
         try {
