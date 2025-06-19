@@ -31,6 +31,12 @@ public class Caixa {
         Caixa.comprasvendas = comprasvendas;
     }
 
+    /**
+     * Busca um produto por ID na lista de compraVenda, retorna seu indice ou joga Exceção ProdutoNaoEncontrado
+     *
+     * @param id ID do produto
+     * @return Retorna seu indice
+     */
     public static int buscaCompraVenda(String id) {
         int index;
         try {
@@ -41,11 +47,19 @@ public class Caixa {
         return index;
     }
 
-
+    /**
+     * Adiciona uma compraVenda na lista de compraVenda
+     * @param produto O produto a ser adicionado
+     * @param quantidade quantidade de produto a ser adicionado
+     */
     public void adiconarCompraVenda(IntProduto produto, int quantidade) {
         getComprasvendas().add(new CompraVenda(produto, quantidade));
     }
 
+    /**
+     * Remove
+     * @param id
+     */
     public void removerCompraVenda(String id) {
         getComprasvendas().remove(buscaCompraVenda(id));
     }

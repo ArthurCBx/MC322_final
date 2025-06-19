@@ -23,36 +23,38 @@ public class GerenciadorEstoque {
         return entradas;
     }
 
-    // Carrega produtos de txt para lista
-
+    /**
+     * Carrega os dados armazenados em Estoque.txt na lista de entradas
+     */
     public static void carregarLista() {
 
         // LEITURA DE ARQUIVO
 
     }
 
-    // Adiciona uma entrada de produto na lista de produtos (produto da propriedade)
-
+    /**
+     * Adiciona o produto carregado como uma nova entrada na lista de entradas
+     *
+     * @param quantidade quantidade desse produto adicionado
+     */
     public static void appendProduto(int quantidade) {
         getEntradas().add(new Entrada(getProduto(), quantidade, true, -1));
     }
 
-    // Remove uma entrada de produto na lista de produtos
-
+    /**
+     * Deleta uma entrada da lista de entradas
+     *
+     * @param id ID da entrada
+     */
     public static void deleteProduto(String id) {
         getEntradas().remove(buscaProduto(id));
-
-        GerenciadorEstoque.getEntradas().get(GerenciadorEstoque.buscaProduto(produto.getID())).getQuantiade()
     }
 
-    // Busca um produto na lista de produtos
-
-
     /**
-     * Busca um produto por ID na lista do estoque (entradas), retorna seu indice ou joga Produto Não
+     * Busca um produto por ID na lista do estoque (entradas), retorna seu indice ou joga Exceção ProdutoNaoEncontrado
      *
-     * @param id
-     * @return
+     * @param id ID do produto
+     * @return Retorna seu indice
      */
     public static int buscaProduto(String id) {
         int index;
@@ -83,17 +85,17 @@ public class GerenciadorEstoque {
     }
 
     /**
-     * Registra a lista de entradas no arquivo texto "Estoque"
+     * Registra a lista de entradas no arquivo texto "Estoque.txt"
      */
     public static void salvaProduto() {
 
         // ESCRITA DE ARQUIVO
 
-
     }
 
     /**
      * Altera a quantidade de uma entrada com o minimo de zero
+     *
      * @param quantidade soma essa quantidade na quantidade atual da entrada
      */
     public static void alteraProduto(int quantidade) {
