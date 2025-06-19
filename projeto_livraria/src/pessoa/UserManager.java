@@ -21,7 +21,7 @@ public class UserManager {
     }
 
     /**
-     * Escreve as informações de um cliente no arquivo de login.
+     * Escreve as informações de um cliente no arquivo de login e salva no ArrayList.
      * @param cliente O cliente cujas informações serão escritas.
      */
     public static void writeClientToFile(Cliente cliente) {
@@ -51,7 +51,7 @@ public class UserManager {
     }
 
     /**
-     * Escreve as informações de um funcionário no arquivo de login.
+     * Escreve as informações de um funcionário no arquivo de login e salva no ArrayList.
      * @param funcionario O funcionário cujas informações serão escritas.
      */
     public static void writeFuncionarioToFile(Funcionario funcionario) {
