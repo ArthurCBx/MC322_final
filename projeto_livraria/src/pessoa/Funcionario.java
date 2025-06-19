@@ -1,5 +1,6 @@
 package pessoa;
 
+import Gerencia.Caixa.Caixa;
 import pagamento.MetodoPagamento;
 
 public class Funcionario extends Pessoa{
@@ -20,6 +21,7 @@ public class Funcionario extends Pessoa{
     }
 
     public void efetuaPagamento(MetodoPagamento metodoPagamento){
-
+        Caixa.s
     }
+
 }

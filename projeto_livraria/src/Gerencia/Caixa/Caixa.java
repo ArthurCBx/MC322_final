@@ -75,7 +75,7 @@ public class Caixa {
 
     // Interpreta a lista de compravenda como vendas
 
-    public void registrarVenda(String msg) {
+    public static void registrarVenda() {
 
         int valor = 0;
         Entrada entrada;
