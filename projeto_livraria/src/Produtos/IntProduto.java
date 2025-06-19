@@ -8,5 +8,5 @@ public interface IntProduto {
     String getID();
     int getValor();
     String getNome();
-
+    int quantidadeDisponivel();
 }

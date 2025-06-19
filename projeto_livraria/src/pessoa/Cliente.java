@@ -3,6 +3,12 @@ package pessoa;
 import pagamento.Cartao;
 import pagamento.TipoPagamento;
 
+/*
+    Classe cliente que herda de Pessoa.
+    Possui como atributos o Cartao, o endereco e o pagamentoPadrao, além dos atributos de Pessoa.
+    O pagamentoPadrao é do tipo TipoPagamento, que pode ser CARTAO, DINHEIRO ou PIX.
+ */
+
 public class Cliente extends Pessoa{
     private Cartao cartao;
     private String endereco;

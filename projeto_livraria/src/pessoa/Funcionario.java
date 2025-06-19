@@ -3,6 +3,12 @@ package pessoa;
 import Gerencia.Caixa.Caixa;
 import pagamento.TipoPagamento;
 
+/*
+    Classe Funcionario que herda de Pessoa.
+    Representa um funcionário do sistema, com a capacidade de cadastrar clientes e efetuar pagamentos.
+    Ele possui um ID único.
+ */
+
 public class Funcionario extends Pessoa{
     private final String id;
 

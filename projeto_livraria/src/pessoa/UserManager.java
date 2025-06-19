@@ -2,6 +2,13 @@ package pessoa;
 import java.io.*;
 import java.util.ArrayList;
 
+/*
+    Classe UserManager que gerencia os usuários do sistema.
+    Ela é responsável por ler e escrever informações de clientes e funcionários em arquivos de logins,
+    além de verificar se um login e senha existem.
+    Também é capaz de remover um funcionário do sistema.
+ */
+
 public class UserManager {
     private static final String clienteLogFile = "projeto_livraria/src/arquivos/cliente_login.txt";
     private static final File clientelogFile = new File(clienteLogFile);

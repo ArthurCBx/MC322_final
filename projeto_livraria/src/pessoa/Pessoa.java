@@ -1,8 +1,17 @@
 package pessoa;
 
+import Gerencia.GerenciadorGeral;
+import Produtos.IntProduto;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+
+/*
+    Classe abstrata Pessoa que servirá como superclasse para Cliente e Funcionario.
+    Possui como atributos as informações básicas de uma pessoa, como CPF, data de nascimento, nome e email.
+    Contém o login e senha para autenticação.
+    Possui métodos para obter a idade da pessoa e buscar produtos através do GerenciadorGeral.
+ */
 
 public abstract class Pessoa {
     private String CPF;
@@ -66,6 +75,10 @@ public abstract class Pessoa {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public IntProduto buscarProduto(String nomeProduto) {
+        return GerenciadorGeral.realizarBusca(nomeProduto);
     }
 
 }
