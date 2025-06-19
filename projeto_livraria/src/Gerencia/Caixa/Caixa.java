@@ -73,8 +73,8 @@ public class Caixa{
         int valor = 0;
         Entrada entrada;
         for (CompraVenda compra : getComprasvendas()) {
-            entrada = GerenciadorEstoque.getEntradas().get(GerenciadorEstoque.buscaProduto(compra.getProduto().getID()));
             try {
+                entrada = GerenciadorEstoque.getEntradas().get(GerenciadorEstoque.buscaProduto(compra.getProduto().getID()));
                 GerenciadorEstoque.carregaProduto(entrada.getProduto());
                 GerenciadorEstoque.alteraProduto(entrada.getQuantiade() + compra.getQuantiade());
 
@@ -84,7 +84,7 @@ public class Caixa{
             }
             valor += compra.getQuantiade() * compra.getProduto().getValor();
         }
-        setSaldo(getSaldo() + valor);
+        setSaldo(getSaldo() - valor);
 
         // ESCRITA NO ARQUIVO
 
@@ -111,7 +111,7 @@ public class Caixa{
 
             valor += venda.getQuantiade() * venda.getProduto().getValor();
         }
-        setSaldo(getSaldo() - valor);
+        setSaldo(getSaldo() + valor);
 
         // ESCRITA NO ARQUIVO
 

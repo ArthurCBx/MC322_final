@@ -32,17 +32,14 @@ public class GerenciadorGeral {
     }
 
 
-    public static void realizarBusca(String nome){
-        int index;
+    public static IntProduto realizarBusca(String nome){
+        IntProduto produto;
         try {
-            index = GerenciadorEstoque.getEntradas().indexOf(GerenciadorEstoque.getEntradas().stream().map(Entrada::getProduto).filter(entradaProduto -> entradaProduto.getID().equals(id)).findFirst().get());
+            produto = GerenciadorEstoque.getEntradas().stream().map(Entrada::getProduto).filter(produtob -> produtob.getNome().equals(nome)).findFirst().get();
         } catch (NoSuchElementException e) {
-            throw new ProdutoNaoEncontrado("Produto: '" + id + "' nao foi encontrado");
+            throw new ProdutoNaoEncontrado("Produto: '" + nome + "' nao foi encontrado");
         }
-        return index;
+        return produto;
     }
-
-
-
 
 }
