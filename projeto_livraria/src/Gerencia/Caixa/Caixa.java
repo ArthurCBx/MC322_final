@@ -109,7 +109,7 @@ public class Caixa{
         for (CompraVenda venda : getComprasvendas()) {
             entrada = GerenciadorEstoque.getEntradas().get(GerenciadorEstoque.buscaProduto(venda.getProduto().getID()));
             if (entrada.getQuantiade() < venda.getQuantiade())
-                throw new SemEstoque("Não há estoque suficiente de " + venda.getProduto().getNome() + ", " + entrada.getQuantiade() + " dos " + venda.getQuantiade() + " requisitados.")
+                throw new SemEstoque("Não há estoque suficiente de " + venda.getProduto().getNome() + ", " + entrada.getQuantiade() + " dos " + venda.getQuantiade() + " requisitados.");
 
         }
         for (CompraVenda venda : getComprasvendas()) {
