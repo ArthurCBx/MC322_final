@@ -10,12 +10,9 @@ import java.util.ArrayList;
  */
 
 public class UserManager {
-    private static final String clienteLogFile = "projeto_livraria/src/arquivos/cliente_login.txt";
-    private static final File clientelogFile = new File(clienteLogFile);
+    private static final String LogFile = "projeto_livraria/src/arquivos/login.txt";
+    private static final File logFile = new File(LogFile);
     private static final ArrayList<Cliente> clientes = new ArrayList<>();
-
-    private static final String funcionarioLogFile = "projeto_livraria/src/arquivos/funcionario_login.txt";
-    private static final File funcionariologFile = new File(funcionarioLogFile);
     private static final ArrayList<Funcionario> funcionarios = new ArrayList<>();
 
 
@@ -37,15 +34,15 @@ public class UserManager {
         }
         clientes.add(cliente);
 
-        if(!clientelogFile.exists() || !clientelogFile.isFile()) {
+        if(!logFile.exists() || !logFile.isFile()) {
             try {
-                clientelogFile.createNewFile();
+                logFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(clienteLogFile, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogFile, true))) {
             StringBuilder s = new StringBuilder();
             s.append("Cliente: ").append(cliente.getNome()).append("\n")
                     .append("Login: ").append(cliente.getLogin()).append("\n")
@@ -53,7 +50,7 @@ public class UserManager {
             writer.write(s.toString());
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Erro ao escrever no arquivo: " + clienteLogFile);
+            System.out.println("Erro ao escrever no arquivo: " + LogFile);
         }
     }
 
@@ -67,15 +64,15 @@ public class UserManager {
         }
         funcionarios.add(funcionario);
 
-        if(!funcionariologFile.exists() || !funcionariologFile.isFile()) {
+        if(!logFile.exists() || !logFile.isFile()) {
             try {
-                funcionariologFile.createNewFile();
+                logFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(funcionarioLogFile, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogFile, true))) {
             StringBuilder s = new StringBuilder();
             if (funcionario instanceof Gerente) {
                 s.append("Gerente: ");
@@ -88,7 +85,7 @@ public class UserManager {
             writer.write(s.toString());
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Erro ao escrever no arquivo: " + funcionarioLogFile);
+            System.out.println("Erro ao escrever no arquivo: " + LogFile);
         }
     }
 
@@ -111,7 +108,7 @@ public class UserManager {
 
         String line;
         StringBuilder s = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(funcionarioLogFile))){
+        try (BufferedReader reader = new BufferedReader(new FileReader(LogFile))){
             while((line = reader.readLine()) != null) {
                 if (line.contains("Funcionario: " + funcionarioToRemove.getNome() + " - id: " + funcionarioToRemove.getId())) {
                     reader.readLine(); // Pula a linha do login
@@ -124,7 +121,7 @@ public class UserManager {
             e.printStackTrace();
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(funcionarioLogFile, false))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogFile, false))) {
             writer.write(s.toString());
         } catch (IOException e) {
             e.printStackTrace();
@@ -135,24 +132,14 @@ public class UserManager {
      * Verifica se o login e senha existem no arquivo de logins.
      * @param login O login a ser verificado.
      * @param senha A senha a ser verificada.
-     * @param tipo O tipo de usuário ("cliente" ou "funcionario").
-     * @return Um array de Boolean onde o primeiro elemento indica se o login existe e o segundo se a senha está correta para o login.
+     * @return Um array de Boolean {login_exists, password_correct, isCliente, isFuncionario, isGerente}.
      */
-    public static Boolean[] loginExists(String login, String senha, String tipo){
-        String filepath;
+    public static Boolean[] loginExists(String login, String senha){
         boolean loginFound = false;
         boolean senhaCorreta = false;
-        Boolean[] verify = new Boolean[2];
+        Boolean[] verify = new Boolean[]{false, false, false, false, false};
 
-        if (tipo.equals("cliente")){
-            filepath = clienteLogFile;
-        }else if (tipo.equals("funcionario")) {
-            filepath = funcionarioLogFile;
-        }else{
-            return null; // Tipo inválido, não faz nada
-        }
-
-        try(BufferedReader reader = new BufferedReader(new FileReader(filepath))) {
+        try(BufferedReader reader = new BufferedReader(new FileReader(LogFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("Login: ")){
@@ -168,10 +155,8 @@ public class UserManager {
                         verify[0] = true;
                         if (senhaLine != null && senhaLine.equals(senha)) {
                             verify[1] = true;
-                        } else {
-                            verify[1] = false; // Senha incorreta
                         }
-                        return verify; // Login e senha corretos
+                        break;
                     }
                 }
             }
@@ -179,7 +164,29 @@ public class UserManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        verify[0] = false; verify[1] = false;
-        return verify;
+        for(Cliente cliente : clientes) {
+            if (cliente.getLogin().equals(login)) {
+                verify[2] = true; // É um cliente
+                verify[3] = false; // Não é um funcionário
+                verify[4] = false; // Não é um gerente
+                return verify;
+            }
+        }
+
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getLogin().equals(login)) {
+                verify[2] = false; // Não é um cliente
+                if (funcionario instanceof Gerente) {
+                    verify[3] = false; // Não é um funcionário
+                    verify[4] = true; // É um gerente
+                } else {
+                    verify[3] = true; // É um funcionário
+                    verify[4] = false; // Não é um gerente
+                }
+                return verify;
+            }
+        }
+
+        return verify; // Login não encontrado
     }
 }
