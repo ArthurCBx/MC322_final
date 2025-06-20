@@ -14,7 +14,7 @@ public class UserManager {
     private static final File clientelogFile = new File(clienteLogFile);
     private static final ArrayList<Cliente> clientes = new ArrayList<>();
 
-    private static final String funcionarioLogFile = "projeto_livraria/src/arquivos/cliente_login.txt";
+    private static final String funcionarioLogFile = "projeto_livraria/src/arquivos/funcionario_login.txt";
     private static final File funcionariologFile = new File(funcionarioLogFile);
     private static final ArrayList<Funcionario> funcionarios = new ArrayList<>();
 
@@ -47,7 +47,7 @@ public class UserManager {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(clienteLogFile, true))) {
             StringBuilder s = new StringBuilder();
-            s.append("Cliente: ").append(cliente).append("\n")
+            s.append("Cliente: ").append(cliente.getNome()).append("\n")
                     .append("Login: ").append(cliente.getLogin()).append("\n")
                     .append("Senha: ").append(cliente.getSenha()).append("\n\n");
             writer.write(s.toString());
@@ -77,7 +77,12 @@ public class UserManager {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(funcionarioLogFile, true))) {
             StringBuilder s = new StringBuilder();
-            s.append("Funcionario: ").append(funcionario).append(" - id: ").append(funcionario.getId()).append("\n")
+            if (funcionario instanceof Gerente) {
+                s.append("Gerente: ");
+            } else {
+                s.append("Funcionario: ");
+            }
+            s.append(funcionario.getNome()).append(" - id: ").append(funcionario.getId()).append("\n")
                     .append("Login: ").append(funcionario.getLogin()).append("\n")
                     .append("Senha: ").append(funcionario.getSenha()).append("\n\n");
             writer.write(s.toString());
@@ -91,10 +96,10 @@ public class UserManager {
      * Remove um funcionário do ArrayList pelo ID e atualiza o arquivo de logins.
      * @param Id O ID do funcionário a ser removido.
      */
-    public static void removeFuncionario(String Id){
+    public static void removeFuncionario(int Id){
         Funcionario funcionarioToRemove = null;
         for (Funcionario funcionario : funcionarios) {
-            if (funcionario.getId().equals(Id)) {
+            if (funcionario.getId() == (Id)) {
                 funcionarioToRemove = funcionario;
                 funcionarios.remove(funcionario);
                 break;

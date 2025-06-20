@@ -13,15 +13,15 @@ import pagamento.TipoPagamento;
  */
 
 public class Funcionario extends Pessoa{
-    private final String id;
+    private static int id_geral = 0;
+    private final int id;
 
-    public Funcionario(String nome, String CPF, String data_nascimento, String email, String id, String login, String senha) {
+    public Funcionario(String nome, String CPF, String data_nascimento, String email, String login, String senha) {
         super(nome, CPF, data_nascimento, email, login, senha);
-        this.id = id;
-        UserManager.writeFuncionarioToFile(this);
+        this.id = ++id_geral;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 

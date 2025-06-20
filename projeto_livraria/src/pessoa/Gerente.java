@@ -12,8 +12,8 @@ import Produtos.IntProduto;
 
 public class Gerente extends Funcionario{
 
-    public Gerente(String nome, String CPF, String data_nascimento, String email, String id, String login, String senha) {
-        super(nome, CPF, data_nascimento, email, id, login, senha);
+    public Gerente(String nome, String CPF, String data_nascimento, String email, String login, String senha) {
+        super(nome, CPF, data_nascimento, email, login, senha);
     }
 
     /**
