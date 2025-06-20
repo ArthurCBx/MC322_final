@@ -15,7 +15,6 @@ Login: usuario1
 Senha: senha1
 
 Cliente: Nome2
-
 ...
 
 senha: senhaN
@@ -28,7 +27,6 @@ id: identificador1
 Login: usuario1
 
 Senha: senha1
-
 ...
 
 Senha: senhaN
@@ -49,7 +47,6 @@ Compravel: sim/nao
 Secao: numeroSeção1
 
 Produto: TipoProduto2
-
 ...
 
 Secao: numeroSeçãoN
