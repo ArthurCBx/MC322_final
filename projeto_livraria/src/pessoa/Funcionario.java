@@ -1,11 +1,14 @@
 package pessoa;
 
 import Gerencia.Caixa.Caixa;
+import Gerencia.Estoque.GerenciadorEstoque;
+import Produtos.IntProduto;
 import pagamento.TipoPagamento;
 
 /*
     Classe Funcionario que herda de Pessoa.
     Representa um funcionário do sistema, com a capacidade de cadastrar clientes e efetuar pagamentos.
+    Pode remover produtos do estoque, caso alguém deseje alugá-lo.
     Ele possui um ID único.
  */
 
@@ -30,4 +33,13 @@ public class Funcionario extends Pessoa{
         Caixa.registrarVenda(tipo);
     }
 
+    /**
+     * Remove uma quantidade de um produto já existente no estoque. Pode ser utilizado para aluguel de produtos ou devolução.
+     * @param produto Produto a ser removido ou alterado no estoque.
+     * @param quantidade Quantidade do produto a ser removida ou alterada.
+     */
+    public void removeProduto(IntProduto produto, int quantidade){
+        GerenciadorEstoque.carregaProduto(produto);
+        GerenciadorEstoque.alteraProduto(-quantidade);
+    }
 }

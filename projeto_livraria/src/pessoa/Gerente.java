@@ -27,15 +27,6 @@ public class Gerente extends Funcionario{
     }
 
     /**
-     * Remove uma quantidade de um produto já existente no estoque.
-     * @param produto Produto a ser removido ou alterado no estoque.
-     * @param quantidade Quantidade do produto a ser removida ou alterada.
-     */
-    public void removeProduto(IntProduto produto, int quantidade){
-        GerenciadorEstoque.carregaProduto(produto);
-        GerenciadorEstoque.alteraProduto(-quantidade);
-    }
-    /**
      * Registra uma compra de um produto, adicionando-o ao caixa.
      * @param produto Produto a ser comprado.
      * @param quantidade Quantidade do produto a ser comprada.
