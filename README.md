@@ -6,7 +6,8 @@ Além disso, será necessário o controle de livros dentro do estabelecimento de
 
 # Manual de instruções para testes
 ## Formato do arquivo de input
-A primeira coisa a ser feita ao iniciar o código é passar um arquivo .txt contendo as informações que serão utilizadas para o funcionamento do programa. Ele deve estar no formato abaixo, incluindo letras maiusculas e os ':'. 
+A primeira coisa a ser feita ao iniciar o código é passar um arquivo .txt contendo as informações que serão utilizadas para o funcionamento do programa. Ele deve estar no formato abaixo, incluindo letras maiusculas e os ':'.
+Obs: id deve ser um número.
 
 Cliente: Nome1
 
