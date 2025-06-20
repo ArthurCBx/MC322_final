@@ -9,7 +9,7 @@ public class Main {
             int userSelection = fileChooser.showOpenDialog(null);
             if (userSelection == JFileChooser.APPROVE_OPTION) {
                 File arquivo = fileChooser.getSelectedFile();
-                try ()
+                FileInputReader.read(arquivo);
 
             } else {
                 System.exit(0);

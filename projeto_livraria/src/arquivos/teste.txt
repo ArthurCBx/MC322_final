@@ -1,0 +1,18 @@
+Cliente: Nome1, Login: usuario1, Senha: senha1, CPF: cpf1, dataNascimento: dd/mm/aaaa, email: email1
+
+Cliente: Nome2, Login: usuario2, Senha: senha2, CPF: cpf2, dataNascimento: dd/mm/aaaa, email: email2
+
+...
+
+Funcionario: Nome1, Login: usuario1, Senha: senha1, CPF: cpf1, dataNascimento: dd/mm/aaaa, email: email1
+
+Funcionario: Nome2, Login: usuario2, Senha: senha2, CPF: cpf2, dataNascimento: dd/mm/aaaa, email: email2
+
+...
+
+Gerente: Nome, Login: usuario, Senha: senha1, CPF: cpf, dataNascimento: dd/mm/aaaa, email: email1
+
+
+Produto: TipoProduto1, Quantidade: 55, Titulo: titulo1, Preco: 55, Alugavel: False, Compravel: False, Secao: 88, genero: genero1
+
+Produto: TipoProduto2, Quantidade: 23, Titulo: titulo2, Preco: 23, Alugavel: True, Compravel: True, Secao: 77, genero: genero2

@@ -11,13 +11,10 @@ import pagamento.TipoPagamento;
 
 public class Cliente extends Pessoa{
     private Cartao cartao;
-    private String endereco;
     private TipoPagamento pagamentoPadrao = TipoPagamento.CARTAO;
 
-    public Cliente(String nome, String CPF, String data_nascimento, String email, String login, String senha, Cartao cartao, String endereco) {
+    public Cliente(String nome, String CPF, String data_nascimento, String email, String login, String senha) {
         super(nome, CPF, data_nascimento, email, login, senha);
-        this.cartao = cartao;
-        this.endereco = endereco;
     }
 
     public Cartao getCartao() {
@@ -26,14 +23,6 @@ public class Cliente extends Pessoa{
 
     public void setCartao(Cartao cartao) {
         this.cartao = cartao;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
     }
 
     public TipoPagamento getPagamentoPadrao() {

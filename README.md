@@ -7,47 +7,24 @@ Além disso, será necessário o controle de livros dentro do estabelecimento de
 # Manual de instruções para testes
 ## Formato do arquivo de input
 A primeira coisa a ser feita ao iniciar o código é passar um arquivo .txt contendo as informações que serão utilizadas para o funcionamento do programa. Ele deve estar no formato abaixo, incluindo letras maiusculas e os ':'.
-Obs: id deve ser um número.
 
-Cliente: Nome1
+Cliente: Nome1, Login: usuario1, Senha: senha1, CPF: cpf1, dataNascimento: dd/mm/aaaa, email: email1
 
-Login: usuario1
+Cliente: Nome2, Login: usuario2, Senha: senha2, CPF: cpf2, dataNascimento: dd/mm/aaaa, email: email2
 
-Senha: senha1
-
-Cliente: Nome2
 ...
 
-senha: senhaN
+Funcionario: Nome1, Login: usuario1, Senha: senha1, CPF: cpf1, dataNascimento: dd/mm/aaaa, email: email1
 
+Funcionario: Nome2, Login: usuario2, Senha: senha2, CPF: cpf2, dataNascimento: dd/mm/aaaa, email: email2
 
-Funcionario: Nome1
-
-id: identificador1
-
-Login: usuario1
-
-Senha: senha1
 ...
 
-Senha: senhaN
+Gerente: Nome, Login: usuario, Senha: senha1, CPF: cpf, dataNascimento: dd/mm/aaaa, email: email1
 
 
-Produto: TipoProduto1
+Produto: TipoProduto1, Quantidade: numero1, Titulo: titulo1, Preco: preco1, Alugavel: True/False, Compravel: True/False, Secao: numeroSeção1, genero: genero1
 
-Quantidade: numero1
+Produto: TipoProduto2, Quantidade: numero2, Titulo: titulo2, Preco: preco2, Alugavel: True/False, Compravel: True/False, Secao: numeroSeção2, genero: genero2
 
-Titulo: titulo1
-
-Preco: preco1
-
-Alugavel: sim/nao
-
-Compravel: sim/nao
-
-Secao: numeroSeção1
-
-Produto: TipoProduto2
 ...
-
-Secao: numeroSeçãoN

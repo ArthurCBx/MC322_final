@@ -90,7 +90,7 @@ public class Caixa{
                 GerenciadorEstoque.carregaProduto(compra.getProduto());
                 GerenciadorEstoque.appendProduto(compra.getQuantiade());
             }
-            valor += compra.getQuantiade() * compra.getProduto().getValor();
+            valor += compra.getQuantiade() * compra.getProduto().getPreco();
         }
         setSaldo(getSaldo() - valor);
 
@@ -117,7 +117,7 @@ public class Caixa{
             GerenciadorEstoque.carregaProduto(entrada.getProduto());
             GerenciadorEstoque.alteraProduto(entrada.getQuantiade() - venda.getQuantiade());
 
-            valor += venda.getQuantiade() * venda.getProduto().getValor();
+            valor += venda.getQuantiade() * venda.getProduto().getPreco();
         }
         setSaldo(getSaldo() + valor);
 
