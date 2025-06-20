@@ -9,32 +9,47 @@ Além disso, será necessário o controle de livros dentro do estabelecimento de
 A primeira coisa a ser feita ao iniciar o código é passar um arquivo .txt contendo as informações que serão utilizadas para o funcionamento do programa. Ele deve estar no formato abaixo, incluindo letras maiusculas e os ':'. 
 
 Cliente: Nome1
+
 Login: usuario1
+
 Senha: senha1
 
 Cliente: Nome2
+
 ...
+
 senha: senhaN
 
 
 Funcionario: Nome1
+
 id: identificador1
+
 Login: usuario1
+
 Senha: senha1
 
 ...
+
 Senha: senhaN
 
 
 Produto: TipoProduto1
+
 Quantidade: numero1
+
 Titulo: titulo1
+
 Preco: preco1
+
 Alugavel: sim/nao
+
 Compravel: sim/nao
+
 Secao: numeroSeção1
 
 Produto: TipoProduto2
-...
-Secao: numeroSeçãoN
 
+...
+
+Secao: numeroSeçãoN
