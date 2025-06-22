@@ -1,6 +1,5 @@
 package Gerencia.Estoque;
 
-import Gerencia.GerenciadorGeral;
 import Produtos.IntProduto;
 import excecoes.ProdutoNaoEncontrado;
 
@@ -47,7 +46,7 @@ public class GerenciadorEstoque{
      * @param quantidade quantidade desse produto adicionado
      */
     public static void appendProduto(int quantidade) {
-        getEntradas().add(new Entrada(getProduto(), quantidade, true, -1));
+        getEntradas().add(new Entrada(getProduto(), true));
     }
 
     /**
@@ -66,8 +65,8 @@ public class GerenciadorEstoque{
      * @return Retorna seu indice
      */
     public static int buscaProduto(String id) {
-        int index;
-        try {
+        int index;  // Irá retornar o indice
+        try {       // Lista de Entradas -> index da entrada que contem o produto com o ID fornecido
             index = getEntradas().indexOf(getEntradas().stream().map(Entrada::getProduto).filter(entradaProduto -> entradaProduto.getID().equals(id)).findFirst().get());
         } catch (NoSuchElementException e) {
             throw new ProdutoNaoEncontrado("Produto: '" + id + "' nao foi encontrado");
@@ -109,7 +108,7 @@ public class GerenciadorEstoque{
      */
     public static void alteraProduto(int quantidade) {
         int index = buscaProduto(getProduto().getID());
-        getEntradas().get(index).setQuantiade(Math.min(getEntradas().get(index).getQuantiade() + quantidade, 0));
+        getEntradas().get(index).getProduto().setQuantidadeDisponivel(Math.min(getEntradas().get(index).getProduto().getQuantidadeDisponivel() + quantidade, 0));
     }
 
 }

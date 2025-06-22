@@ -5,18 +5,18 @@ import Produtos.IntProduto;
 
 public class CompraVenda extends Elemento {
 
-    private int quantiade;
+    private int quantidade;
 
     public CompraVenda(IntProduto produto, int quantiade) {
         super(produto);
-        this.quantiade = quantiade;
+        this.quantidade = quantiade;
     }
 
-    public int getQuantiade() {
-        return quantiade;
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setQuantiade(int quantiade) {
-        this.quantiade = quantiade;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 }

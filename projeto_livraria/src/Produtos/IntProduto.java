@@ -8,6 +8,8 @@ public interface IntProduto {
     String getID();
     String getNome();
     int quantidadeDisponivel();
+    int getQuantidadeDisponivel();
+    void setQuantidadeDisponivel(int quantidadeDisponivel);
     double getPreco();
     boolean isAlugavel();
     boolean isCompravel();
