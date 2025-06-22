@@ -1,15 +1,23 @@
 package Gerencia.Caixa;
 
 import Gerencia.Estoque.GerenciadorEstoque;
+import Gerencia.GerenciadorGeral;
 import Produtos.IntProduto;
 import excecoes.ProdutoNaoEncontrado;
 import excecoes.SemEstoque;
 import pagamento.TipoPagamento;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class Caixa {
+
+    private static final String LogTransacoes = "projeto_livraria/src/arquivos/Transações.txt";
+    private static final File logTransacoes = new File(LogTransacoes);
 
     /**
      * Saldo da livraria
@@ -93,9 +101,40 @@ public class Caixa {
                 valor += compra.getQuantidade() * compra.getProduto().getPreco();
             }
         }
+
         setSaldo(getSaldo() - valor);
 
-        // ESCRITA NO ARQUIVO
+        if (!logTransacoes.exists() || !logTransacoes.isFile()) {
+            try {
+                logTransacoes.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogTransacoes, true))) {
+            StringBuilder s = new StringBuilder();
+
+            s.append("COMPRA realizada por: ").append(GerenciadorGeral.getFuncionario().getNome()).append(", ID: ").append(GerenciadorGeral.getFuncionario().getId()).append("\n")
+                    .append("    Produto - Quantidade - Valor individual - Valor total:").append("\n");
+
+            for (CompraVenda compra : getComprasvendas()) {
+                s.append("    ").append(compra.getProduto()).append(" - ")
+                        .append(compra.getQuantidade()).append(" - ")
+                        .append(compra.getProduto().getPreco()).append(" - ")
+                        .append(compra.getProduto().getPreco() * compra.getQuantidade()).append("\n");
+            }
+
+            s.append("Valor total da compra: ").append(valor).append("\n")
+                    .append("Saldo resultante: ").append(getSaldo()).append("\n\n");
+            writer.write(s.toString());
+
+            setComprasvendas(new ArrayList<CompraVenda>());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao escrever no arquivo: " + LogTransacoes);
+        }
 
     }
 
@@ -121,10 +160,40 @@ public class Caixa {
 
             valor += venda.getQuantidade() * venda.getProduto().getPreco();
         }
+
         setSaldo(getSaldo() + valor);
 
-        // ESCRITA NO ARQUIVO
+        if (!logTransacoes.exists() || !logTransacoes.isFile()) {
+            try {
+                logTransacoes.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogTransacoes, true))) {
+            StringBuilder s = new StringBuilder();
+
+            s.append("VENDA realizada por: ").append(GerenciadorGeral.getFuncionario().getNome()).append(", ID: ").append(GerenciadorGeral.getFuncionario().getId()).append("\n")
+                    .append("    Produto - Quantidade - Valor individual - Valor total:").append("\n");
+
+            for (CompraVenda venda : getComprasvendas()) {
+                s.append("    ").append(venda.getProduto()).append(" - ")
+                        .append(venda.getQuantidade()).append(" - ")
+                        .append(venda.getProduto().getPreco()).append(" - ")
+                        .append(venda.getProduto().getPreco() * venda.getQuantidade()).append("\n");
+            }
+
+            s.append("Valor total da compra: ").append(valor).append("\n")
+                    .append("Saldo resultante: ").append(getSaldo()).append("\n\n");
+            writer.write(s.toString());
+
+            setComprasvendas(new ArrayList<CompraVenda>());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao escrever no arquivo: " + LogTransacoes);
+        }
 
     }
 

@@ -1,6 +1,8 @@
 package Gerencia.Estoque;
 
 import Produtos.IntProduto;
+import Produtos.Livro.Livro;
+import Produtos.Propriedade;
 import excecoes.ProdutoNaoEncontrado;
 
 import java.io.*;
@@ -9,7 +11,7 @@ import java.util.NoSuchElementException;
 
 public class GerenciadorEstoque {
 
-    private static final String LogEstoque = "a";
+    private static final String LogEstoque = "projeto_livraria/src/arquivos/Estoque.txt";
     private static final File logEstoque = new File(LogEstoque);
 
     /**
@@ -35,11 +37,34 @@ public class GerenciadorEstoque {
         return produtos;
     }
 
+    public static void setProdutos(ArrayList<IntProduto> produtos) {
+        GerenciadorEstoque.produtos = produtos;
+    }
+
     /**
      * Carrega os dados armazenados em Estoque.txt na lista de entradas
      */
     public static void carregarLista() {
 
+        if (!getProdutos().isEmpty()) {
+            setProdutos(new ArrayList<>());
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(LogEstoque))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("Produto:")) {
+                    switch (line){
+                        //case():
+
+                    }
+                }
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -110,76 +135,22 @@ public class GerenciadorEstoque {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogEstoque, false))) {
             StringBuilder s = new StringBuilder();
-            for IntProduto
-            s.append("Produto: ").append().append(funcionario.getId()).append("\n")
-                    .append("Login: ").append(funcionario.getLogin()).append("\n")
-                    .append("Senha: ").append(funcionario.getSenha()).append("\n\n");
-            writer.write(s.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Erro ao escrever no arquivo: " + LogFile);
-        }
-
-        /*
-        ArrayList<Entrada> novasEntradas = getEntradas().stream().filter(Entrada::isModificado).collect(Collectors.toCollection(ArrayList::new));
-
-        StringBuilder s = new StringBuilder();
-        String linha;
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(LogEstoque))) {
-            while ((linha = reader.readLine()) != null && !novasEntradas.isEmpty()) {
-                for (Entrada entradas : novasEntradas) {
-                    if (linha.contains("Produto: " + entradas.getProduto().getNome())) {
-                        novasEntradas.remove(entradas);
-                        break;
-                    }
+            for (IntProduto produto : getProdutos()) {
+                s.append("Produto: ").append(produto.getClass()).append("\n")
+                        .append("Nome: ").append(produto.getNome()).append("\n")
+                        .append("ID: ").append(produto.getID()).append("\n")
+                        .append("Quantidade: ").append(produto.getQuantidadeDisponivel()).append("\n")
+                        .append("Propriedades:").append("\n");
+                for (Propriedade propriedade : produto.getPropriedades()) {
+                    s.append(propriedade.getNomePropriedade()).append(": ").append(propriedade.getValorPropriedade()).append("\n");
                 }
-                    while(!reader.readLine().contains(";.;")){
-                        reader.readLine(); // Pula linhas ate encontrar ";.;", que é o indicador de final de um produto
-                    }
-                reader.readLine();  // Pula a linha de ";.;"
+                s.append(";.;\n\n");
+                writer.write(s.toString());
             }
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Erro ao escrever no arquivo: " + LogEstoque);
         }
-
-        if(!novasEntradas.isEmpty())
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(logEstoque, true))) {
-                while ((linha = reader.readLine()) != null && !novasEntradas.isEmpty()) {
-                    for (Entrada entradas : novasEntradas) {
-                        if (linha.contains("Produto: " + entradas.getProduto().getNome())) {
-                            novasEntradas.remove(entradas);
-                            break;
-                        }
-                    }
-                    while(!reader.readLine().contains(";.;")){
-                        reader.readLine(); // Pula linhas ate encontrar ";.;", que é o indicador de final de um produto
-                    }
-                    reader.readLine();  // Pula a linha de ";.;"
-
-                for (Entrada entrada : getEntradas().stream().filter(Entrada::isModificado).toList()) {
-                    while (linha = reader.read)
-
-                        s.append("Cliente: ").append(cliente.getNome()).append("\n")
-                                .append("Login: ").append(cliente.getLogin()).append("\n")
-                                .append("Senha: ").append(cliente.getSenha()).append("\n\n");
-
-                    writer.write(s.toString());
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("Erro ao escrever no arquivo: " + logEstoque);
-            }
-
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogFile, false))) {
-            writer.write(s.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-         */
 
     }
 
