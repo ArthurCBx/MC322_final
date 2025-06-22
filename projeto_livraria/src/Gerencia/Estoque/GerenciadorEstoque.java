@@ -3,10 +3,14 @@ package Gerencia.Estoque;
 import Produtos.IntProduto;
 import excecoes.ProdutoNaoEncontrado;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class GerenciadorEstoque{
+public class GerenciadorEstoque {
+
+    private static final String LogEstoque = "a";
+    private static final File logEstoque = new File(LogEstoque);
 
     /**
      * Produto carregado e utilizado para a operação na lista de Entradas
@@ -15,7 +19,7 @@ public class GerenciadorEstoque{
     /**
      * Lista de entradas de produtos, diz se um produto teve suas caracteristias alteradas e em qual linha do .txt está armazenado
      */
-    private static ArrayList<Entrada> entradas = new ArrayList<>();
+    private static ArrayList<IntProduto> produtos = new ArrayList<>();
 
     // Getters e Setters:
 
@@ -27,8 +31,8 @@ public class GerenciadorEstoque{
         GerenciadorEstoque.produto = produto;
     }
 
-    public static ArrayList<Gerencia.Estoque.Entrada> getEntradas() {
-        return entradas;
+    public static ArrayList<IntProduto> getProdutos() {
+        return produtos;
     }
 
     /**
@@ -36,7 +40,6 @@ public class GerenciadorEstoque{
      */
     public static void carregarLista() {
 
-        // LEITURA DE ARQUIVO
 
     }
 
@@ -46,7 +49,7 @@ public class GerenciadorEstoque{
      * @param quantidade quantidade desse produto adicionado
      */
     public static void appendProduto(int quantidade) {
-        getEntradas().add(new Entrada(getProduto(), true));
+        getProdutos().add(getProduto());
     }
 
     /**
@@ -55,7 +58,7 @@ public class GerenciadorEstoque{
      * @param id ID da entrada
      */
     public static void deleteProduto(String id) {
-        getEntradas().remove(buscaProduto(id));
+        getProdutos().remove(buscaProduto(id));
     }
 
     /**
@@ -67,7 +70,7 @@ public class GerenciadorEstoque{
     public static int buscaProduto(String id) {
         int index;  // Irá retornar o indice
         try {       // Lista de Entradas -> index da entrada que contem o produto com o ID fornecido
-            index = getEntradas().indexOf(getEntradas().stream().map(Entrada::getProduto).filter(entradaProduto -> entradaProduto.getID().equals(id)).findFirst().get());
+            index = getProdutos().indexOf(getProdutos().stream().filter(Produto -> Produto.getID().equals(id)).findFirst().get());
         } catch (NoSuchElementException e) {
             throw new ProdutoNaoEncontrado("Produto: '" + id + "' nao foi encontrado");
         }
@@ -80,7 +83,7 @@ public class GerenciadorEstoque{
      * @param id um ID de produto
      */
     public static void carregaProduto(String id) {
-        setProduto(GerenciadorEstoque.getEntradas().get(buscaProduto(id)).getProduto());
+        setProduto(GerenciadorEstoque.getProdutos().get(buscaProduto(id)));
     }
 
     /**
@@ -88,7 +91,7 @@ public class GerenciadorEstoque{
      *
      * @param produto uma interface produto
      */
-    public static void carregaProduto(IntProduto produto) {
+    public static void carregaProduto(Produtos.IntProduto produto) {
         setProduto(produto);
     }
 
@@ -97,7 +100,86 @@ public class GerenciadorEstoque{
      */
     public static void salvaProduto() {
 
-        // ESCRITA DE ARQUIVO
+        if (!logEstoque.exists() || !logEstoque.isFile()) {
+            try {
+                logEstoque.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogEstoque, false))) {
+            StringBuilder s = new StringBuilder();
+            for IntProduto
+            s.append("Produto: ").append().append(funcionario.getId()).append("\n")
+                    .append("Login: ").append(funcionario.getLogin()).append("\n")
+                    .append("Senha: ").append(funcionario.getSenha()).append("\n\n");
+            writer.write(s.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao escrever no arquivo: " + LogFile);
+        }
+
+        /*
+        ArrayList<Entrada> novasEntradas = getEntradas().stream().filter(Entrada::isModificado).collect(Collectors.toCollection(ArrayList::new));
+
+        StringBuilder s = new StringBuilder();
+        String linha;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(LogEstoque))) {
+            while ((linha = reader.readLine()) != null && !novasEntradas.isEmpty()) {
+                for (Entrada entradas : novasEntradas) {
+                    if (linha.contains("Produto: " + entradas.getProduto().getNome())) {
+                        novasEntradas.remove(entradas);
+                        break;
+                    }
+                }
+                    while(!reader.readLine().contains(";.;")){
+                        reader.readLine(); // Pula linhas ate encontrar ";.;", que é o indicador de final de um produto
+                    }
+                reader.readLine();  // Pula a linha de ";.;"
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(!novasEntradas.isEmpty())
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(logEstoque, true))) {
+                while ((linha = reader.readLine()) != null && !novasEntradas.isEmpty()) {
+                    for (Entrada entradas : novasEntradas) {
+                        if (linha.contains("Produto: " + entradas.getProduto().getNome())) {
+                            novasEntradas.remove(entradas);
+                            break;
+                        }
+                    }
+                    while(!reader.readLine().contains(";.;")){
+                        reader.readLine(); // Pula linhas ate encontrar ";.;", que é o indicador de final de um produto
+                    }
+                    reader.readLine();  // Pula a linha de ";.;"
+
+                for (Entrada entrada : getEntradas().stream().filter(Entrada::isModificado).toList()) {
+                    while (linha = reader.read)
+
+                        s.append("Cliente: ").append(cliente.getNome()).append("\n")
+                                .append("Login: ").append(cliente.getLogin()).append("\n")
+                                .append("Senha: ").append(cliente.getSenha()).append("\n\n");
+
+                    writer.write(s.toString());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Erro ao escrever no arquivo: " + logEstoque);
+            }
+
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogFile, false))) {
+            writer.write(s.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+         */
 
     }
 
@@ -108,7 +190,7 @@ public class GerenciadorEstoque{
      */
     public static void alteraProduto(int quantidade) {
         int index = buscaProduto(getProduto().getID());
-        getEntradas().get(index).getProduto().setQuantidadeDisponivel(Math.min(getEntradas().get(index).getProduto().getQuantidadeDisponivel() + quantidade, 0));
+        getProdutos().get(index).setQuantidadeDisponivel(Math.min(getProdutos().get(index).getQuantidadeDisponivel() + quantidade, 0));
     }
 
 }

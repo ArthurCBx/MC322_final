@@ -1,13 +1,11 @@
 package Gerencia;
 
-import Gerencia.Estoque.Entrada;
 import Gerencia.Estoque.GerenciadorEstoque;
 import Produtos.IntProduto;
 import excecoes.ProdutoNaoEncontrado;
 import pessoa.Cliente;
 import pessoa.Funcionario;
 
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class GerenciadorGeral {
@@ -43,10 +41,10 @@ public class GerenciadorGeral {
      * @param nome nome do produto
      * @return Retorna a interface do produto
      */
-    public static IntProduto realizarBusca(String nome){
+    public static Produtos.IntProduto realizarBusca(String nome){
         IntProduto produto;
         try {
-            produto = GerenciadorEstoque.getEntradas().stream().map(Entrada::getProduto).filter(produtob -> produtob.getNome().equals(nome)).findFirst().get();
+            produto = GerenciadorEstoque.getProdutos().stream().filter(produtob -> produtob.getNome().equals(nome)).findFirst().get();
         } catch (NoSuchElementException e) {
             throw new ProdutoNaoEncontrado("Produto: '" + nome + "' nao foi encontrado");
         }
