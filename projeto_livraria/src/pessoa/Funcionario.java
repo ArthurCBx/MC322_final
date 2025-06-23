@@ -2,7 +2,7 @@ package pessoa;
 
 import Gerencia.Caixa.Caixa;
 import Gerencia.Estoque.GerenciadorEstoque;
-import Produtos.IntProduto;
+import Produtos.Produto;
 import pagamento.TipoPagamento;
 
 /*
@@ -38,7 +38,7 @@ public class Funcionario extends Pessoa{
      * @param produto Produto a ser removido ou alterado no estoque.
      * @param quantidade Quantidade do produto a ser removida ou alterada.
      */
-    public void removeProduto(IntProduto produto, int quantidade){
+    public void removeProduto(Produto produto, int quantidade){
         GerenciadorEstoque.carregaProduto(produto);
         GerenciadorEstoque.alteraProduto(-quantidade);
     }

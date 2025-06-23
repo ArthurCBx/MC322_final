@@ -1,7 +1,7 @@
 package pessoa;
 
 import Gerencia.GerenciadorGeral;
-import Produtos.IntProduto;
+import Produtos.Produto;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -77,7 +77,7 @@ public abstract class Pessoa {
         this.senha = senha;
     }
 
-    public IntProduto buscarProduto(String nomeProduto) {
+    public Produto buscarProduto(String nomeProduto) {
         return GerenciadorGeral.realizarBusca(nomeProduto);
     }
 

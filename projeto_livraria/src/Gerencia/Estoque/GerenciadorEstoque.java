@@ -1,7 +1,6 @@
 package Gerencia.Estoque;
 
-import Produtos.IntProduto;
-import Produtos.Livro.Livro;
+import Produtos.Produto;
 import Produtos.Propriedade;
 import excecoes.ProdutoNaoEncontrado;
 
@@ -17,27 +16,27 @@ public class GerenciadorEstoque {
     /**
      * Produto carregado e utilizado para a operação na lista de Entradas
      */
-    private static IntProduto produto;
+    private static Produto produto;
     /**
      * Lista de entradas de produtos, diz se um produto teve suas caracteristias alteradas e em qual linha do .txt está armazenado
      */
-    private static ArrayList<IntProduto> produtos = new ArrayList<>();
+    private static ArrayList<Produto> produtos = new ArrayList<>();
 
     // Getters e Setters:
 
-    public static IntProduto getProduto() {
+    public static Produto getProduto() {
         return produto;
     }
 
-    public static void setProduto(IntProduto produto) {
+    public static void setProduto(Produto produto) {
         GerenciadorEstoque.produto = produto;
     }
 
-    public static ArrayList<IntProduto> getProdutos() {
+    public static ArrayList<Produto> getProdutos() {
         return produtos;
     }
 
-    public static void setProdutos(ArrayList<IntProduto> produtos) {
+    public static void setProdutos(ArrayList<Produto> produtos) {
         GerenciadorEstoque.produtos = produtos;
     }
 
@@ -116,7 +115,7 @@ public class GerenciadorEstoque {
      *
      * @param produto uma interface produto
      */
-    public static void carregaProduto(Produtos.IntProduto produto) {
+    public static void carregaProduto(Produto produto) {
         setProduto(produto);
     }
 
@@ -135,7 +134,7 @@ public class GerenciadorEstoque {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogEstoque, false))) {
             StringBuilder s = new StringBuilder();
-            for (IntProduto produto : getProdutos()) {
+            for (Produto produto : getProdutos()) {
                 s.append("Produto: ").append(produto.getClass()).append("\n")
                         .append("Nome: ").append(produto.getNome()).append("\n")
                         .append("ID: ").append(produto.getID()).append("\n")

@@ -2,7 +2,7 @@ package Gerencia.Caixa;
 
 import Gerencia.Estoque.GerenciadorEstoque;
 import Gerencia.GerenciadorGeral;
-import Produtos.IntProduto;
+import Produtos.Produto;
 import excecoes.ProdutoNaoEncontrado;
 import excecoes.SemEstoque;
 import pagamento.TipoPagamento;
@@ -69,7 +69,7 @@ public class Caixa {
      * @param produto    O produto a ser adicionado
      * @param quantidade quantidade de produto a ser adicionado
      */
-    public static void adiconarCompraVenda(Produtos.IntProduto produto, int quantidade) {
+    public static void adiconarCompraVenda(Produto produto, int quantidade) {
         getComprasvendas().add(new CompraVenda(produto, quantidade));
     }
 
@@ -87,7 +87,7 @@ public class Caixa {
      */
     public static void registrarCompra() {
         int valor = 0;
-        IntProduto produto;
+        Produto produto;
         for (CompraVenda compra : getComprasvendas()) { // Realiza a Compra de produtos, criando uma produto se necessario
             try {
                 produto = GerenciadorEstoque.getProdutos().get(GerenciadorEstoque.buscaProduto(compra.getProduto().getID()));
@@ -145,7 +145,7 @@ public class Caixa {
     public static void registrarVenda(TipoPagamento pagamento) {
 
         int valor = 0;
-        IntProduto produto;
+        Produto produto;
 
         for (CompraVenda venda : getComprasvendas()) {  // Para toda Venda, se verifica se há produto suficiente no estoque
             produto = GerenciadorEstoque.getProdutos().get(GerenciadorEstoque.buscaProduto(venda.getProduto().getID()));

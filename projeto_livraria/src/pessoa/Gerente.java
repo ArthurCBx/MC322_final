@@ -2,7 +2,7 @@ package pessoa;
 
 import Gerencia.Caixa.Caixa;
 import Gerencia.Estoque.GerenciadorEstoque;
-import Produtos.IntProduto;
+import Produtos.Produto;
 
 /*
     Classe Gerente que herda de Funcionario.
@@ -21,7 +21,7 @@ public class Gerente extends Funcionario{
      * @param produto Produto a ser adicionado ou alterado no estoque.
      * @param quantidade Quantidade do produto a ser adicionada ou alterada.
      */
-    public void addProduto(IntProduto produto, int quantidade){
+    public void addProduto(Produto produto, int quantidade){
         GerenciadorEstoque.carregaProduto(produto);
         GerenciadorEstoque.alteraProduto(quantidade);
     }
@@ -31,7 +31,7 @@ public class Gerente extends Funcionario{
      * @param produto Produto a ser comprado.
      * @param quantidade Quantidade do produto a ser comprada.
      */
-    public void ComprarProduto(IntProduto produto, int quantidade){
+    public void ComprarProduto(Produto produto, int quantidade){
         Caixa.adiconarCompraVenda(produto, quantidade);
         Caixa.registrarCompra();
     }

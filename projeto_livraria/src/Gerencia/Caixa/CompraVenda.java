@@ -1,22 +1,22 @@
 package Gerencia.Caixa;
 
-import Produtos.IntProduto;
+import Produtos.Produto;
 
 public class CompraVenda {
 
-    private IntProduto produto;
+    private Produto produto;
     private int quantidade;
 
-    public CompraVenda(IntProduto produto, int quantiade) {
+    public CompraVenda(Produto produto, int quantiade) {
         this.produto = produto;
         this.quantidade = quantiade;
     }
 
-    public IntProduto getProduto() {
+    public Produto getProduto() {
         return produto;
     }
 
-    public void setProduto(IntProduto produto) {
+    public void setProduto(Produto produto) {
         this.produto = produto;
     }
 

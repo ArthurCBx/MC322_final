@@ -1,5 +1,3 @@
-import Produtos.IntProduto;
-import Produtos.Livro.Livro;
 import pessoa.Cliente;
 import pessoa.Funcionario;
 import pessoa.Gerente;

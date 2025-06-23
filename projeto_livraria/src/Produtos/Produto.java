@@ -2,30 +2,27 @@ package Produtos;
 
 import java.util.ArrayList;
 
-public class Produto {
-    private String nome;
-    private int preco;
+public interface Produto {
 
-    public Produto(String nome, int preco){
-        this.nome = nome;
-        this.preco = preco;
-    }
 
-    public String getNome() {
-        return nome;
-    }
+    // so deixei criado pra poder fazer referencia a interface produto
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    String getNome();
 
-    public int getPreco() {
-        return preco;
-    }
+    String getID();
 
-    public void setPreco(int preco) {
-        this.preco = preco;
-    }
+    int getQuantidadeDisponivel();
 
+    void setQuantidadeDisponivel(int quantidadeDisponivel);
+
+    double getPreco();
+
+    boolean isAlugavel();
+
+    boolean isCompravel();
+
+    int getSecao();
+
+    ArrayList<Propriedade> getPropriedades();
 
 }
