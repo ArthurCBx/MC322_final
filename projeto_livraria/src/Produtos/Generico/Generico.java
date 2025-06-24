@@ -16,9 +16,15 @@ public class Generico implements Produto{
     private ArrayList<Propriedade> propriedades;
 
 
-    public Generico(String nome, float preco) {
+    public Generico(String nome, double preco, String id, int secao, ArrayList<Propriedade> propriedades) {
         this.nome = nome;
         this.preco = preco;
+        this.id = id;
+        this.quantidadeDisponivel = 1;
+        this.isAlugavel = false;
+        this.isCompravel = true;
+        this.secao = secao;
+        this.propriedades = propriedades;
     }
 
     public String getNome(){

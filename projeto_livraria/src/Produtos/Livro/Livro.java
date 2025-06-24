@@ -17,12 +17,12 @@ public class Livro implements Produto{
     private int secao;
     private ArrayList<Propriedade> propriedades;
 
-    public Livro(String nome, float preco, String id, ArrayList<Genero> generos, int quantidadeDisponivel, boolean isAlugavel, int secao) {
+    public Livro(String nome, float preco, String id, ArrayList<Genero> generos, boolean isAlugavel, int secao) {
         this.nome = nome;
         this.preco = preco;
         this.id = id;
         this.generos = generos;
-        this.quantidadeDisponivel = quantidadeDisponivel;
+        this.quantidadeDisponivel = 1;
         this.isAlugavel = isAlugavel;
         this.isCompravel = true;
         this.secao = secao;
