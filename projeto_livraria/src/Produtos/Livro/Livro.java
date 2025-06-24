@@ -10,17 +10,18 @@ public class Livro implements Produto{
     private String nome;
     private float preco;
     private String id;
-    private ArrayList<Genero> genero;
+    private ArrayList<Genero> generos;
     private int quantidadeDisponivel;
     private boolean isAlugavel;
     private boolean isCompravel;
     private int secao;
+    private ArrayList<Propriedade> propriedades;
 
-    public Livro(String nome, float preco, String id, ArrayList<Genero> genero, int quantidadeDisponivel, boolean isAlugavel, int secao) {
+    public Livro(String nome, float preco, String id, ArrayList<Genero> generos, int quantidadeDisponivel, boolean isAlugavel, int secao) {
         this.nome = nome;
         this.preco = preco;
         this.id = id;
-        this.genero = genero;
+        this.generos = generos;
         this.quantidadeDisponivel = quantidadeDisponivel;
         this.isAlugavel = isAlugavel;
         this.isCompravel = true;
@@ -31,7 +32,7 @@ public class Livro implements Produto{
         return this.nome;
     }
 
-    public String getID(){
+    public String getId(){
         return this.id;
     }
 
@@ -56,10 +57,28 @@ public class Livro implements Produto{
     }
 
     public int getSecao(){
-        return secao;
+        return this.secao;
+    }
+
+    public ArrayList<Genero> getGeneros() {
+        return this.generos;
     }
 
     public ArrayList<Propriedade> getPropriedades(){
+        return this.propriedades;
+    }
 
+    public int decrementarQuantidadeLivros(){
+        if(this.quantidadeDisponivel - 1 >= 0){
+            this.quantidadeDisponivel--;
+            return this.quantidadeDisponivel;
+        }
+        else
+            return -1;
+    }
+
+    public int aumentarQuantidadeLivros(){
+        this.quantidadeDisponivel++;
+        return this.quantidadeDisponivel;
     }
 }

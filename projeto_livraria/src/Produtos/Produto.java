@@ -9,7 +9,7 @@ public interface Produto {
 
     String getNome();
 
-    String getID();
+    String getId();
 
     int getQuantidadeDisponivel();
 
