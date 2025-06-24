@@ -94,7 +94,7 @@ public class GerenciadorEstoque {
     public static int buscaProduto(String id) {
         int index;  // Irá retornar o indice
         try {       // Lista de Entradas -> index da entrada que contem o produto com o ID fornecido
-            index = getProdutos().indexOf(getProdutos().stream().filter(Produto -> Produto.getID().equals(id)).findFirst().get());
+            index = getProdutos().indexOf(getProdutos().stream().filter(Produto -> Produto.getId().equals(id)).findFirst().get());
         } catch (NoSuchElementException e) {
             throw new ProdutoNaoEncontrado("Produto: '" + id + "' nao foi encontrado");
         }
@@ -137,7 +137,7 @@ public class GerenciadorEstoque {
             for (Produto produto : getProdutos()) {
                 s.append("Produto: ").append(produto.getClass()).append("\n")
                         .append("Nome: ").append(produto.getNome()).append("\n")
-                        .append("ID: ").append(produto.getID()).append("\n")
+                        .append("ID: ").append(produto.getId()).append("\n")
                         .append("Quantidade: ").append(produto.getQuantidadeDisponivel()).append("\n")
                         .append("Propriedades:").append("\n");
                 for (Propriedade propriedade : produto.getPropriedades()) {
@@ -159,7 +159,7 @@ public class GerenciadorEstoque {
      * @param quantidade soma essa quantidade na quantidade atual da entrada
      */
     public static void alteraProduto(int quantidade) {
-        int index = buscaProduto(getProduto().getID());
+        int index = buscaProduto(getProduto().getId());
         getProdutos().get(index).setQuantidadeDisponivel(Math.min(getProdutos().get(index).getQuantidadeDisponivel() + quantidade, 0));
     }
 

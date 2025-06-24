@@ -56,7 +56,7 @@ public class Caixa {
     public static int buscaCompraVenda(String id) {
         int index;      // Irá retornar o indice
         try {           // Lista de ComprasVendas -> index da compraVenda que contem o produto com o ID fornecido
-            index = getComprasvendas().indexOf(getComprasvendas().stream().map(CompraVenda::getProduto).filter(produto -> produto.getID().equals(id)).findFirst().get());
+            index = getComprasvendas().indexOf(getComprasvendas().stream().map(CompraVenda::getProduto).filter(produto -> produto.getId().equals(id)).findFirst().get());
         } catch (NoSuchElementException e) {
             throw new ProdutoNaoEncontrado("Produto: '" + id + "' nao foi encontrado");
         }
@@ -90,7 +90,7 @@ public class Caixa {
         Produto produto;
         for (CompraVenda compra : getComprasvendas()) { // Realiza a Compra de produtos, criando uma produto se necessario
             try {
-                produto = GerenciadorEstoque.getProdutos().get(GerenciadorEstoque.buscaProduto(compra.getProduto().getID()));
+                produto = GerenciadorEstoque.getProdutos().get(GerenciadorEstoque.buscaProduto(compra.getProduto().getId()));
                 GerenciadorEstoque.carregaProduto(produto);
                 GerenciadorEstoque.alteraProduto(compra.getQuantidade());
 
@@ -148,13 +148,13 @@ public class Caixa {
         Produto produto;
 
         for (CompraVenda venda : getComprasvendas()) {  // Para toda Venda, se verifica se há produto suficiente no estoque
-            produto = GerenciadorEstoque.getProdutos().get(GerenciadorEstoque.buscaProduto(venda.getProduto().getID()));
+            produto = GerenciadorEstoque.getProdutos().get(GerenciadorEstoque.buscaProduto(venda.getProduto().getId()));
             if (produto.getQuantidadeDisponivel() < venda.getQuantidade())
                 throw new SemEstoque("Não há estoque suficiente de " + venda.getProduto().getNome() + ", " + produto.getQuantidadeDisponivel() + " dos " + venda.getQuantidade() + " requisitados.");
         }
 
         for (CompraVenda venda : getComprasvendas()) {  // Realiza a Venda de produtos, removendo do estoque e adicionando o valor em valor
-            produto = GerenciadorEstoque.getProdutos().get(GerenciadorEstoque.buscaProduto(venda.getProduto().getID()));
+            produto = GerenciadorEstoque.getProdutos().get(GerenciadorEstoque.buscaProduto(venda.getProduto().getId()));
             GerenciadorEstoque.carregaProduto(produto);
             GerenciadorEstoque.alteraProduto(-venda.getQuantidade());
 
