@@ -60,6 +60,20 @@ public class Generico implements Produto{
     }
 
     public ArrayList<Propriedade> getPropriedades(){
-        return propriedades;
+        return this.propriedades;
+    }
+
+    public int decrementarQuantidadeProduto(){
+        if(this.quantidadeDisponivel - 1 >= 0){
+            this.quantidadeDisponivel--;
+            return this.quantidadeDisponivel;
+        }
+        else
+            return -1;
+    }
+
+    public int aumentarQuantidadeProduto(){
+        this.quantidadeDisponivel++;
+        return this.quantidadeDisponivel;
     }
 }

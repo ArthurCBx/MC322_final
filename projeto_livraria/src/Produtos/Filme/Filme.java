@@ -40,36 +40,48 @@ public class Filme implements Produto{
     }
 
     public double getPreco() {
-        return preco;
+        return this.preco;
     }
 
     public ArrayList<Genero> getGenero() {
-        return genero;
+        return this.genero;
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public int getQuantidadeDisponivel() {
-        return quantidadeDisponivel;
+        return this.quantidadeDisponivel;
     }
 
     public boolean isAlugavel() {
-        return isAlugavel;
+        return this.isAlugavel;
     }
 
     public boolean isCompravel() {
-        return isCompravel;
+        return this.isCompravel;
     }
 
     public int getSecao() {
-        return secao;
+        return this.secao;
     }
 
     public ArrayList<Propriedade> getPropriedades() {
-        return propriedades;
+        return this.propriedades;
     }
 
+    public int decrementarQuantidadeFilme(){
+        if(this.quantidadeDisponivel - 1 >= 0){
+            this.quantidadeDisponivel--;
+            return this.quantidadeDisponivel;
+        }
+        else
+            return -1;
+    }
 
+    public int aumentarQuantidadeFilme(){
+        this.quantidadeDisponivel++;
+        return this.quantidadeDisponivel;
+    }
 }
