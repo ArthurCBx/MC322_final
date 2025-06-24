@@ -19,10 +19,16 @@ public class Filme implements Produto{
     private int secao;
     private ArrayList<Propriedade> propriedades;
 
-    public Filme(String nome, float preco, ArrayList<Genero> genero) {
+    public Filme(String nome, float preco, ArrayList<Genero> genero, String id, int secao, ArrayList<Propriedade> propriedades) {
         this.nome = nome;
         this.preco = preco;
         this.genero = genero;
+        this.id = id;
+        this.quantidadeDisponivel = 1;
+        this.isAlugavel = true;
+        this.isCompravel = true;
+        this.secao = secao;
+        this.propriedades = propriedades;
     }
 
     public String getNome() {
