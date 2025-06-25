@@ -1,7 +1,6 @@
 package Produtos.Generico;
 
 import Produtos.Produto;
-import Produtos.Propriedade;
 
 import java.util.ArrayList;
 
@@ -13,10 +12,9 @@ public class Generico implements Produto{
     private boolean isAlugavel;
     private boolean isCompravel;
     private int secao;
-    private ArrayList<Propriedade> propriedades;
 
 
-    public Generico(String nome, double preco, String id, int secao, ArrayList<Propriedade> propriedades) {
+    public Generico(String nome, double preco, String id, int secao) {
         this.nome = nome;
         this.preco = preco;
         this.id = id;
@@ -24,7 +22,6 @@ public class Generico implements Produto{
         this.isAlugavel = false;
         this.isCompravel = true;
         this.secao = secao;
-        this.propriedades = propriedades;
     }
 
     public String getNome(){
@@ -57,10 +54,6 @@ public class Generico implements Produto{
 
     public int getSecao(){
         return this.secao;
-    }
-
-    public ArrayList<Propriedade> getPropriedades(){
-        return this.propriedades;
     }
 
     public int decrementarQuantidadeProduto(){

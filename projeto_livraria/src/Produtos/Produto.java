@@ -23,6 +23,4 @@ public interface Produto {
 
     int getSecao();
 
-    ArrayList<Propriedade> getPropriedades();
-
 }

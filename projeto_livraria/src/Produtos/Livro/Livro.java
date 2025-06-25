@@ -3,7 +3,6 @@ package Produtos.Livro;
 import java.util.ArrayList;
 
 import Produtos.Produto;
-import Produtos.Propriedade;
 
 public class Livro implements Produto{
 
@@ -15,7 +14,6 @@ public class Livro implements Produto{
     private boolean isAlugavel;
     private boolean isCompravel;
     private int secao;
-    private ArrayList<Propriedade> propriedades;
 
     public Livro(String nome, float preco, String id, ArrayList<Genero> generos, int secao) {
         this.nome = nome;
@@ -62,10 +60,6 @@ public class Livro implements Produto{
 
     public ArrayList<Genero> getGeneros() {
         return this.generos;
-    }
-
-    public ArrayList<Propriedade> getPropriedades(){
-        return this.propriedades;
     }
 
     public int decrementarQuantidadeLivros(){

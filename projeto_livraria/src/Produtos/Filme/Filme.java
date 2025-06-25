@@ -1,7 +1,6 @@
 package Produtos.Filme;
 
 import Produtos.Produto;
-import Produtos.Propriedade;
 import Produtos.Livro.Genero;
 
 import java.util.ArrayList;
@@ -17,9 +16,8 @@ public class Filme implements Produto{
     private boolean isAlugavel;
     private boolean isCompravel;
     private int secao;
-    private ArrayList<Propriedade> propriedades;
 
-    public Filme(String nome, float preco, ArrayList<Genero> genero, String id, int secao, ArrayList<Propriedade> propriedades) {
+    public Filme(String nome, float preco, ArrayList<Genero> genero, String id, int secao) {
         this.nome = nome;
         this.preco = preco;
         this.genero = genero;
@@ -28,7 +26,8 @@ public class Filme implements Produto{
         this.isAlugavel = true;
         this.isCompravel = true;
         this.secao = secao;
-        this.propriedades = propriedades;
+
+
     }
 
     public String getNome() {
@@ -65,10 +64,6 @@ public class Filme implements Produto{
 
     public int getSecao() {
         return this.secao;
-    }
-
-    public ArrayList<Propriedade> getPropriedades() {
-        return this.propriedades;
     }
 
     public int decrementarQuantidadeFilme(){

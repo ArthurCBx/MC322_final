@@ -1,7 +1,6 @@
 package Gerencia.Estoque;
 
 import Produtos.Produto;
-import Produtos.Propriedade;
 import excecoes.ProdutoNaoEncontrado;
 
 import java.io.*;
