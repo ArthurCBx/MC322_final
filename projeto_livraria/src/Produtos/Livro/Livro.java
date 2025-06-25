@@ -38,7 +38,7 @@ public class Livro implements Produto {
         this.quantidadeDisponivel = Integer.parseInt(lines[2]);
         this.preco = Float.parseFloat(lines[3]);
         this.secao = Integer.parseInt(lines[4]);
-        String[] gens = lines[5].split(",");
+        String[] gens = lines[5].split(", ");
         for (String gen : gens) {
             if (gen.length() < 3) break;
             this.generos.add(Genero.fromString(gen));

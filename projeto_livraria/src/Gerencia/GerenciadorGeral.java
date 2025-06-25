@@ -65,7 +65,7 @@ public class GerenciadorGeral {
     /**
      * Realiza uma busca por nome de produto e retorna a interface do produto
      * @param nome nome do produto
-     * @return Retorna a interface do produto
+     * @return Retorna a interface do produto; pode gerar ProdutoNaoEncontradoException
      */
     public static Produto realizarBusca(String nome){
         Produto produto;

@@ -84,17 +84,18 @@ Propriedades:
                     } else if (line.startsWith("Filme")) {
 
                         for (line = reader.readLine(); !line.startsWith(";.;"); line = reader.readLine()) {
-                            s.append(line);
+                            s.append(line).append("\n");
                         }
                         GerenciadorEstoque.setProduto(new Filme(s.toString()));
 
                     } else {
 
                         for (line = reader.readLine(); !line.startsWith(";.;"); line = reader.readLine()) {
-                            s.append(line);
+                            s.append(line).append("\n");
                         }
                         GerenciadorEstoque.setProduto(new Generico(s.toString()));
                     }
+                    GerenciadorEstoque.appendProduto();
                     s.delete(0, s.length());
                 }
             }

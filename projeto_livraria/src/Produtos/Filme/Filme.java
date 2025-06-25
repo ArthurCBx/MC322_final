@@ -10,7 +10,7 @@ public class Filme implements Produto {
     private String nome;
     private double preco;
     private String id;
-    private ArrayList<Genero> generos;
+    private ArrayList<Genero> generos = new ArrayList<>();
     private int quantidadeDisponivel;
     private boolean isAlugavel;
     private boolean isCompravel;
@@ -39,7 +39,7 @@ public class Filme implements Produto {
         this.quantidadeDisponivel = Integer.parseInt(lines[2]);
         this.preco = Float.parseFloat(lines[3]);
         this.secao = Integer.parseInt(lines[4]);
-        String[] gens = lines[5].split(",");
+        String[] gens = lines[5].split(", ");
         for (String gen : gens) {
             if (gen.length() < 3) break;
             this.generos.add(Genero.fromString(gen));
