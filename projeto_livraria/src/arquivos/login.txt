@@ -38,3 +38,223 @@ Gerente: Nome - id: 3
 Login: usuario
 Senha: senha1
 
+Cliente: Nome1
+Login: usuario1
+Senha: senha1
+
+Cliente: Nome2
+Login: usuario2
+Senha: senha2
+
+Funcionario: Nome1 - id: 1
+Login: usuario1
+Senha: senha1
+
+Funcionario: Nome2 - id: 2
+Login: usuario2
+Senha: senha2
+
+Gerente: Nome - id: 3
+Login: usuario
+Senha: senha1
+
+Cliente: Nome1
+Login: usuario1
+Senha: senha1
+
+Cliente: Nome2
+Login: usuario2
+Senha: senha2
+
+Funcionario: Nome1 - id: 1
+Login: usuario1
+Senha: senha1
+
+Funcionario: Nome2 - id: 2
+Login: usuario2
+Senha: senha2
+
+Gerente: Nome - id: 3
+Login: usuario
+Senha: senha1
+
+Cliente: Nome1
+Login: usuario1
+Senha: senha1
+
+Cliente: Nome2
+Login: usuario2
+Senha: senha2
+
+Funcionario: Nome1 - id: 1
+Login: usuario1
+Senha: senha1
+
+Funcionario: Nome2 - id: 2
+Login: usuario2
+Senha: senha2
+
+Gerente: Nome - id: 3
+Login: usuario
+Senha: senha1
+
+Cliente: Nome1
+Login: usuario1
+Senha: senha1
+
+Cliente: Nome2
+Login: usuario2
+Senha: senha2
+
+Funcionario: Nome1 - id: 1
+Login: usuario1
+Senha: senha1
+
+Funcionario: Nome2 - id: 2
+Login: usuario2
+Senha: senha2
+
+Gerente: Nome - id: 3
+Login: usuario
+Senha: senha1
+
+Cliente: Nome1
+Login: usuario1
+Senha: senha1
+
+Cliente: Nome2
+Login: usuario2
+Senha: senha2
+
+Funcionario: Nome1 - id: 1
+Login: usuario1
+Senha: senha1
+
+Funcionario: Nome2 - id: 2
+Login: usuario2
+Senha: senha2
+
+Gerente: Nome - id: 3
+Login: usuario
+Senha: senha1
+
+Cliente: Nome1
+Login: usuario1
+Senha: senha1
+
+Cliente: Nome2
+Login: usuario2
+Senha: senha2
+
+Funcionario: Nome1 - id: 1
+Login: usuario1
+Senha: senha1
+
+Funcionario: Nome2 - id: 2
+Login: usuario2
+Senha: senha2
+
+Gerente: Nome - id: 3
+Login: usuario
+Senha: senha1
+
+Cliente: Nome1
+Login: usuario1
+Senha: senha1
+
+Cliente: Nome2
+Login: usuario2
+Senha: senha2
+
+Funcionario: Nome1 - id: 1
+Login: usuario1
+Senha: senha1
+
+Funcionario: Nome2 - id: 2
+Login: usuario2
+Senha: senha2
+
+Gerente: Nome - id: 3
+Login: usuario
+Senha: senha1
+
+Cliente: Nome1
+Login: usuario1
+Senha: senha1
+
+Cliente: Nome2
+Login: usuario2
+Senha: senha2
+
+Funcionario: Nome1 - id: 1
+Login: usuario1
+Senha: senha1
+
+Funcionario: Nome2 - id: 2
+Login: usuario2
+Senha: senha2
+
+Gerente: Nome - id: 3
+Login: usuario
+Senha: senha1
+
+Cliente: Nome1
+Login: usuario1
+Senha: senha1
+
+Cliente: Nome2
+Login: usuario2
+Senha: senha2
+
+Funcionario: Nome1 - id: 1
+Login: usuario1
+Senha: senha1
+
+Funcionario: Nome2 - id: 2
+Login: usuario2
+Senha: senha2
+
+Gerente: Nome - id: 3
+Login: usuario
+Senha: senha1
+
+Cliente: Nome1
+Login: usuario1
+Senha: senha1
+
+Cliente: Nome2
+Login: usuario2
+Senha: senha2
+
+Funcionario: Nome1 - id: 1
+Login: usuario1
+Senha: senha1
+
+Funcionario: Nome2 - id: 2
+Login: usuario2
+Senha: senha2
+
+Gerente: Nome - id: 3
+Login: usuario
+Senha: senha1
+
+Cliente: Nome1
+Login: usuario1
+Senha: senha1
+
+Cliente: Nome2
+Login: usuario2
+Senha: senha2
+
+Funcionario: Nome1 - id: 1
+Login: usuario1
+Senha: senha1
+
+Funcionario: Nome2 - id: 2
+Login: usuario2
+Senha: senha2
+
+Gerente: Nome - id: 3
+Login: usuario
+Senha: senha1
+

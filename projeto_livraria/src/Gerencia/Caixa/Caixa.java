@@ -96,7 +96,7 @@ public class Caixa {
 
             } catch (ProdutoNaoEncontrado e) {  // Nova produto
                 GerenciadorEstoque.carregaProduto(compra.getProduto());
-                GerenciadorEstoque.appendProduto(compra.getQuantidade());
+                GerenciadorEstoque.appendProduto();
             } finally {
                 valor += compra.getQuantidade() * compra.getProduto().getPreco();
             }

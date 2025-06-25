@@ -13,6 +13,9 @@ Funcionario: Nome2, Login: usuario2, Senha: senha2, CPF: cpf2, dataNascimento: d
 Gerente: Nome, Login: usuario, Senha: senha1, CPF: cpf, dataNascimento: dd/mm/aaaa, email: email1
 
 
-Produto: TipoProduto1, Quantidade: 55, Titulo: titulo1, Preco: 55, Alugavel: False, Compravel: False, Secao: 88, genero: genero1
+Produto: Livro, Nome: Harry Potter 1, ID: asdajkfda12342, Quantidade: 55, Preco: 55, Secao: 88, Genero: Fantasia; Ficção; 
 
-Produto: TipoProduto2, Quantidade: 23, Titulo: titulo2, Preco: 23, Alugavel: True, Compravel: True, Secao: 77, genero: genero2
+Produto: Filme, Nome: Harry Potter 2, ID: asas2, Quantidade: 2, Preco: 40, Secao: 20, Genero: Fantasia; Ficção; 
+
+Produto: Generico, Nome: Giftcard, ID: asaas222s2, Quantidade: 20, Preco: 10
+

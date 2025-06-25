@@ -5,6 +5,7 @@ public enum Genero {
     Romance("Romance"),
     Aventura("Aventura"),
     Fantasia("Fantasia"),
+    Ficcao("Ficção"),
     Ficcao_Cientifica("Ficção Científica"),
     Terror_Horror("Terror / Horror"),
     Suspense_Thriller("Suspense / Thriller"),
@@ -28,7 +29,8 @@ public enum Genero {
     Educacao("Educação"),
     Saude_Bem_estar("Saúde / Bem-estar"),
     Viagens_Relatos_de_viagem("Viagens / Relatos de viagem"),
-    Gastronomia_Culinaria("Gastronomia / Culinária");
+    Gastronomia_Culinaria("Gastronomia / Culinária"),
+    Nao_Listado("Não Listado");
 
     private final String genero;
 
@@ -40,5 +42,13 @@ public enum Genero {
         return genero;
     }
 
+    public static Genero fromString(String texto) {
+        for (Genero genero : Genero.values()) {
+            if (genero.getGenero().equalsIgnoreCase(texto)) {
+                return genero;
+            }
+        }
+        return Nao_Listado;
+    }
 
 }

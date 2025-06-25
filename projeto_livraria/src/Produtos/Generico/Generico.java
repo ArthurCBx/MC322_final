@@ -1,5 +1,6 @@
 package Produtos.Generico;
 
+import Produtos.Livro.Genero;
 import Produtos.Produto;
 
 import java.util.ArrayList;
@@ -22,6 +23,20 @@ public class Generico implements Produto{
         this.isAlugavel = false;
         this.isCompravel = true;
         this.secao = secao;
+    }
+
+    public Generico(String props) {
+        String[] lines = props.split("\n");
+
+        for (int i = 0; i < lines.length; i++)
+            lines[i] = lines[i].substring(' ').trim();
+
+        this.nome = lines[0];
+        this.id = lines[1];
+        this.quantidadeDisponivel = Integer.parseInt(lines[2]);
+        this.preco = Integer.parseInt(lines[4]);
+        this.secao = Integer.parseInt(lines[5]);
+
     }
 
     public String getNome(){
@@ -68,5 +83,18 @@ public class Generico implements Produto{
     public int aumentarQuantidadeProduto(){
         this.quantidadeDisponivel++;
         return this.quantidadeDisponivel;
+    }
+
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+
+        s.append("Nome: ").append(getNome()).append("\n")
+                .append("ID: ").append(getId()).append("\n")
+                .append("Quantidade: ").append(getQuantidadeDisponivel()).append("\n")
+                .append("Propriedades:").append("\n")
+                .append("Preco: ").append(getPreco()).append("\n")
+                .append("Secao: ").append(getSecao()).append("\n");
+
+        return s.toString();
     }
 }
