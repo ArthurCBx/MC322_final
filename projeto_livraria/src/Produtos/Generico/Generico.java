@@ -91,7 +91,6 @@ public class Generico implements Produto{
         s.append("Nome: ").append(getNome()).append("\n")
                 .append("ID: ").append(getId()).append("\n")
                 .append("Quantidade: ").append(getQuantidadeDisponivel()).append("\n")
-                .append("Propriedades:").append("\n")
                 .append("Preco: ").append(getPreco()).append("\n")
                 .append("Secao: ").append(getSecao()).append("\n");
 

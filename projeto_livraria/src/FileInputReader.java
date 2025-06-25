@@ -111,8 +111,6 @@ public class FileInputReader {
 
                     }
 
-                    String[] produtoData = line.split(",");
-
                 }
             }
         } catch (Exception e) {

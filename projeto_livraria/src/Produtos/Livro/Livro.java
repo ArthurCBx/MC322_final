@@ -9,7 +9,7 @@ public class Livro implements Produto {
     private String nome;
     private float preco;
     private String id;
-    private ArrayList<Genero> generos;
+    private ArrayList<Genero> generos = new ArrayList<>();
     private int quantidadeDisponivel;
     private boolean isAlugavel;
     private boolean isCompravel;
@@ -36,9 +36,9 @@ public class Livro implements Produto {
         this.nome = lines[0];
         this.id = lines[1];
         this.quantidadeDisponivel = Integer.parseInt(lines[2]);
-        this.preco = Integer.parseInt(lines[4]);
-        this.secao = Integer.parseInt(lines[5]);
-        String[] gens = lines[6].split(",");
+        this.preco = Float.parseFloat(lines[3]);
+        this.secao = Integer.parseInt(lines[4]);
+        String[] gens = lines[5].split(",");
         for (String gen : gens) {
             if (gen.length() < 3) break;
             this.generos.add(Genero.fromString(gen));
@@ -102,7 +102,6 @@ public class Livro implements Produto {
         s.append("Nome: ").append(getNome()).append("\n")
                 .append("ID: ").append(getId()).append("\n")
                 .append("Quantidade: ").append(getQuantidadeDisponivel()).append("\n")
-                .append("Propriedades:").append("\n")
                 .append("Preco: ").append(getPreco()).append("\n")
                 .append("Secao: ").append(getSecao()).append("\n")
                 .append("Generos: ");

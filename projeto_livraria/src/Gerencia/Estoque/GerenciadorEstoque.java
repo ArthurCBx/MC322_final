@@ -1,6 +1,7 @@
 package Gerencia.Estoque;
 
 import Produtos.Filme.Filme;
+import Produtos.Generico.Generico;
 import Produtos.Livro.Livro;
 import Produtos.Produto;
 import excecoes.ProdutoNaoEncontrado;
@@ -67,17 +68,35 @@ Propriedades:
 
         try (BufferedReader reader = new BufferedReader(new FileReader(LogEstoque))) {
             String line;
-            String prop;
-            String valor;
+            StringBuilder s = new StringBuilder();
+
             while ((line = reader.readLine()) != null) {
                 if (line.contains("Produto:")) {
-                    valor = line.substring(line.indexOf(' ')).trim();
-                    switch (valor) {
-                        case ("Livro"):
+                    line = line.substring(line.indexOf(' ') + 1);
 
+                    if (line.startsWith("Livro")) {
+
+                        for (line = reader.readLine(); !line.startsWith(";.;"); line = reader.readLine()) {
+                            s.append(line).append("\n");
+                        }
+                        GerenciadorEstoque.setProduto(new Livro(s.toString()));
+
+                    } else if (line.startsWith("Filme")) {
+
+                        for (line = reader.readLine(); !line.startsWith(";.;"); line = reader.readLine()) {
+                            s.append(line);
+                        }
+                        GerenciadorEstoque.setProduto(new Filme(s.toString()));
+
+                    } else {
+
+                        for (line = reader.readLine(); !line.startsWith(";.;"); line = reader.readLine()) {
+                            s.append(line);
+                        }
+                        GerenciadorEstoque.setProduto(new Generico(s.toString()));
                     }
+                    s.delete(0, s.length());
                 }
-
             }
 
         } catch (IOException e) {
@@ -165,7 +184,7 @@ Propriedades:
 
                 s.append(";.;\n\n");
                 writer.write(s.toString());
-                s.delete(0,s.length());
+                s.delete(0, s.length());
             }
         } catch (IOException e) {
             e.printStackTrace();
