@@ -12,7 +12,7 @@ public class Main {
             if (userSelection == JFileChooser.APPROVE_OPTION) {
                 File arquivo = fileChooser.getSelectedFile();
                 FileInputReader.read(arquivo);
-                MenuInicial.mostrarMenuInicial();
+                MenuInicial.iniciarMenuInicial();
             } else {
                 System.exit(0);
             }

@@ -4,13 +4,26 @@ import pessoa.Cliente;
 import pessoa.UserManager;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MenuInicial {
-    public static void mostrarMenuInicial() {
-        JFrame frame = new JFrame("Menu Inicial");
+
+    private static JFrame frame;
+    private static CardLayout cardLayout;
+    private static JPanel container;
+
+    public static void iniciarMenuInicial() {
+        frame = new JFrame("Menu Inicial");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 200);
         frame.setLocationRelativeTo(null);
+
+        cardLayout = new CardLayout();
+        container = new JPanel(cardLayout);
+
+        // Menu Principal:
+
+        JPanel principal = new JPanel();
 
         JButton btnLogin = new JButton("Login");
         JButton btnCadastro = new JButton("Novo Cadastro");
@@ -26,13 +39,50 @@ public class MenuInicial {
 
         btnSair.addActionListener(e -> System.exit(0));
 
-        JPanel panel = new JPanel();
-        panel.add(btnLogin);
-        panel.add(btnCadastro);
-        panel.add(btnSair);
 
-        frame.add(panel);
+        principal.add(btnLogin);
+        principal.add(btnCadastro);
+        principal.add(btnSair);
+
+        container.add(principal,"Principal");
+
+        // Menu Usuario
+
+        // Menu Funcionario
+
+        JPanel funcionario = MenuFuncionario.iniciarMenuFuncionario();
+        container.add(funcionario,"Funcionario");
+
+        // Menu Gerente
+
+
+
+        frame.add(container);
         frame.setVisible(true);
+    }
+
+    public static void mostrarMenuPrincipal(){
+        frame.setTitle("Menu Inicial");
+        cardLayout.show(container,"Principal");
+
+    }
+
+    public static void mostrarMenuUsuario(){
+        frame.setTitle("Menu Usuario");
+        cardLayout.show(container,"Usuario");
+
+    }
+
+    public static void mostrarMenuFuncionario(){
+        frame.setTitle("Menu Funcionario");
+        cardLayout.show(container,"Funcionario");
+
+    }
+
+    public static void mostrarMenuGerente(){
+        frame.setTitle("Menu Gerente");
+        cardLayout.show(container,"Gerente");
+
     }
 
     private static void cadastroCliente(JFrame parent){
@@ -108,6 +158,7 @@ public class MenuInicial {
             } else if (confirmLogin[3]) {
                 JOptionPane.showMessageDialog(parent, "Login de funcionário realizado com sucesso!","Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 // Lógica de funcionário aqui
+                mostrarMenuFuncionario();
 
             } else if (confirmLogin[4]) {
                 JOptionPane.showMessageDialog(parent, "Login de gerente realizado com sucesso!","Sucesso", JOptionPane.INFORMATION_MESSAGE);

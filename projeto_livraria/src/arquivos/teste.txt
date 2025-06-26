@@ -4,13 +4,13 @@ Cliente: Nome2, Login: usuario2, Senha: senha2, CPF: cpf2, dataNascimento: dd/mm
 
 ...
 
-Funcionario: Nome1, Login: usuario1, Senha: senha1, CPF: cpf1, dataNascimento: dd/mm/aaaa, email: email1
+Funcionario: Nome3, Login: usuario3, Senha: senha3, CPF: cpf3, dataNascimento: dd/mm/aaaa, email: email3
 
-Funcionario: Nome2, Login: usuario2, Senha: senha2, CPF: cpf2, dataNascimento: dd/mm/aaaa, email: email2
+Funcionario: Nome4, Login: usuario4, Senha: senha4, CPF: cpf4, dataNascimento: dd/mm/aaaa, email: email4
 
 ...
 
-Gerente: Nome, Login: usuario, Senha: senha1, CPF: cpf, dataNascimento: dd/mm/aaaa, email: email1
+Gerente: Nome, Login: usuario5, Senha: senha5, CPF: cpf, dataNascimento: dd/mm/aaaa, email: email5
 
 
 Produto: Livro, Nome: Harry Potter 1, ID: asdajkfda12342, Quantidade: 55, Preco: 55, Secao: 88, Genero: Fantasia; Ficção; 
