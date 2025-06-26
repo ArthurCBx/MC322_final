@@ -200,22 +200,22 @@ public class MenuFuncionario {
             }
         });
 
-
-        JButton btnCancelar = new JButton("Cancelar Compra");
+        // Botões de Cancelar e Concluir
         JButton btnConcluir = new JButton("Concluir Compra");
+        JButton btnCancelar = new JButton("Cancelar Compra");
 
-        compra.add(btnCancelar);
         compra.add(btnConcluir);
-
-        btnCancelar.addActionListener(e -> {
-            listaModel.clear();
-            Caixa.getComprasvendas().clear();
-            MenuInicial.mostrarMenuFuncionario();
-        });
+        compra.add(btnCancelar);
 
         btnConcluir.addActionListener(e -> {
             Caixa.registrarCompra();
             listaModel.clear();
+            MenuInicial.mostrarMenuFuncionario();
+        });
+
+        btnCancelar.addActionListener(e -> {
+            listaModel.clear();
+            Caixa.getComprasvendas().clear();
             MenuInicial.mostrarMenuFuncionario();
         });
 
@@ -363,11 +363,18 @@ public class MenuFuncionario {
             }
         });
 
-        JButton btnCancelar = new JButton("Cancelar Compra");
+        // Botões de Cancelar e Concluir
         JButton btnConcluir = new JButton("Concluir Compra");
+        JButton btnCancelar = new JButton("Cancelar Compra");
 
-        venda.add(btnCancelar);
         venda.add(btnConcluir);
+        venda.add(btnCancelar);
+
+        btnConcluir.addActionListener(e -> {
+            Caixa.registrarCompra();
+            listaModel.clear();
+            MenuInicial.mostrarMenuFuncionario();
+        });
 
         btnCancelar.addActionListener(e -> {
             listaModel.clear();
@@ -375,11 +382,6 @@ public class MenuFuncionario {
             MenuInicial.mostrarMenuFuncionario();
         });
 
-        btnConcluir.addActionListener(e -> {
-            Caixa.registrarCompra();
-            listaModel.clear();
-            MenuInicial.mostrarMenuFuncionario();
-        });
 
         return venda;
 
