@@ -27,4 +27,10 @@ public class CompraVenda {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        return s.append(produto.getNome()).append(" - Quantidade: ").append(getQuantidade()).append(" - Preço por unidadee: ").append(produto.getPreco()).append(" - Total: ").append(getQuantidade()*produto.getPreco()).toString();
+    }
 }

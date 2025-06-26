@@ -201,7 +201,7 @@ Propriedades:
      */
     public static void alteraProduto(int quantidade) {
         int index = buscaProduto(getProduto().getId());
-        getProdutos().get(index).setQuantidadeDisponivel(Math.min(getProdutos().get(index).getQuantidadeDisponivel() + quantidade, 0));
+        getProdutos().get(index).setQuantidadeDisponivel(Math.max(getProdutos().get(index).getQuantidadeDisponivel() + quantidade, 0));
     }
 
 }
