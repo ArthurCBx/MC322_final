@@ -1,20 +1,12 @@
-Cliente: Nome1
-Login: usuario1
-Senha: senha1
+Cliente: Heitor
+Login: loginheitor
+Senha: senha
 
-Cliente: Nome2
-Login: usuario2
-Senha: senha2
+Funcionario: Karen - id: 1
+Login: loginkaren
+Senha: senha
 
-Funcionario: Nome3 - id: 1
-Login: usuario3
-Senha: senha3
-
-Funcionario: Nome4 - id: 2
-Login: usuario4
-Senha: senha4
-
-Gerente: Nome - id: 3
-Login: usuario5
-Senha: senha5
+Gerente: Robson - id: 2
+Login: loginrobson
+Senha: senha
 
