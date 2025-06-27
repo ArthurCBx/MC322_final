@@ -62,8 +62,6 @@ public class MenuFuncionario {
 
         JPanel venda = iniciarMenuVenda();
         container.add(venda, "Venda");
-        JPanel pagamento = iniciarPagamento();
-        container.add(pagamento, "Pagamento");
 
         return panel;
 
@@ -78,11 +76,6 @@ public class MenuFuncionario {
         frame.setSize(1200, 400);
         GerenciadorGeral.setCliente(null);
         cardLayout.show(container, "Venda");
-    }
-
-    private static void mostrarPagamento() {
-        frame.setSize(1200, 400);
-        cardLayout.show(container, "Pagamento");
     }
 
     private static JPanel iniciarMenuCompra() {
@@ -239,33 +232,31 @@ public class MenuFuncionario {
         JPanel venda = new JPanel();
         venda.setLayout(new BorderLayout()); // Layout do painel como BorderLayout
 
-// Criar o DefaultListModel que irá armazenar os itens da lista
+        // Criar o DefaultListModel que irá armazenar os itens da lista
         DefaultListModel<CompraVenda> listaModel = new DefaultListModel<>();
 
-// Criar o JList usando o DefaultListModel
+        // Criar o JList usando o DefaultListModel
         JList<CompraVenda> listaDeCompras = new JList<>(listaModel);
         listaDeCompras.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Seleção de um item por vez
 
-// Adicionar a JList dentro de um JScrollPane para rolagem
+        // Adicionar a JList dentro de um JScrollPane para rolagem
         JScrollPane scrollPane = new JScrollPane(listaDeCompras);
 
-// Adicionar o JScrollPane ao JFrame, em cima
+        // Adicionar o JScrollPane ao JFrame, em cima
         venda.add(scrollPane, BorderLayout.CENTER);
 
-// Painel para os botões (Adicionar, Remover e Alterar Quantidade)
+        // Painel para os botões (Adicionar, Remover e Alterar Quantidade)
         JPanel painelBotoes = new JPanel();
-        venda.add(painelBotoes, BorderLayout.SOUTH); // O painel de botões fica na parte inferior
-        painelBotoes.setVisible(true);
 
-// Campo de texto para o nome do item
+        // Campo de texto para o nome do item
         JTextField campoTexto = new JTextField(15);
         painelBotoes.add(campoTexto);
 
-// Campo de texto para a quantidade do item
+        // Campo de texto para a quantidade do item
         JTextField campoQuantidade = new JTextField(5);
         painelBotoes.add(campoQuantidade);
 
-// Botões relacionados a venda
+        // Botões relacionados a venda
         JButton adicionarButton = new JButton("Adicionar Produto");
         JButton removerButton = new JButton("Remover produto");
         JButton aumentarButton = new JButton("Aumentar Quantidade");
@@ -278,24 +269,22 @@ public class MenuFuncionario {
 
         // **Novo Painel de Botões para Cliente**
         JPanel painelCliente = new JPanel();
-        venda.add(painelCliente, BorderLayout.SOUTH);
-        painelCliente.setVisible(false);
 
-// Campo de texto para o nome do cliente
+        // Campo de texto para o nome do cliente
         JTextField campoCliente = new JTextField(15);
         campoCliente.setToolTipText("Digite o nome do cliente");
         painelCliente.add(campoCliente);
 
-// Botão para selecionar cliente
+        // Botão para selecionar cliente
         JButton selecionarClienteButton = new JButton("Selecionar Cliente");
         painelCliente.add(selecionarClienteButton);
 
 
-// Botão para adicionar um novo cliente
+        // Botão para adicionar um novo cliente
         JButton adicionarClienteButton = new JButton("Adicionar Cliente");
         painelCliente.add(adicionarClienteButton);
 
-// Display do cliente selecionado
+        // Display do cliente selecionado
         JLabel clienteSelecionadoLabel = new JLabel("Cliente selecionado: Nenhum");
         painelCliente.add(clienteSelecionadoLabel);
 
@@ -307,11 +296,16 @@ public class MenuFuncionario {
         painelCliente.add(new JLabel("Tipo de Cartão:"));
         painelCliente.add(tipoCartaoComboBox);
 
-// Esconde inicialmente o combo de tipo de cartão
+        // Esconde inicialmente o combo de tipo de cartão
         tipoCartaoComboBox.setVisible(false);
 
+        JPanel painelInferior = new JPanel(new BorderLayout());
+        venda.add(painelInferior, BorderLayout.SOUTH);
 
-// Ação do botão "Adicionar"
+        // Adicione inicialmente o painel de botões
+        painelInferior.add(painelBotoes, BorderLayout.CENTER);
+
+        // Ação do botão "Adicionar"
         adicionarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -326,16 +320,24 @@ public class MenuFuncionario {
                             try {
                                 // Se o produto já está na lista, incrementa seu valor
                                 int index = Caixa.buscaCompraVenda(produto.getId());
-                                Caixa.getComprasvendas().get(index).setQuantidade(quantidade + Caixa.getComprasvendas().get(index).getQuantidade());
-                                listaModel.setElementAt(Caixa.getComprasvendas().get(index), index);
-                                campoTexto.setText("");  // Limpa o campo de texto
-                                campoQuantidade.setText("");  // Limpa o campo de quantidade
+                                if (Caixa.getComprasvendas().get(index).getQuantidade() + quantidade <= produto.getQuantidadeDisponivel()) {
+                                    Caixa.getComprasvendas().get(index).setQuantidade(quantidade + Caixa.getComprasvendas().get(index).getQuantidade());
+                                    listaModel.setElementAt(Caixa.getComprasvendas().get(index), index);
+                                    campoTexto.setText("");  // Limpa o campo de texto
+                                    campoQuantidade.setText("");  // Limpa o campo de quantidade
+                                } else {
+                                    JOptionPane.showMessageDialog(venda, "Não há produto suficiente no Estoque! Disponivel: " + Caixa.getComprasvendas().get(index).getProduto().getQuantidadeDisponivel(), "Erro", JOptionPane.ERROR_MESSAGE);
+                                }
                             } catch (ProdutoNaoEncontrado ex) {
                                 // Adiciona o item na lista
-                                Caixa.adiconarCompraVenda(produto, quantidade);
-                                listaModel.addElement(Caixa.getComprasvendas().getLast());
-                                campoTexto.setText("");  // Limpa o campo de texto
-                                campoQuantidade.setText("");  // Limpa o campo de quantidade
+                                if (quantidade <= produto.getQuantidadeDisponivel()) {
+                                    Caixa.adiconarCompraVenda(produto, quantidade);
+                                    listaModel.addElement(Caixa.getComprasvendas().getLast());
+                                    campoTexto.setText("");  // Limpa o campo de texto
+                                    campoQuantidade.setText("");  // Limpa o campo de quantidade
+                                } else {
+                                    JOptionPane.showMessageDialog(venda, "Não há produto suficiente no Estoque! Disponivel: " + produto.getQuantidadeDisponivel(), "Erro", JOptionPane.ERROR_MESSAGE);
+                                }
                             }
                         } else {
                             JOptionPane.showMessageDialog(venda, "Quantidade deve ser maior que 0!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -372,7 +374,11 @@ public class MenuFuncionario {
                 int indiceSelecionado = listaDeCompras.getSelectedIndex();
                 if (indiceSelecionado != -1) {
                     CompraVenda compravenda = listaModel.getElementAt(indiceSelecionado);
-                    compravenda.setQuantidade(compravenda.getQuantidade() + 1);
+                    if (compravenda.getQuantidade() + 1 <= compravenda.getProduto().getQuantidadeDisponivel()) {
+                        compravenda.setQuantidade(compravenda.getQuantidade() + 1);
+                    } else {
+                        JOptionPane.showMessageDialog(venda, "Não há produto suficiente no Estoque! Disponivel: " + compravenda.getProduto().getQuantidadeDisponivel(), "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
                     listaModel.setElementAt(compravenda, indiceSelecionado); // Atualiza a lista
                 } else {
                     JOptionPane.showMessageDialog(venda, "Selecione um item para aumentar a quantidade!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -408,9 +414,10 @@ public class MenuFuncionario {
         painelBotoes.add(btnCancelar);
 
         btnPagamento.addActionListener(e -> {
-            listaModel.clear();
-            painelCliente.setVisible(true);
-            painelBotoes.setVisible(false);
+            painelInferior.removeAll();
+            painelInferior.add(painelCliente, BorderLayout.CENTER);
+            painelInferior.revalidate();
+            painelInferior.repaint();
         });
 
         btnCancelar.addActionListener(e -> {
@@ -467,7 +474,7 @@ public class MenuFuncionario {
         JButton btnVoltar = new JButton("Voltar");
 
         painelCliente.add(btnConcluir);
-        painelCliente.add(btnCancelar);
+        painelCliente.add(btnVoltar);
 
         btnConcluir.addActionListener(e -> {
             if (GerenciadorGeral.getCliente() == null) {
@@ -494,161 +501,24 @@ public class MenuFuncionario {
 
             Caixa.registrarVenda(metodoSelecionado, (TipoCartao) tipoCartaoComboBox.getSelectedItem());
             listaModel.clear();
+            clienteSelecionadoLabel.setText("");
+            GerenciadorGeral.setCliente(null);
+            campoCliente.setText("");
+            painelInferior.removeAll();
+            painelInferior.add(painelBotoes, BorderLayout.CENTER);
+            painelInferior.revalidate();
+            painelInferior.repaint();
             MenuInicial.mostrarMenuFuncionario();
         });
 
         btnVoltar.addActionListener(e -> {
-            listaModel.clear();
-            Caixa.getComprasvendas().clear();
-            painelCliente.setVisible(false);
-            painelBotoes.setVisible(true);
-        });
-
-
-        return venda;
-    }
-
-    private static JPanel iniciarPagamento() {
-
-        JPanel venda = new JPanel();
-        venda.setLayout(new BorderLayout()); // Layout do painel como BorderLayout
-
-// Criar o DefaultListModel que irá armazenar os itens da lista
-        DefaultListModel<CompraVenda> listaModel = new DefaultListModel<>();
-        for (int i = 0; i < Caixa.getComprasvendas().size(); i++) {
-            listaModel.add(i, Caixa.getComprasvendas().get(i));
-            listaModel.addElement(Caixa.getComprasvendas().get(i));
-        }
-
-
-// Criar o JList usando o DefaultListModel
-        JList<CompraVenda> listaDeCompras = new JList<>(listaModel);
-
-// Adicionar a JList dentro de um JScrollPane para rolagem
-        JScrollPane scrollPane = new JScrollPane(listaDeCompras);
-
-        // Adicionar o JScrollPane ao JFrame, em cima
-        venda.add(scrollPane, BorderLayout.CENTER);
-
-// **Novo Painel de Botões para Cliente**
-        JPanel painelCliente = new JPanel();
-        venda.add(painelCliente, BorderLayout.SOUTH);
-
-// Campo de texto para o nome do cliente
-        JTextField campoCliente = new JTextField(15);
-        campoCliente.setToolTipText("Digite o nome do cliente");
-        painelCliente.add(campoCliente);
-
-// Botão para selecionar cliente
-        JButton selecionarClienteButton = new JButton("Selecionar Cliente");
-        painelCliente.add(selecionarClienteButton);
-
-
-// Botão para adicionar um novo cliente
-        JButton adicionarClienteButton = new JButton("Adicionar Cliente");
-        painelCliente.add(adicionarClienteButton);
-
-// Display do cliente selecionado
-        JLabel clienteSelecionadoLabel = new JLabel("Cliente selecionado: Nenhum");
-        painelCliente.add(clienteSelecionadoLabel);
-
-        JComboBox<TipoPagamento> metodoPagamentoComboBox = new JComboBox<>(TipoPagamento.values());
-        painelCliente.add(new JLabel("  |  Pagamento:"));
-        painelCliente.add(metodoPagamentoComboBox);
-
-        JComboBox<TipoCartao> tipoCartaoComboBox = new JComboBox<>(TipoCartao.values());
-        painelCliente.add(new JLabel("Tipo de Cartão:"));
-        painelCliente.add(tipoCartaoComboBox);
-
-// Esconde inicialmente o combo de tipo de cartão
-        tipoCartaoComboBox.setVisible(false);
-
-
-// Ação do botão "Adicionar Cliente"
-        adicionarClienteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MenuInicial.cadastroCliente(frame);  // Redireciona para o cadastro de cliente
-            }
-        });
-
-// Ação do botão "Selecionar Cliente"
-        selecionarClienteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String login = campoCliente.getText();
-                if (!login.isEmpty()) {
-                    if (UserManager.getClientes().stream().map(Cliente::getLogin).toList().contains(login)) {
-                        // Atualiza o display do cliente selecionado e o GerenciadorGeral
-                        GerenciadorGeral.setCliente(UserManager.getClientes().stream().filter(cliente -> cliente.getLogin().equals(login)).findFirst().get());
-                        clienteSelecionadoLabel.setText("Cliente selecionado: " + GerenciadorGeral.getCliente().getNome());
-                    } else {
-                        JOptionPane.showMessageDialog(venda, "Cliente não encontrado", "Erro", JOptionPane.ERROR_MESSAGE);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(venda, "Digite o nome do cliente para selecionar", "Erro", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
-
-        // Seleção de Tipo de Cartão
-        metodoPagamentoComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                TipoPagamento selecionado = (TipoPagamento) metodoPagamentoComboBox.getSelectedItem();
-                if (selecionado != null && selecionado.name().equalsIgnoreCase("CARTAO")) {
-                    tipoCartaoComboBox.setVisible(true);
-                } else {
-                    tipoCartaoComboBox.setVisible(false);
-                }
-                painelCliente.revalidate();
-                painelCliente.repaint();
-            }
-        });
-
-// Botões de Cancelar e Concluir a venda
-        JButton btnConcluir = new JButton("Concluir Venda");
-        JButton btnCancelar = new JButton("Cancelar Venda");
-
-        painelCliente.add(btnConcluir);
-        painelCliente.add(btnCancelar);
-
-        btnConcluir.addActionListener(e -> {
-            if (GerenciadorGeral.getCliente() == null) {
-                JOptionPane.showMessageDialog(venda, "Selecione o cliente antes de concluir a venda", "Erro", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            TipoPagamento metodoSelecionado = (TipoPagamento) metodoPagamentoComboBox.getSelectedItem();
-            if (metodoSelecionado == null) {
-                JOptionPane.showMessageDialog(venda, "Selecione um método de pagamento", "Erro", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            if (metodoSelecionado.name().equalsIgnoreCase("CARTAO")) {
-                TipoCartao tipoCartaoSelecionado = (TipoCartao) tipoCartaoComboBox.getSelectedItem();
-                if (tipoCartaoSelecionado == null) {
-                    JOptionPane.showMessageDialog(venda, "Selecione o tipo de cartão (crédito ou débito)", "Erro", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                System.out.println("Pagamento com cartão: " + tipoCartaoSelecionado);
-            } else {
-                System.out.println("Pagamento por: " + metodoSelecionado);
-            }
-
-            Caixa.registrarVenda(metodoSelecionado, (TipoCartao) tipoCartaoComboBox.getSelectedItem());
-            listaModel.clear();
-            MenuInicial.mostrarMenuFuncionario();
-        });
-
-        btnCancelar.addActionListener(e -> {
-            listaModel.clear();
-            Caixa.getComprasvendas().clear();
-            MenuInicial.mostrarMenuFuncionario();
+            painelInferior.removeAll();
+            painelInferior.add(painelBotoes, BorderLayout.CENTER);
+            painelInferior.revalidate();
+            painelInferior.repaint();
         });
 
         return venda;
-
     }
 
 }
