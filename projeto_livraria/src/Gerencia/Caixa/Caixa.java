@@ -185,7 +185,7 @@ public class Caixa {
                     s.append("\n").append("    Produto - Quantidade - Valor individual - Valor total:").append("\n");
 
             for (CompraVenda venda : getComprasvendas()) {
-                s.append("    ").append(venda.getProduto()).append(" - ")
+                s.append("    ").append(venda.getProduto().getNome()).append(" - ")
                         .append(venda.getQuantidade()).append(" - ")
                         .append(venda.getProduto().getPreco()).append(" - ")
                         .append(venda.getProduto().getPreco() * venda.getQuantidade()).append("\n");
