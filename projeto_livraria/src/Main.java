@@ -26,7 +26,7 @@ public class Main {
                         "Formato de arquivo inválido",
                         JOptionPane.ERROR_MESSAGE);
                 selecionarArquivo(); // Volta para a seleção de arquivo
-                return; // Encerra a execução atual do método para evitar processamento adicional
+                return; // Encerra a execução atual do metodo para evitar processamento adicional
             }
 
             // Tenta ler o arquivo e iniciar o menu principal
