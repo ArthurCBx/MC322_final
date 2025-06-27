@@ -73,9 +73,9 @@ public class FileInputReader {
                         for (int i = 0; i < s.length; i++)
                             s[i] = s[i].substring(s[i].indexOf(' ') + 1);
                         ArrayList<Genero> generos = new ArrayList<>();
-                        gens = s[5].split("; ");
+                        gens = s[5].split(";");
                         for (String gen : gens){
-                            generos.add(Genero.fromString(gen));
+                            generos.add(Genero.fromString(gen.trim()));
                         }
 
                         Livro livro = new Livro(s[0],Float.parseFloat(s[3]),s[1],Integer.parseInt(s[2]),generos,Integer.parseInt(s[4]));
@@ -89,9 +89,9 @@ public class FileInputReader {
                         for (int i = 0; i < s.length; i++)
                             s[i] = s[i].substring(s[i].indexOf(' ') + 1);
                         ArrayList<Genero> generos = new ArrayList<>();
-                        gens = s[5].split("; ");
+                        gens = s[5].split(";");
                         for (String gen : gens){
-                            generos.add(Genero.fromString(gen));
+                            generos.add(Genero.fromString(gen.trim()));
                         }
 
                         Filme filme = new Filme(s[0],Float.parseFloat(s[3]),s[1],Integer.parseInt(s[2]),generos,Integer.parseInt(s[4]));
