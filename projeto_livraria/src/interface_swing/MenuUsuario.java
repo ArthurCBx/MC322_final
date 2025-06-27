@@ -3,6 +3,7 @@ package interface_swing;
 import Gerencia.Estoque.GerenciadorEstoque;
 import Gerencia.GerenciadorGeral;
 import Produtos.Filme.Filme;
+import Produtos.Generico.Generico;
 import Produtos.Livro.Livro;
 import Produtos.Produto;
 import excecoes.ProdutoNaoEncontrado;
@@ -25,6 +26,7 @@ public class MenuUsuario {
         JButton btnAdicionarCartao = new JButton("Adicionar cartão à conta");
         JButton filmesDisponiveis = new JButton("Verificar Filmes disponíveis na livraria");
         JButton livrosDisponiveis = new JButton("Verificar Livros disponíveis na livraria");
+        JButton produtosDisponiveis = new JButton ("Verificar Produtos(Não livros/filmes) disponíveis na livraria");
         JButton sair = new JButton("Sair");
 
         menuCliente.setLayout(new BoxLayout(menuCliente, BoxLayout.Y_AXIS));
@@ -49,6 +51,10 @@ public class MenuUsuario {
         livrosDisponiveis.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         menuCliente.add(Box.createVerticalStrut(15));
         menuCliente.add(livrosDisponiveis);
+
+        produtosDisponiveis.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        menuCliente.add(Box.createVerticalStrut(15));
+        menuCliente.add(produtosDisponiveis);
 
         sair.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         menuCliente.add(Box.createVerticalStrut(15));
@@ -183,6 +189,22 @@ public class MenuUsuario {
                 JOptionPane.showMessageDialog(null, lista.toString());
             } else {
                 JOptionPane.showMessageDialog(null, "Nenhum livro disponível no momento.");
+            }
+        });
+
+        produtosDisponiveis.addActionListener(e -> {
+            ArrayList<Generico> produtos = GerenciadorEstoque.getProdutos().stream().
+                    filter(p -> p instanceof Generico).
+                    map(p -> (Generico) p).
+                    collect(Collectors.toCollection(ArrayList::new));
+            if (!produtos.isEmpty()) {
+                StringBuilder lista = new StringBuilder("Produtos disponíveis:\n");
+                for (Produto produto : produtos) {
+                    lista.append("- ").append(produto.getNome()).append(". Disponível na seção ").append(produto.getSecao()).append(".\n");
+                }
+                JOptionPane.showMessageDialog(null, lista.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "Nenhum produto que não sejam livros/filmes disponíveis no momento.");
             }
         });
 
