@@ -1,3 +1,7 @@
+# Integrantes do grupo
+Nomes: Arthur Costa Barreto, Vitor Benaglia Albertini, Eduardo Pereira Tejada
+RA: 206325, 206645, 183451
+
 # Descrição
 Esse é o sistema de uma livraria que inclui o cadastro de funcionários e clientes, o controle de estoque de livros e o processo de pagamento. 
 O controle de estoque envolverá a compra de novos livros para uma fornecedora genérica, incluindo um saldo fictício para a nossa livraria que aumenta com venda de livros para clientes. 
@@ -40,6 +44,11 @@ No menu do gerente, você poderá comprar produtos novos para a nossa biblioteca
 
 ### Menu do Funcionário
 
+
+# Estruta do projeto
+```
+
+```
 
 # Como compilar e executar nosso código
 ## 1. Vá para o diretório onde salvou o projeto
