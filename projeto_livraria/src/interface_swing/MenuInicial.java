@@ -88,7 +88,7 @@ public class MenuInicial {
 
     }
 
-    private static void cadastroCliente(JFrame parent) {
+    protected static void cadastroCliente(JFrame parent) {
         JTextField nome = new JTextField(30);
         JTextField cpf = new JTextField(15);
         JTextField dataNascimento = new JTextField(10);
