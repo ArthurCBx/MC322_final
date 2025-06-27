@@ -47,7 +47,7 @@ Para isso, no terminal vá até:
 ```bash
 cd MC322_final
 ```
-## 2. Ccompile o código
+## 2. Compile o código
 ```bash
 find projeto_livraria/src -name "*.java" > sources.txt
 javac -d out @sources.txt
