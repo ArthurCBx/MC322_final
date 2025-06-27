@@ -11,7 +11,7 @@ Além disso, será necessário o controle de livros dentro do estabelecimento de
 
 # Manual de instruções para testes
 ## Formato do arquivo de input
-A primeira coisa a ser feita ao iniciar o código é passar um arquivo .txt contendo as informações que serão utilizadas para o funcionamento do programa. Ele deve estar no formato abaixo, incluindo letras maiusculas e os ':'. Todas as informações sobre um objeto devem estar na mesma linha e a linha deve conter cada uma das informações descritas abaixo na ordem em que estão descritas. Como o formato é específico, há um arquivo txt de teste no caminho "projeto_livraria/src/arquivos/teste.txt"
+A primeira coisa a ser feita ao iniciar o código é passar um arquivo .txt contendo as informações que serão utilizadas para o funcionamento do programa. Ele deve estar no formato abaixo, incluindo letras maiusculas e os ':'. Todas as informações sobre um objeto devem estar na mesma linha e a linha deve conter cada uma das informações descritas abaixo na ordem em que estão descritas. Como o formato é específico, há um arquivo txt de teste no caminho ```"projeto_livraria/src/arquivos/teste.txt"```
 
 Cliente: Nome1, Login: usuario1, Senha: senha1, CPF: cpf1, dataNascimento: dd/mm/aaaa, email: email1
 
