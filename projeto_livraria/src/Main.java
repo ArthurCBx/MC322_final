@@ -6,6 +6,15 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
+        String toDeleteFile = "projeto_livraria/src/arquivos/login.txt";
+        File file = new File(toDeleteFile);
+        if (file.exists()) {
+            boolean deleted = file.delete();
+            if (!deleted) {
+                System.err.println("Erro ao deletar o arquivo: " + toDeleteFile);
+            }
+        }
+
         // Inicia o processo de seleção de arquivo na thread de eventos do Swing
         SwingUtilities.invokeLater(Main::selecionarArquivo);
     }
