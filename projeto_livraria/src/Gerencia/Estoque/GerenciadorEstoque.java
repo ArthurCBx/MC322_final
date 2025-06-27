@@ -131,7 +131,7 @@ Propriedades:
     public static int buscaProduto(String id) {
         int index;  // Irá retornar o indice
         try {       // Lista de Entradas -> index da entrada que contem o produto com o ID fornecido
-            index = getProdutos().indexOf(getProdutos().stream().filter(Produto -> Produto.getId().equals(id)).findFirst().get());
+            index = getProdutos().indexOf(getProdutos().stream().filter(Produto -> Produto.getId().equalsIgnoreCase(id)).findFirst().get());
         } catch (NoSuchElementException e) {
             throw new ProdutoNaoEncontrado("Produto: '" + id + "' nao foi encontrado");
         }

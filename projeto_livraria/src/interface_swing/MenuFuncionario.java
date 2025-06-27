@@ -15,6 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MenuFuncionario {
 
@@ -81,6 +82,7 @@ public class MenuFuncionario {
 
     private static void mostrarPagamento() {
         frame.setSize(1200, 400);
+
         cardLayout.show(container, "Pagamento");
     }
 
@@ -370,7 +372,6 @@ public class MenuFuncionario {
         painelBotoes.add(btnCancelar);
 
         btnConcluir.addActionListener(e -> {
-            Caixa.registrarCompra();  // Aqui talvez seja necessário ajustar para registrar a venda
             listaModel.clear();
             mostrarPagamento();
         });
@@ -391,8 +392,10 @@ public class MenuFuncionario {
 
 // Criar o DefaultListModel que irá armazenar os itens da lista
         DefaultListModel<CompraVenda> listaModel = new DefaultListModel<>();
-        for (int i = 0; i < Caixa.getComprasvendas().size(); i++)
+        for (int i = 0; i < Caixa.getComprasvendas().size(); i++) {
             listaModel.add(i, Caixa.getComprasvendas().get(i));
+            listaModel.addElement(Caixa.getComprasvendas().get(i));
+        }
 
 
 // Criar o JList usando o DefaultListModel
@@ -401,12 +404,12 @@ public class MenuFuncionario {
 // Adicionar a JList dentro de um JScrollPane para rolagem
         JScrollPane scrollPane = new JScrollPane(listaDeCompras);
 
-// Adicionar o JScrollPane ao JFrame, em cima
+        // Adicionar o JScrollPane ao JFrame, em cima
         venda.add(scrollPane, BorderLayout.CENTER);
 
 // **Novo Painel de Botões para Cliente**
         JPanel painelCliente = new JPanel();
-        venda.add(painelCliente, BorderLayout.SOUTH); // Coloca o painel de cliente abaixo dos botões de produto
+        venda.add(painelCliente, BorderLayout.SOUTH);
 
 // Campo de texto para o nome do cliente
         JTextField campoCliente = new JTextField(15);
