@@ -2,6 +2,8 @@ package interface_swing;
 
 import Gerencia.Estoque.GerenciadorEstoque;
 import Gerencia.GerenciadorGeral;
+import Produtos.Filme.Filme;
+import Produtos.Livro.Livro;
 import Produtos.Produto;
 import excecoes.ProdutoNaoEncontrado;
 import pagamento.Cartao;
@@ -18,23 +20,23 @@ public class MenuUsuario {
     public static JPanel iniciarMenuUsuario(String login) {
         JPanel menuCliente = new JPanel();
 
-        JButton btnBuscar = new JButton("Buscar Produto por nome");
-        JButton btnBuscarId = new JButton("Buscar Produto por ID");
+        JButton btnBuscarLivro = new JButton("Buscar Livro por nome");
+        JButton btnBuscarFilme= new JButton("Buscar Filme por nome");
         JButton btnAdicionarCartao = new JButton("Adicionar cartão à conta");
-        JButton filmesDisponiveis = new JButton("Filmes Disponíveis");
-        JButton livrosDisponiveis = new JButton("Livros Disponíveis");
+        JButton filmesDisponiveis = new JButton("Verificar Filmes disponíveis na livraria");
+        JButton livrosDisponiveis = new JButton("Verificar Livros disponíveis na livraria");
         JButton sair = new JButton("Sair");
 
         menuCliente.setLayout(new BoxLayout(menuCliente, BoxLayout.Y_AXIS));
         menuCliente.setSize(new java.awt.Dimension(800, 800));
 
-        btnBuscar.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        btnBuscarLivro.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         menuCliente.add(Box.createVerticalStrut(20));
-        menuCliente.add(btnBuscar);
+        menuCliente.add(btnBuscarLivro);
 
-        btnBuscarId.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        btnBuscarFilme.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         menuCliente.add(Box.createVerticalStrut(15));
-        menuCliente.add(btnBuscarId);
+        menuCliente.add(btnBuscarFilme);
 
         btnAdicionarCartao.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         menuCliente.add(Box.createVerticalStrut(15));
@@ -52,23 +54,49 @@ public class MenuUsuario {
         menuCliente.add(Box.createVerticalStrut(15));
         menuCliente.add(sair);
 
-        btnBuscar.addActionListener(e -> {
-            String nome = JOptionPane.showInputDialog("Digite o nome do produto:");
+        btnBuscarLivro.addActionListener(e -> {
+            String nome = JOptionPane.showInputDialog("Digite o nome do livro a ser buscado:");
             if (nome != null && !nome.trim().isEmpty()) {
                 try{
-                    GerenciadorGeral.realizarBusca(nome);
+                    boolean found = false;
+                    ArrayList<Livro> livros = GerenciadorGeral.getLivros();
+                    if (livros == null || livros.isEmpty()) {
+                        throw new ProdutoNaoEncontrado("Produto não encontrado no estoque.");
+                    }
+                    for (Livro livro : livros) {
+                        if (livro.getNome().equalsIgnoreCase(nome)) {
+                            JOptionPane.showMessageDialog(null, "Livro encontrado! \n" + livro.toString());
+                            found = true;
+                        }
+                    }
+                    if (!found) {
+                        throw new ProdutoNaoEncontrado("Produto não encontrado no estoque.");
+                    }
                 } catch (ProdutoNaoEncontrado ex){
                     JOptionPane.showMessageDialog(null, "Produto não encontrado no estoque.");
                 }
             }
         });
 
-        btnBuscarId.addActionListener(e -> {
-            String id = JOptionPane.showInputDialog("Digite o ID do produto:");
-            if (id != null && !id.trim().isEmpty()) {
+        btnBuscarFilme.addActionListener(e -> {
+            String nome = JOptionPane.showInputDialog("Digite o nome do filme a ser buscado:");
+            if (nome != null && !nome.trim().isEmpty()) {
                 try{
-                    GerenciadorEstoque.buscaProduto(id);
-                } catch (ProdutoNaoEncontrado ex) {
+                    boolean found = false;
+                    ArrayList<Filme> filmes = GerenciadorGeral.getFilmes();
+                    if (filmes == null || filmes.isEmpty()) {
+                        throw new ProdutoNaoEncontrado("Produto não encontrado no estoque.");
+                    }
+                    for (Filme filme : filmes) {
+                        if (filme.getNome().equalsIgnoreCase(nome)) {
+                            JOptionPane.showMessageDialog(null, "Filme encontrado! \n" + filme.toString());
+                            found = true;
+                        }
+                    }
+                    if (!found) {
+                        throw new ProdutoNaoEncontrado("Produto não encontrado no estoque.");
+                    }
+                } catch (ProdutoNaoEncontrado ex){
                     JOptionPane.showMessageDialog(null, "Produto não encontrado no estoque.");
                 }
             }
@@ -127,14 +155,14 @@ public class MenuUsuario {
         });
 
         filmesDisponiveis.addActionListener(e -> {
-            ArrayList<String> filmes = GerenciadorEstoque.getProdutos().stream()
-                    .filter(Produto -> Produto.getClass().getSimpleName().equals("Filme"))
-                    .map(Produto::getNome)
+            ArrayList<Filme> filmes = GerenciadorEstoque.getProdutos().stream()
+                    .filter(produto -> produto instanceof Filme)
+                    .map(produto -> (Filme) produto)
                     .collect(Collectors.toCollection(ArrayList::new));
             if (!filmes.isEmpty()) {
                 StringBuilder lista = new StringBuilder("Filmes disponíveis:\n");
-                for (String filme : filmes) {
-                    lista.append("- ").append(filme).append("\n");
+                for (Filme filme : filmes) {
+                    lista.append("- ").append(filme.getNome()).append(". Disponível na seção ").append(filme.getSecao()).append(".\n");
                 }
                 JOptionPane.showMessageDialog(null, lista.toString());
             } else {
@@ -143,14 +171,14 @@ public class MenuUsuario {
         });
 
         livrosDisponiveis.addActionListener(e -> {
-            ArrayList<String> livros = GerenciadorEstoque.getProdutos().stream()
-                    .filter(Produto -> Produto.getClass().getSimpleName().equals("Livro"))
-                    .map(Produto::getNome)
+            ArrayList<Livro> livros = GerenciadorEstoque.getProdutos().stream()
+                    .filter(produto -> produto instanceof Livro)
+                    .map(produto -> (Livro) produto)
                     .collect(Collectors.toCollection(ArrayList::new));
             if (!livros.isEmpty()) {
                 StringBuilder lista = new StringBuilder("Livros disponíveis:\n");
-                for (String livro : livros) {
-                    lista.append("- ").append(livro).append("\n");
+                for (Livro livro : livros) {
+                    lista.append("- ").append(livro.getNome()).append(". Disponível na seção ").append(livro.getSecao()).append(".\n");
                 }
                 JOptionPane.showMessageDialog(null, lista.toString());
             } else {
