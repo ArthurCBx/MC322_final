@@ -13,7 +13,7 @@ Funcionario: Nome4, Login: usuario4, Senha: senha4, CPF: cpf4, dataNascimento: d
 Gerente: Nome, Login: usuario5, Senha: senha5, CPF: cpf, dataNascimento: dd/mm/aaaa, email: email5
 
 
-Produto: Livro, Nome: Harry Potter 1, ID: asdajkfda12342, Quantidade: 55, Preco: 55, Secao: 88, Genero: Fantasia; Ficção;
+Produto: Livro, Nome: Harry Potter 1, ID: asdajkfda12342, Quantidade: 55, Preco: 55, Secao: 88, Genero: Fantasia; Ficção; 
 
 Produto: Filme, Nome: Harry Potter 2, ID: asas2, Quantidade: 2, Preco: 40, Secao: 20, Genero: Fantasia; Ficção;
 
