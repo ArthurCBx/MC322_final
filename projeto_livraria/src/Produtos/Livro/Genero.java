@@ -45,7 +45,7 @@ public enum Genero {
 
     public static Genero fromString(String texto) {
         for (Genero genero : Genero.values()) {
-            if (genero.getGenero().equalsIgnoreCase(texto)) {
+            if (genero.getGenero().equalsIgnoreCase(texto.trim())) {
                 return genero;
             }
         }

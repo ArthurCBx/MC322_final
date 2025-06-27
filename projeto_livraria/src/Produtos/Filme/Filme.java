@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Filme implements Produto {
 
     private String nome;
-    private double preco;
+    private float preco;
     private String id;
     private ArrayList<Genero> generos = new ArrayList<>();
     private int quantidadeDisponivel;
@@ -37,7 +37,7 @@ public class Filme implements Produto {
         this.nome = lines[0];
         this.id = lines[1];
         this.quantidadeDisponivel = Integer.parseInt(lines[2]);
-        this.preco = Math.round(Float.parseFloat(lines[3]) * 100f) / 100f;
+        this.preco = Math.round(preco * 100f) / 100f;
         this.secao = Integer.parseInt(lines[4]);
         String[] gens = lines[5].split(", ");
         for (String gen : gens) {
@@ -55,7 +55,7 @@ public class Filme implements Produto {
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
-    public double getPreco() {
+    public float getPreco() {
         return this.preco;
     }
 

@@ -1,13 +1,10 @@
 package Produtos.Generico;
 
-import Produtos.Livro.Genero;
 import Produtos.Produto;
-
-import java.util.ArrayList;
 
 public class Generico implements Produto{
     private String nome;
-    private double preco;
+    private float preco;
     private String id;
     private int quantidadeDisponivel;
     private boolean isAlugavel;
@@ -17,7 +14,7 @@ public class Generico implements Produto{
 
     public Generico(String nome, double preco, String id, int secao) {
         this.nome = nome;
-        this.preco = preco;
+        this.preco = Math.round(preco * 100f) / 100f;
         this.id = id;
         this.quantidadeDisponivel = 1;
         this.isAlugavel = false;
@@ -55,7 +52,7 @@ public class Generico implements Produto{
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
-    public double getPreco(){
+    public float getPreco(){
         return this.preco;
     }
 

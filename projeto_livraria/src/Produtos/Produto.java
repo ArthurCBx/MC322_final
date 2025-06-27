@@ -1,7 +1,5 @@
 package Produtos;
 
-import java.util.ArrayList;
-
 public interface Produto {
 
 
@@ -15,7 +13,7 @@ public interface Produto {
 
     void setQuantidadeDisponivel(int quantidadeDisponivel);
 
-    double getPreco();
+    float getPreco();
 
     boolean isAlugavel();
 

@@ -17,7 +17,7 @@ public class Livro implements Produto {
 
     public Livro(String nome, float preco, String id, int quantidadeDisponivel, ArrayList<Genero> generos, int secao) {
         this.nome = nome;
-        this.preco = preco;
+        this.preco = Math.round(preco * 100f) / 100f;
         this.id = id;
         this.generos = generos;
         this.quantidadeDisponivel = quantidadeDisponivel;
@@ -62,7 +62,7 @@ public class Livro implements Produto {
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
-    public double getPreco() {
+    public float getPreco() {
         return this.preco;
     }
 
