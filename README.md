@@ -1,5 +1,6 @@
 # Integrantes do grupo
 Nomes: Arthur Costa Barreto, Vitor Benaglia Albertini, Eduardo Pereira Tejada
+
 RA: 206325, 206645, 183451
 
 # Descrição
