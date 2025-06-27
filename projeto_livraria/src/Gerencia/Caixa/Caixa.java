@@ -5,6 +5,8 @@ import Gerencia.GerenciadorGeral;
 import Produtos.Produto;
 import excecoes.ProdutoNaoEncontrado;
 import excecoes.SemEstoque;
+import pagamento.Cartao;
+import pagamento.TipoCartao;
 import pagamento.TipoPagamento;
 
 import java.io.BufferedWriter;
@@ -144,7 +146,7 @@ public class Caixa {
     /**
      * Interpreta a lista de comprasVendas como vendas e efetua a alteração de saldo, estoque e registra no arquivo "Transações.txt"
      */
-    public static void registrarVenda(TipoPagamento pagamento) {
+    public static void registrarVenda(TipoPagamento pagamento, TipoCartao tipoCartao) {
 
         int valor = 0;
         Produto produto;
@@ -177,7 +179,10 @@ public class Caixa {
             StringBuilder s = new StringBuilder();
 
             s.append("VENDA realizada por: ").append(GerenciadorGeral.getFuncionario().getNome()).append(", ID: ").append(GerenciadorGeral.getFuncionario().getId()).append("\n")
-                    .append("    Produto - Quantidade - Valor individual - Valor total:").append("\n");
+                    .append("Cliente: ").append(GerenciadorGeral.getCliente().getNome()).append(", Login: ").append(GerenciadorGeral.getCliente().getLogin()).append(", Metodo de Pagamento: ").append(pagamento.toString());
+                    if(pagamento.equals(TipoPagamento.CARTAO))
+                        s.append(", Tipo Cartão: ").append(tipoCartao);
+                    s.append("\n").append("    Produto - Quantidade - Valor individual - Valor total:").append("\n");
 
             for (CompraVenda venda : getComprasvendas()) {
                 s.append("    ").append(venda.getProduto()).append(" - ")
@@ -190,7 +195,7 @@ public class Caixa {
                     .append("Saldo resultante: ").append(getSaldo()).append("\n\n");
             writer.write(s.toString());
 
-            setComprasvendas(new ArrayList<CompraVenda>());
+            getComprasvendas().clear();
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -3,6 +3,7 @@ package pessoa;
 import Gerencia.Caixa.Caixa;
 import Gerencia.Estoque.GerenciadorEstoque;
 import Produtos.Produto;
+import pagamento.TipoCartao;
 import pagamento.TipoPagamento;
 
 /*
@@ -29,8 +30,8 @@ public class Funcionario extends Pessoa{
         UserManager.writeClientToFile(cliente);
     }
 
-    public void efetuaPagamento(TipoPagamento tipo){
-        Caixa.registrarVenda(tipo);
+    public void efetuaPagamento(TipoPagamento tipo, TipoCartao cartao){
+        Caixa.registrarVenda(tipo, cartao);
     }
 
     /**

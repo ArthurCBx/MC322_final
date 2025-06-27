@@ -6,6 +6,8 @@ import Gerencia.Estoque.GerenciadorEstoque;
 import Gerencia.GerenciadorGeral;
 import Produtos.Produto;
 import excecoes.ProdutoNaoEncontrado;
+import pagamento.TipoCartao;
+import pagamento.TipoPagamento;
 import pessoa.Cliente;
 import pessoa.UserManager;
 
@@ -77,7 +79,7 @@ public class MenuFuncionario {
         cardLayout.show(container, "Venda");
     }
 
-    private static void mostrarPagamento(){
+    private static void mostrarPagamento() {
         frame.setSize(1200, 400);
         cardLayout.show(container, "Pagamento");
     }
@@ -382,7 +384,7 @@ public class MenuFuncionario {
         return venda;
     }
 
-    private static JPanel iniciarPagamento(){
+    private static JPanel iniciarPagamento() {
 
         JPanel venda = new JPanel();
         venda.setLayout(new BorderLayout()); // Layout do painel como BorderLayout
@@ -390,7 +392,7 @@ public class MenuFuncionario {
 // Criar o DefaultListModel que irá armazenar os itens da lista
         DefaultListModel<CompraVenda> listaModel = new DefaultListModel<>();
         for (int i = 0; i < Caixa.getComprasvendas().size(); i++)
-            listaModel.add(i,Caixa.getComprasvendas().get(i));
+            listaModel.add(i, Caixa.getComprasvendas().get(i));
 
 
 // Criar o JList usando o DefaultListModel
@@ -402,10 +404,6 @@ public class MenuFuncionario {
 // Adicionar o JScrollPane ao JFrame, em cima
         venda.add(scrollPane, BorderLayout.CENTER);
 
-// Painel para os botões de adicionar/remover produtos
-        JPanel painelProdutos = new JPanel();
-        venda.add(painelProdutos, BorderLayout.SOUTH); // O painel de botões fica na parte inferior
-
 // **Novo Painel de Botões para Cliente**
         JPanel painelCliente = new JPanel();
         venda.add(painelCliente, BorderLayout.SOUTH); // Coloca o painel de cliente abaixo dos botões de produto
@@ -415,6 +413,11 @@ public class MenuFuncionario {
         campoCliente.setToolTipText("Digite o nome do cliente");
         painelCliente.add(campoCliente);
 
+// Botão para selecionar cliente
+        JButton selecionarClienteButton = new JButton("Selecionar Cliente");
+        painelCliente.add(selecionarClienteButton);
+
+
 // Botão para adicionar um novo cliente
         JButton adicionarClienteButton = new JButton("Adicionar Cliente");
         painelCliente.add(adicionarClienteButton);
@@ -423,9 +426,17 @@ public class MenuFuncionario {
         JLabel clienteSelecionadoLabel = new JLabel("Cliente selecionado: Nenhum");
         painelCliente.add(clienteSelecionadoLabel);
 
-// Botão para selecionar cliente
-        JButton selecionarClienteButton = new JButton("Selecionar Cliente");
-        painelCliente.add(selecionarClienteButton);
+        JComboBox<TipoPagamento> metodoPagamentoComboBox = new JComboBox<>(TipoPagamento.values());
+        painelCliente.add(new JLabel("  |  Pagamento:"));
+        painelCliente.add(metodoPagamentoComboBox);
+
+        JComboBox<TipoCartao> tipoCartaoComboBox = new JComboBox<>(TipoCartao.values());
+        painelCliente.add(new JLabel("Tipo de Cartão:"));
+        painelCliente.add(tipoCartaoComboBox);
+
+// Esconde inicialmente o combo de tipo de cartão
+        tipoCartaoComboBox.setVisible(false);
+
 
 // Ação do botão "Adicionar Cliente"
         adicionarClienteButton.addActionListener(new ActionListener() {
@@ -454,20 +465,52 @@ public class MenuFuncionario {
             }
         });
 
+        // Seleção de Tipo de Cartão
+        metodoPagamentoComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TipoPagamento selecionado = (TipoPagamento) metodoPagamentoComboBox.getSelectedItem();
+                if (selecionado != null && selecionado.name().equalsIgnoreCase("CARTAO")) {
+                    tipoCartaoComboBox.setVisible(true);
+                } else {
+                    tipoCartaoComboBox.setVisible(false);
+                }
+                painelCliente.revalidate();
+                painelCliente.repaint();
+            }
+        });
+
 // Botões de Cancelar e Concluir a venda
         JButton btnConcluir = new JButton("Concluir Venda");
         JButton btnCancelar = new JButton("Cancelar Venda");
 
-        painelProdutos.add(btnConcluir);
-        painelProdutos.add(btnCancelar);
+        painelCliente.add(btnConcluir);
+        painelCliente.add(btnCancelar);
 
         btnConcluir.addActionListener(e -> {
             if (GerenciadorGeral.getCliente() == null) {
-                JOptionPane.showMessageDialog(venda, "Digite o login do cliente antes de concluir a venda", "Erro", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(venda, "Selecione o cliente antes de concluir a venda", "Erro", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            Caixa.registrarCompra();  // Aqui talvez seja necessário ajustar para registrar a venda
+            TipoPagamento metodoSelecionado = (TipoPagamento) metodoPagamentoComboBox.getSelectedItem();
+            if (metodoSelecionado == null) {
+                JOptionPane.showMessageDialog(venda, "Selecione um método de pagamento", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (metodoSelecionado.name().equalsIgnoreCase("CARTAO")) {
+                TipoCartao tipoCartaoSelecionado = (TipoCartao) tipoCartaoComboBox.getSelectedItem();
+                if (tipoCartaoSelecionado == null) {
+                    JOptionPane.showMessageDialog(venda, "Selecione o tipo de cartão (crédito ou débito)", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                System.out.println("Pagamento com cartão: " + tipoCartaoSelecionado);
+            } else {
+                System.out.println("Pagamento por: " + metodoSelecionado);
+            }
+
+            Caixa.registrarVenda(metodoSelecionado, (TipoCartao) tipoCartaoComboBox.getSelectedItem());
             listaModel.clear();
             MenuInicial.mostrarMenuFuncionario();
         });
