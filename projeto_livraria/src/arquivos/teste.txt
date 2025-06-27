@@ -12,9 +12,9 @@ Produto: Livro, Nome: Semiconductor Device Fundamentals, ID: idsilicio, Quantida
 
 Produto: Filme, Nome: Duna, ID: idduna, Quantidade: 15, Preco: 29.99, Secao: 10, Genero: Ficção; Política; Aventura;
 
-Produto: Filme, Nome: Vingadores Ultimato, ID: idvingadores Quantidade: 30, Preco: 40.00, Secao: 12, Genero: Aventura; Fantasia; Ficção;
+Produto: Filme, Nome: Vingadores Ultimato, ID: idvingadores, Quantidade: 30, Preco: 40.00, Secao: 12, Genero: Aventura; Fantasia; Ficção;
 
-Produto: Filme, Nome: Avatar, Quantidade: 40, Preco: 45.00, Secao: 80, Genero: Aventura; Política; Fantasia; 
+Produto: Filme, Nome: Avatar, ID: idavatar, Quantidade: 40, Preco: 45.00, Secao: 80, Genero: Aventura; Política; Fantasia; 
 
 Produto: Generico, Nome: Giftcard, ID: idgift, Quantidade: 100, Preco: 50.00
 
