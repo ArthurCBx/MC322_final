@@ -82,7 +82,6 @@ public class MenuFuncionario {
 
     private static void mostrarPagamento() {
         frame.setSize(1200, 400);
-
         cardLayout.show(container, "Pagamento");
     }
 
@@ -256,6 +255,7 @@ public class MenuFuncionario {
 // Painel para os botões (Adicionar, Remover e Alterar Quantidade)
         JPanel painelBotoes = new JPanel();
         venda.add(painelBotoes, BorderLayout.SOUTH); // O painel de botões fica na parte inferior
+        painelBotoes.setVisible(true);
 
 // Campo de texto para o nome do item
         JTextField campoTexto = new JTextField(15);
@@ -275,6 +275,41 @@ public class MenuFuncionario {
         painelBotoes.add(removerButton);
         painelBotoes.add(aumentarButton);
         painelBotoes.add(diminuirButton);
+
+        // **Novo Painel de Botões para Cliente**
+        JPanel painelCliente = new JPanel();
+        venda.add(painelCliente, BorderLayout.SOUTH);
+        painelCliente.setVisible(false);
+
+// Campo de texto para o nome do cliente
+        JTextField campoCliente = new JTextField(15);
+        campoCliente.setToolTipText("Digite o nome do cliente");
+        painelCliente.add(campoCliente);
+
+// Botão para selecionar cliente
+        JButton selecionarClienteButton = new JButton("Selecionar Cliente");
+        painelCliente.add(selecionarClienteButton);
+
+
+// Botão para adicionar um novo cliente
+        JButton adicionarClienteButton = new JButton("Adicionar Cliente");
+        painelCliente.add(adicionarClienteButton);
+
+// Display do cliente selecionado
+        JLabel clienteSelecionadoLabel = new JLabel("Cliente selecionado: Nenhum");
+        painelCliente.add(clienteSelecionadoLabel);
+
+        JComboBox<TipoPagamento> metodoPagamentoComboBox = new JComboBox<>(TipoPagamento.values());
+        painelCliente.add(new JLabel("  |  Pagamento:"));
+        painelCliente.add(metodoPagamentoComboBox);
+
+        JComboBox<TipoCartao> tipoCartaoComboBox = new JComboBox<>(TipoCartao.values());
+        painelCliente.add(new JLabel("Tipo de Cartão:"));
+        painelCliente.add(tipoCartaoComboBox);
+
+// Esconde inicialmente o combo de tipo de cartão
+        tipoCartaoComboBox.setVisible(false);
+
 
 // Ação do botão "Adicionar"
         adicionarButton.addActionListener(new ActionListener() {
@@ -364,16 +399,18 @@ public class MenuFuncionario {
             }
         });
 
+
 // Botões de Cancelar e Concluir a venda
-        JButton btnConcluir = new JButton("Concluir Venda");
+        JButton btnPagamento = new JButton("Pagamento");
         JButton btnCancelar = new JButton("Cancelar Venda");
 
-        painelBotoes.add(btnConcluir);
+        painelBotoes.add(btnPagamento);
         painelBotoes.add(btnCancelar);
 
-        btnConcluir.addActionListener(e -> {
+        btnPagamento.addActionListener(e -> {
             listaModel.clear();
-            mostrarPagamento();
+            painelCliente.setVisible(true);
+            painelBotoes.setVisible(false);
         });
 
         btnCancelar.addActionListener(e -> {
@@ -381,6 +418,92 @@ public class MenuFuncionario {
             Caixa.getComprasvendas().clear();
             MenuInicial.mostrarMenuFuncionario();
         });
+
+
+// Ação do botão "Adicionar Cliente"
+        adicionarClienteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MenuInicial.cadastroCliente(frame);  // Redireciona para o cadastro de cliente
+            }
+        });
+
+// Ação do botão "Selecionar Cliente"
+        selecionarClienteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String login = campoCliente.getText();
+                if (!login.isEmpty()) {
+                    if (UserManager.getClientes().stream().map(Cliente::getLogin).toList().contains(login)) {
+                        // Atualiza o display do cliente selecionado e o GerenciadorGeral
+                        GerenciadorGeral.setCliente(UserManager.getClientes().stream().filter(cliente -> cliente.getLogin().equals(login)).findFirst().get());
+                        clienteSelecionadoLabel.setText("Cliente selecionado: " + GerenciadorGeral.getCliente().getNome());
+                    } else {
+                        JOptionPane.showMessageDialog(venda, "Cliente não encontrado", "Erro", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(venda, "Digite o nome do cliente para selecionar", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        // Seleção de Tipo de Cartão
+        metodoPagamentoComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TipoPagamento selecionado = (TipoPagamento) metodoPagamentoComboBox.getSelectedItem();
+                if (selecionado != null && selecionado.name().equalsIgnoreCase("CARTAO")) {
+                    tipoCartaoComboBox.setVisible(true);
+                } else {
+                    tipoCartaoComboBox.setVisible(false);
+                }
+                painelCliente.revalidate();
+                painelCliente.repaint();
+            }
+        });
+
+// Botões de Cancelar e Concluir a venda
+        JButton btnConcluir = new JButton("Concluir Venda");
+        JButton btnVoltar = new JButton("Voltar");
+
+        painelCliente.add(btnConcluir);
+        painelCliente.add(btnCancelar);
+
+        btnConcluir.addActionListener(e -> {
+            if (GerenciadorGeral.getCliente() == null) {
+                JOptionPane.showMessageDialog(venda, "Selecione o cliente antes de concluir a venda", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            TipoPagamento metodoSelecionado = (TipoPagamento) metodoPagamentoComboBox.getSelectedItem();
+            if (metodoSelecionado == null) {
+                JOptionPane.showMessageDialog(venda, "Selecione um método de pagamento", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (metodoSelecionado.name().equalsIgnoreCase("CARTAO")) {
+                TipoCartao tipoCartaoSelecionado = (TipoCartao) tipoCartaoComboBox.getSelectedItem();
+                if (tipoCartaoSelecionado == null) {
+                    JOptionPane.showMessageDialog(venda, "Selecione o tipo de cartão (crédito ou débito)", "Erro", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                System.out.println("Pagamento com cartão: " + tipoCartaoSelecionado);
+            } else {
+                System.out.println("Pagamento por: " + metodoSelecionado);
+            }
+
+            Caixa.registrarVenda(metodoSelecionado, (TipoCartao) tipoCartaoComboBox.getSelectedItem());
+            listaModel.clear();
+            MenuInicial.mostrarMenuFuncionario();
+        });
+
+        btnVoltar.addActionListener(e -> {
+            listaModel.clear();
+            Caixa.getComprasvendas().clear();
+            painelCliente.setVisible(false);
+            painelBotoes.setVisible(true);
+        });
+
 
         return venda;
     }

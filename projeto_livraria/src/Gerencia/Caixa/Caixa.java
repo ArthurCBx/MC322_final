@@ -24,7 +24,7 @@ public class Caixa {
     /**
      * Saldo da livraria
      */
-    private static float saldo;
+    private static float saldo = 10000;
 
     /**
      * Lista que armazena uma dupla de um produto e uma quantiadade
