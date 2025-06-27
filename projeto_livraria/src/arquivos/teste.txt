@@ -10,9 +10,9 @@ Produto: Livro, Nome: Bíblia, ID: idsagrado, Quantidade: 50, Preco: 66.60, Seca
 
 Produto: Livro, Nome: Semiconductor Device Fundamentals, ID: idsilicio, Quantidade: 20, Preco: 250.00, Secao: 3, Genero: Ciência; História;
 
-Produto: Filme, Nome: Duna, ID: idfilme, Quantidade: 15, Preco: 29.99, Secao: 10, Genero: Ficção; Política; Aventura;
+Produto: Filme, Nome: Duna, ID: idduna, Quantidade: 15, Preco: 29.99, Secao: 10, Genero: Ficção; Política; Aventura;
 
-Produto: Filme, Nome: Vingadores Ultimato, Quantidade: 30, Preco: 40.00, Secao: 12, Genero: Aventura; Fantasia; Ficção;
+Produto: Filme, Nome: Vingadores Ultimato, ID: idvingadores Quantidade: 30, Preco: 40.00, Secao: 12, Genero: Aventura; Fantasia; Ficção;
 
 Produto: Filme, Nome: Avatar, Quantidade: 40, Preco: 45.00, Secao: 80, Genero: Aventura; Política; Fantasia; 
 
