@@ -52,14 +52,9 @@ public class MenuInicial {
 
         container.add(principal, "Principal");
 
-        // Menu Usuario
-
         // Menu Funcionario
-
         JPanel funcionario = MenuFuncionario.iniciarMenuFuncionario(frame, cardLayout, container);
         container.add(funcionario, "Funcionario");
-
-        // Menu Gerente
 
 
         frame.add(container);
@@ -72,10 +67,13 @@ public class MenuInicial {
 
     }
 
-    public static void mostrarMenuUsuario() {
+    public static void mostrarMenuUsuario(String login) {
         frame.setTitle("Menu Usuario");
+        JPanel usuario = MenuUsuario.iniciarMenuUsuario(login);
+        container.add(usuario, "Usuario");
+        frame.setPreferredSize(new java.awt.Dimension (500, 500));
+        frame.pack();
         cardLayout.show(container, "Usuario");
-
     }
 
     public static void mostrarMenuFuncionario() {
@@ -158,11 +156,10 @@ public class MenuInicial {
                 JOptionPane.showMessageDialog(parent, "Senha incorreta", "Erro", JOptionPane.ERROR_MESSAGE);
             } else if (confirmLogin[2]) {
                 JOptionPane.showMessageDialog(parent, "Login de cliente realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                // Lógica do cliente aqui
+                mostrarMenuUsuario(loginUsuario);
 
             } else if (confirmLogin[3]) {
                 JOptionPane.showMessageDialog(parent, "Login de funcionário realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                // Lógica de funcionário aqui
                 GerenciadorGeral.setFuncionario(UserManager.getFuncionarios().stream().filter(funcionario -> funcionario.getLogin().equals(loginUsuario)).findFirst().get());
                 mostrarMenuFuncionario();
 
