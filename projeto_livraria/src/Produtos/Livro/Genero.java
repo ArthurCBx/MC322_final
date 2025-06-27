@@ -9,6 +9,7 @@ public enum Genero {
     Ficcao_Cientifica("Ficção Científica"),
     Terror_Horror("Terror / Horror"),
     Suspense_Thriller("Suspense / Thriller"),
+    Misterio("Mistério"),
     Misterio_Policial("Mistério / Policial"),
     Drama("Drama"),
 
