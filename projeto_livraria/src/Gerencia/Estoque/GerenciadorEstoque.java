@@ -42,21 +42,6 @@ public class GerenciadorEstoque {
         GerenciadorEstoque.produtos = produtos;
     }
 
-    /*
-
-    Produto: "produto.getClass"
-Nome: "nome Produto"
-ID: "id"
-Quantidade: "quantiadade"
-Propriedades:
-"Nome da propriedade" "valor da propriedade"
-"Nome da propriedade" "valor da propriedade"
-"Nome da propriedade" "valor da propriedade"
-"Nome da propriedade" "valor da propriedade"
-;.;
-
-     */
-
     /**
      * Carrega os dados armazenados em Estoque.txt na lista de entradas
      */
