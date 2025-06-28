@@ -1,3 +1,8 @@
+import Gerencia.Estoque.GerenciadorEstoque;
+import Produtos.Filme.Filme;
+import Produtos.Generico.Generico;
+import Produtos.Livro.Genero;
+import Produtos.Livro.Livro;
 import pessoa.Cliente;
 import pessoa.Funcionario;
 import pessoa.Gerente;
@@ -5,6 +10,7 @@ import pessoa.UserManager;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.util.ArrayList;
 
 public class FileInputReader {
     public static void read(File file){
@@ -57,22 +63,59 @@ public class FileInputReader {
                 }
 
                 else if (line.startsWith("Produto: ")){
-                    String[] produtoData = line.trim().split(",");
-                    for (int i = 0; i < produtoData.length; i++) {
-                        produtoData[i] = produtoData[i].trim();
+                    String[] s;
+                    String[] gens;
+                    line = line.substring(line.indexOf(' ') + 1);
+
+                    if(line.startsWith("Livro")){
+                        line = line.substring(line.indexOf(' ') + 1);
+                        s = line.split(", ");
+                        for (int i = 0; i < s.length; i++)
+                            s[i] = s[i].substring(s[i].indexOf(' ') + 1);
+                        ArrayList<Genero> generos = new ArrayList<>();
+                        gens = s[5].split(";");
+                        for (String gen : gens){
+                            generos.add(Genero.fromString(gen.trim()));
+                        }
+
+                        Livro livro = new Livro(s[0],Float.parseFloat(s[3]),s[1],Integer.parseInt(s[2]),generos,Integer.parseInt(s[4]));
+                        GerenciadorEstoque.setProduto(livro);
+                        GerenciadorEstoque.appendProduto();
+
+
+                    } else if (line.startsWith("Filme")) {
+                        line = line.substring(line.indexOf(' ') + 1);
+                        s = line.split(", ");
+                        for (int i = 0; i < s.length; i++)
+                            s[i] = s[i].substring(s[i].indexOf(' ') + 1);
+                        ArrayList<Genero> generos = new ArrayList<>();
+                        gens = s[5].split(";");
+                        for (String gen : gens){
+                            generos.add(Genero.fromString(gen.trim()));
+                        }
+
+                        Filme filme = new Filme(s[0],Float.parseFloat(s[3]),s[1],Integer.parseInt(s[2]),generos,Integer.parseInt(s[4]));
+                        GerenciadorEstoque.setProduto(filme);
+                        GerenciadorEstoque.appendProduto();
+
+
+                    } else {
+                        line = line.substring(line.indexOf(' ') + 1);
+                        s = line.split(", ");
+                        for (int i = 0; i < s.length; i++)
+                            s[i] = s[i].substring(s[i].indexOf(' ') + 1);
+
+                        Generico generico = new Generico(s[0],Float.parseFloat(s[3]),s[1],Integer.parseInt(s[2]));
+                        GerenciadorEstoque.setProduto(generico);
+                        GerenciadorEstoque.appendProduto();
+
                     }
-                    String tipoProduto = produtoData[0].substring(8).trim();
-                    int quantidade = Integer.parseInt(produtoData[1].substring(11).trim());
-                    String titulo = produtoData[2].substring(7).trim();
-                    int preco = Integer.parseInt(produtoData[3].substring(6).trim());
-                    boolean alugavel = Boolean.parseBoolean(produtoData[4].substring(9).trim());
-                    boolean compravel = Boolean.parseBoolean(produtoData[5].substring(10).trim());
-                    int secao = Integer.parseInt(produtoData[6].substring(6).trim());
-                    String genero = produtoData[7].substring(7).trim();
+
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        GerenciadorEstoque.salvaProduto();
     }
 }

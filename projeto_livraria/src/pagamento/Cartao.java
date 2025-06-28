@@ -7,19 +7,19 @@ package pagamento;
  */
 
 public class Cartao{
-    private final int numero;
+    private final String numero;
     private final int codigo_de_seguranca;
     private final String validade;
     private final TipoCartao tipoCartao;
 
-    public Cartao(int numero, int codigo_de_seguranca, String validade, TipoCartao tipoCartao) {
+    public Cartao(String numero, int codigo_de_seguranca, String validade, TipoCartao tipoCartao) {
         this.numero = numero;
         this.codigo_de_seguranca = codigo_de_seguranca;
         this.validade = validade;
         this.tipoCartao = tipoCartao;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 

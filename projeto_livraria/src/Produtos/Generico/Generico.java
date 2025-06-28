@@ -1,30 +1,39 @@
 package Produtos.Generico;
 
 import Produtos.Produto;
-import Produtos.Propriedade;
-
-import java.util.ArrayList;
 
 public class Generico implements Produto{
     private String nome;
-    private double preco;
+    private float preco;
     private String id;
     private int quantidadeDisponivel;
     private boolean isAlugavel;
     private boolean isCompravel;
     private int secao;
-    private ArrayList<Propriedade> propriedades;
 
 
-    public Generico(String nome, double preco, String id, int secao, ArrayList<Propriedade> propriedades) {
+    public Generico(String nome, double preco, String id, int secao) {
         this.nome = nome;
-        this.preco = preco;
+        this.preco = Math.round(preco * 100f) / 100f;
         this.id = id;
         this.quantidadeDisponivel = 1;
         this.isAlugavel = false;
         this.isCompravel = true;
         this.secao = secao;
-        this.propriedades = propriedades;
+    }
+
+    public Generico(String props) {
+        String[] lines = props.split("\n");
+
+        for (int i = 0; i < lines.length; i++)
+            lines[i] = lines[i].substring(lines[i].indexOf(' ') + 1);
+
+        this.nome = lines[0];
+        this.id = lines[1];
+        this.quantidadeDisponivel = Integer.parseInt(lines[2]);
+        this.preco = Math.round(Float.parseFloat(lines[3]) * 100f) / 100f;
+        this.secao = Integer.parseInt(lines[4]);
+
     }
 
     public String getNome(){
@@ -43,7 +52,7 @@ public class Generico implements Produto{
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
 
-    public double getPreco(){
+    public float getPreco(){
         return this.preco;
     }
 
@@ -59,10 +68,6 @@ public class Generico implements Produto{
         return this.secao;
     }
 
-    public ArrayList<Propriedade> getPropriedades(){
-        return this.propriedades;
-    }
-
     public int decrementarQuantidadeProduto(){
         if(this.quantidadeDisponivel - 1 >= 0){
             this.quantidadeDisponivel--;
@@ -75,5 +80,17 @@ public class Generico implements Produto{
     public int aumentarQuantidadeProduto(){
         this.quantidadeDisponivel++;
         return this.quantidadeDisponivel;
+    }
+
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+
+        s.append("Nome: ").append(getNome()).append("\n")
+                .append("ID: ").append(getId()).append("\n")
+                .append("Quantidade: ").append(getQuantidadeDisponivel()).append("\n")
+                .append("Preco: ").append(getPreco()).append("\n")
+                .append("Secao: ").append(getSecao()).append("\n");
+
+        return s.toString();
     }
 }

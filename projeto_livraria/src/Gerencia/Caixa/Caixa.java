@@ -5,6 +5,8 @@ import Gerencia.GerenciadorGeral;
 import Produtos.Produto;
 import excecoes.ProdutoNaoEncontrado;
 import excecoes.SemEstoque;
+import pagamento.Cartao;
+import pagamento.TipoCartao;
 import pagamento.TipoPagamento;
 
 import java.io.BufferedWriter;
@@ -22,7 +24,7 @@ public class Caixa {
     /**
      * Saldo da livraria
      */
-    private static float saldo;
+    private static float saldo = 10000;
 
     /**
      * Lista que armazena uma dupla de um produto e uma quantiadade
@@ -56,7 +58,7 @@ public class Caixa {
     public static int buscaCompraVenda(String id) {
         int index;      // Irá retornar o indice
         try {           // Lista de ComprasVendas -> index da compraVenda que contem o produto com o ID fornecido
-            index = getComprasvendas().indexOf(getComprasvendas().stream().map(CompraVenda::getProduto).filter(produto -> produto.getId().equals(id)).findFirst().get());
+            index = getComprasvendas().stream().map(CompraVenda::getProduto).toList().indexOf(getComprasvendas().stream().map(CompraVenda::getProduto).filter(produto -> produto.getId().equals(id)).findFirst().get());
         } catch (NoSuchElementException e) {
             throw new ProdutoNaoEncontrado("Produto: '" + id + "' nao foi encontrado");
         }
@@ -76,11 +78,12 @@ public class Caixa {
     /**
      * Remove uma compraVenda da lista de comprasVendas
      *
-     * @param id ID do produto a ser removido da lista
+     * @param index index do produto a ser removido da lista
      */
-    public static void removerCompraVenda(String id) {
-        getComprasvendas().remove(buscaCompraVenda(id));
+    public static void removerCompraVenda(int index) {
+        getComprasvendas().remove(index);
     }
+
 
     /**
      * Interpreta a lista de comprasVendas como compras e efetua a alteração de saldo, estoque e registra no arquivo "Transações.txt"
@@ -96,7 +99,7 @@ public class Caixa {
 
             } catch (ProdutoNaoEncontrado e) {  // Nova produto
                 GerenciadorEstoque.carregaProduto(compra.getProduto());
-                GerenciadorEstoque.appendProduto(compra.getQuantidade());
+                GerenciadorEstoque.appendProduto();
             } finally {
                 valor += compra.getQuantidade() * compra.getProduto().getPreco();
             }
@@ -116,10 +119,11 @@ public class Caixa {
             StringBuilder s = new StringBuilder();
 
             s.append("COMPRA realizada por: ").append(GerenciadorGeral.getFuncionario().getNome()).append(", ID: ").append(GerenciadorGeral.getFuncionario().getId()).append("\n")
-                    .append("    Produto - Quantidade - Valor individual - Valor total:").append("\n");
+                    .append("    Produto - ID - Quantidade - Valor individual - Valor total:").append("\n");
 
             for (CompraVenda compra : getComprasvendas()) {
-                s.append("    ").append(compra.getProduto()).append(" - ")
+                s.append("    ").append(compra.getProduto().getNome()).append(" - ")
+                        .append(compra.getProduto().getId()).append(" - ")
                         .append(compra.getQuantidade()).append(" - ")
                         .append(compra.getProduto().getPreco()).append(" - ")
                         .append(compra.getProduto().getPreco() * compra.getQuantidade()).append("\n");
@@ -129,7 +133,7 @@ public class Caixa {
                     .append("Saldo resultante: ").append(getSaldo()).append("\n\n");
             writer.write(s.toString());
 
-            setComprasvendas(new ArrayList<CompraVenda>());
+            getComprasvendas().clear();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -142,7 +146,7 @@ public class Caixa {
     /**
      * Interpreta a lista de comprasVendas como vendas e efetua a alteração de saldo, estoque e registra no arquivo "Transações.txt"
      */
-    public static void registrarVenda(TipoPagamento pagamento) {
+    public static void registrarVenda(TipoPagamento pagamento, TipoCartao tipoCartao) {
 
         int valor = 0;
         Produto produto;
@@ -175,10 +179,13 @@ public class Caixa {
             StringBuilder s = new StringBuilder();
 
             s.append("VENDA realizada por: ").append(GerenciadorGeral.getFuncionario().getNome()).append(", ID: ").append(GerenciadorGeral.getFuncionario().getId()).append("\n")
-                    .append("    Produto - Quantidade - Valor individual - Valor total:").append("\n");
+                    .append("Cliente: ").append(GerenciadorGeral.getCliente().getNome()).append(", Login: ").append(GerenciadorGeral.getCliente().getLogin()).append(", Metodo de Pagamento: ").append(pagamento.toString());
+                    if(pagamento.equals(TipoPagamento.CARTAO))
+                        s.append(", Tipo Cartão: ").append(tipoCartao);
+                    s.append("\n").append("    Produto - Quantidade - Valor individual - Valor total:").append("\n");
 
             for (CompraVenda venda : getComprasvendas()) {
-                s.append("    ").append(venda.getProduto()).append(" - ")
+                s.append("    ").append(venda.getProduto().getNome()).append(" - ")
                         .append(venda.getQuantidade()).append(" - ")
                         .append(venda.getProduto().getPreco()).append(" - ")
                         .append(venda.getProduto().getPreco() * venda.getQuantidade()).append("\n");
@@ -188,7 +195,7 @@ public class Caixa {
                     .append("Saldo resultante: ").append(getSaldo()).append("\n\n");
             writer.write(s.toString());
 
-            setComprasvendas(new ArrayList<CompraVenda>());
+            getComprasvendas().clear();
 
         } catch (IOException e) {
             e.printStackTrace();

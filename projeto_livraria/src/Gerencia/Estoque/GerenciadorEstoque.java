@@ -1,7 +1,9 @@
 package Gerencia.Estoque;
 
+import Produtos.Filme.Filme;
+import Produtos.Generico.Generico;
+import Produtos.Livro.Livro;
 import Produtos.Produto;
-import Produtos.Propriedade;
 import excecoes.ProdutoNaoEncontrado;
 
 import java.io.*;
@@ -40,6 +42,21 @@ public class GerenciadorEstoque {
         GerenciadorEstoque.produtos = produtos;
     }
 
+    /*
+
+    Produto: "produto.getClass"
+Nome: "nome Produto"
+ID: "id"
+Quantidade: "quantiadade"
+Propriedades:
+"Nome da propriedade" "valor da propriedade"
+"Nome da propriedade" "valor da propriedade"
+"Nome da propriedade" "valor da propriedade"
+"Nome da propriedade" "valor da propriedade"
+;.;
+
+     */
+
     /**
      * Carrega os dados armazenados em Estoque.txt na lista de entradas
      */
@@ -51,14 +68,36 @@ public class GerenciadorEstoque {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(LogEstoque))) {
             String line;
+            StringBuilder s = new StringBuilder();
+
             while ((line = reader.readLine()) != null) {
                 if (line.contains("Produto:")) {
-                    switch (line){
-                        //case():
+                    line = line.substring(line.indexOf(' ') + 1);
 
+                    if (line.startsWith("Livro")) {
+
+                        for (line = reader.readLine(); !line.startsWith(";.;"); line = reader.readLine()) {
+                            s.append(line).append("\n");
+                        }
+                        GerenciadorEstoque.setProduto(new Livro(s.toString()));
+
+                    } else if (line.startsWith("Filme")) {
+
+                        for (line = reader.readLine(); !line.startsWith(";.;"); line = reader.readLine()) {
+                            s.append(line).append("\n");
+                        }
+                        GerenciadorEstoque.setProduto(new Filme(s.toString()));
+
+                    } else {
+
+                        for (line = reader.readLine(); !line.startsWith(";.;"); line = reader.readLine()) {
+                            s.append(line).append("\n");
+                        }
+                        GerenciadorEstoque.setProduto(new Generico(s.toString()));
                     }
+                    GerenciadorEstoque.appendProduto();
+                    s.delete(0, s.length());
                 }
-
             }
 
         } catch (IOException e) {
@@ -69,10 +108,8 @@ public class GerenciadorEstoque {
 
     /**
      * Adiciona o produto carregado como uma nova entrada na lista de entradas
-     *
-     * @param quantidade quantidade desse produto adicionado
      */
-    public static void appendProduto(int quantidade) {
+    public static void appendProduto() {
         getProdutos().add(getProduto());
     }
 
@@ -94,7 +131,7 @@ public class GerenciadorEstoque {
     public static int buscaProduto(String id) {
         int index;  // Irá retornar o indice
         try {       // Lista de Entradas -> index da entrada que contem o produto com o ID fornecido
-            index = getProdutos().indexOf(getProdutos().stream().filter(Produto -> Produto.getId().equals(id)).findFirst().get());
+            index = getProdutos().indexOf(getProdutos().stream().filter(Produto -> Produto.getId().equalsIgnoreCase(id)).findFirst().get());
         } catch (NoSuchElementException e) {
             throw new ProdutoNaoEncontrado("Produto: '" + id + "' nao foi encontrado");
         }
@@ -135,16 +172,20 @@ public class GerenciadorEstoque {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(LogEstoque, false))) {
             StringBuilder s = new StringBuilder();
             for (Produto produto : getProdutos()) {
-                s.append("Produto: ").append(produto.getClass()).append("\n")
-                        .append("Nome: ").append(produto.getNome()).append("\n")
-                        .append("ID: ").append(produto.getId()).append("\n")
-                        .append("Quantidade: ").append(produto.getQuantidadeDisponivel()).append("\n")
-                        .append("Propriedades:").append("\n");
-                for (Propriedade propriedade : produto.getPropriedades()) {
-                    s.append(propriedade.getNomePropriedade()).append(": ").append(propriedade.getValorPropriedade()).append("\n");
+                s.append("Produto: ");
+                if (produto instanceof Livro) {
+                    s.append("Livro").append("\n");
+                } else if (produto instanceof Filme) {
+                    s.append("Filme").append("\n");
+                } else {
+                    s.append("Generico").append("\n");
                 }
+
+                s.append(produto.toString());
+
                 s.append(";.;\n\n");
                 writer.write(s.toString());
+                s.delete(0, s.length());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -160,7 +201,7 @@ public class GerenciadorEstoque {
      */
     public static void alteraProduto(int quantidade) {
         int index = buscaProduto(getProduto().getId());
-        getProdutos().get(index).setQuantidadeDisponivel(Math.min(getProdutos().get(index).getQuantidadeDisponivel() + quantidade, 0));
+        getProdutos().get(index).setQuantidadeDisponivel(Math.max(getProdutos().get(index).getQuantidadeDisponivel() + quantidade, 0));
     }
 
 }

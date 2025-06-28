@@ -65,12 +65,12 @@ public class GerenciadorGeral {
     /**
      * Realiza uma busca por nome de produto e retorna a interface do produto
      * @param nome nome do produto
-     * @return Retorna a interface do produto
+     * @return Retorna a interface do produto; pode gerar ProdutoNaoEncontradoException
      */
     public static Produto realizarBusca(String nome){
         Produto produto;
         try {
-            produto = GerenciadorEstoque.getProdutos().stream().filter(produtob -> produtob.getNome().equals(nome)).findFirst().get();
+            produto = GerenciadorEstoque.getProdutos().stream().filter(produtob -> produtob.getNome().equalsIgnoreCase(nome)).findFirst().get();
         } catch (NoSuchElementException e) {
             throw new ProdutoNaoEncontrado("Produto: '" + nome + "' nao foi encontrado");
         }

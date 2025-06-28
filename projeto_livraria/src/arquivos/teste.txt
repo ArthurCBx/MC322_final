@@ -1,18 +1,25 @@
-Cliente: Nome1, Login: usuario1, Senha: senha1, CPF: cpf1, dataNascimento: dd/mm/aaaa, email: email1
+Cliente: Heitor, Login: loginheitor, Senha: senha, CPF: 15449656293, dataNascimento: 10/06/2002, email: heitorteste@gmail.com
 
-Cliente: Nome2, Login: usuario2, Senha: senha2, CPF: cpf2, dataNascimento: dd/mm/aaaa, email: email2
+Funcionario: Karen, Login: loginkaren, Senha: senha, CPF: 45652339887, dataNascimento: 21/03/1975, email: karenteste@gmail.com
 
-...
+Gerente: Robson, Login: loginrobson, Senha: senha, CPF: 87946582530, dataNascimento: 12/11/1999, email: robsonteste@gmail.com
 
-Funcionario: Nome1, Login: usuario1, Senha: senha1, CPF: cpf1, dataNascimento: dd/mm/aaaa, email: email1
+Produto: Livro, Nome: Harry Potter 1, ID: idharry, Quantidade: 50, Preco: 47.00, Secao: 934, Genero: Fantasia; Ficção;
 
-Funcionario: Nome2, Login: usuario2, Senha: senha2, CPF: cpf2, dataNascimento: dd/mm/aaaa, email: email2
+Produto: Livro, Nome: Bíblia, ID: idsagrado, Quantidade: 50, Preco: 66.60, Secao: 666, Genero: Religião / Espiritualidade;
 
-...
+Produto: Livro, Nome: Semiconductor Device Fundamentals, ID: idsilicio, Quantidade: 20, Preco: 250.00, Secao: 3, Genero: Ciência; História;
 
-Gerente: Nome, Login: usuario, Senha: senha1, CPF: cpf, dataNascimento: dd/mm/aaaa, email: email1
+Produto: Filme, Nome: Duna, ID: idduna, Quantidade: 15, Preco: 29.99, Secao: 10, Genero: Ficção; Política; Aventura;
 
+Produto: Filme, Nome: Vingadores Ultimato, ID: idvingadores, Quantidade: 30, Preco: 40.00, Secao: 12, Genero: Aventura; Fantasia; Ficção;
 
-Produto: TipoProduto1, Quantidade: 55, Titulo: titulo1, Preco: 55, Alugavel: False, Compravel: False, Secao: 88, genero: genero1
+Produto: Filme, Nome: Avatar, ID: idavatar, Quantidade: 40, Preco: 45.00, Secao: 80, Genero: Aventura; Política; Fantasia;
 
-Produto: TipoProduto2, Quantidade: 23, Titulo: titulo2, Preco: 23, Alugavel: True, Compravel: True, Secao: 77, genero: genero2
+Produto: Generico, Nome: Giftcard, ID: idgift, Quantidade: 100, Preco: 50.00
+
+Produto: Generico, Nome: Café, ID: idcafe, Quantidade: 500, Preco: 8.00
+
+Produto: Generico, Nome: Água, ID: idagua, Quantidade: 400, Preco: 7.00
+
+Produto: Generico, Nome: Kindle, ID: idkindle, Quantidade: 10, Preco: 600.00
