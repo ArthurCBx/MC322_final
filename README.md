@@ -34,7 +34,7 @@ Produto: TipoProduto1, Nome: nome1, ID: id1, Quantidade: 2, Preco 55.20, Secao: 
 No menu principal, existem 3 opções a seguir: 
 - Criar um novo cadastro (login só vai ser aceito se não existir um igual);
 - Fazer login em um dos perfis já cadastrados no arquivo de input;
-- Encerrar o programa.
+- Encerrar o programa. (É preferível que o programa seja encerrado por meio do botão "Sair" na medida que este salva alterações feitas em certas áreas, como o estoque)
 
 ### Menu do Usuário
 No menu do usuário, você poderá interagir com o sistema da livraria para busca de produtos. Você pode verificar os livros, filmes ou produtos gerais da nossa 
