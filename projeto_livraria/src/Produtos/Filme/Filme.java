@@ -1,8 +1,8 @@
 package Produtos.Filme;
 
+import Produtos.Genero;
 import Produtos.Produto;
 import Produtos.Propriedade;
-import Produtos.Livro.Genero;
 
 import java.util.ArrayList;
 

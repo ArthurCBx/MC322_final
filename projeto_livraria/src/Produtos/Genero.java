@@ -1,4 +1,4 @@
-package Produtos.Livro;
+package Produtos;
 
 public enum Genero {
     // Ficção:
@@ -37,7 +37,7 @@ public enum Genero {
     }
 
     public String getGenero() {
-        return genero;
+        return this.genero;
     }
 
 

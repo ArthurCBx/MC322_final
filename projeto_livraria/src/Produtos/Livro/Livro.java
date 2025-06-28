@@ -2,6 +2,7 @@ package Produtos.Livro;
 
 import java.util.ArrayList;
 
+import Produtos.Genero;
 import Produtos.Produto;
 import Produtos.Propriedade;
 
