@@ -41,10 +41,10 @@ No menu do usuário, você poderá interagir com o sistema da livraria para busc
 livraria ou buscar um deles especificamente pelo nome. Além disso poderá adicionar um novo cartão que será associado ao perfil do cliente ou voltar ao menu principal.
 
 ### Menu do Gerente
-No menu do gerente, você poderá registrar produtos novos para a nossa biblioteca ou alterar a quantidade disponivel dos já existentes. Além disso, poderá adicionar funcionários novos ou remover funcionários do sistema.
+No menu do gerente, você poderá registrar novos produtos para a nossa biblioteca ou alterar a quantidade disponível dos já existentes. Além disso, poderá adicionar funcionários novos ou remover funcionários do sistema.
 
 ### Menu do Funcionário
-No meunu do Funcionario, você poderá realizar compras e vendas dos produtos cadastradous, ou seja, um funcionario pode realizar compras de produtos para a livraria e pode realizar vendas para clientes. Durante a venda há a possbilidade de registro de um cliente caso esse não estiver cadastrado no sistema. As compras e vendas são registradas no arquivo Transações.txt.
+No menu do Funcionário, você poderá realizar compras e vendas dos produtos cadastrados, ou seja, um funcionário pode realizar compras de produtos para a livraria e pode realizar vendas para clientes. Durante a venda há a possibilidade de registro de um cliente caso esse não esteja cadastrado no sistema. As compras e vendas são registradas no arquivo Transações.txt.
 
 # Estruta do projeto
 ```
