@@ -1,7 +1,7 @@
 import Gerencia.Estoque.GerenciadorEstoque;
 import Produtos.Filme.Filme;
 import Produtos.Generico.Generico;
-import Produtos.Livro.Genero;
+import Produtos.Genero;
 import Produtos.Livro.Livro;
 import pessoa.Cliente;
 import pessoa.Funcionario;
