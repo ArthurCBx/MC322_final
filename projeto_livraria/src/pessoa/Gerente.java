@@ -36,5 +36,16 @@ public class Gerente extends Funcionario{
         Caixa.registrarCompra();
     }
 
+    public void cadastraFuncionario(Funcionario funcionario){
+        UserManager.writeFuncionarioToFile(funcionario);
+    }
 
+    public void demitirFuncionario(Funcionario funcionario){
+        UserManager.removeFuncionario(funcionario.getId());
+    }
+
+    public void removerProduto(Produto produto){
+        
+        GerenciadorEstoque.deleteProduto(produto.getId());
+    }
 }

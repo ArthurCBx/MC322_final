@@ -2,11 +2,6 @@ package Produtos.Filme;
 
 import Produtos.Genero;
 import Produtos.Produto;
-<<<<<<< HEAD
-import Produtos.Propriedade;
-=======
-import Produtos.Livro.Genero;
->>>>>>> 227e8d756fb5b5d335b1f6a64710b73862112661
 
 import java.util.ArrayList;
 
