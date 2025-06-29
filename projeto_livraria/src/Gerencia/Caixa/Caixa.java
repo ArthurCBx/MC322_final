@@ -5,7 +5,6 @@ import Gerencia.GerenciadorGeral;
 import Produtos.Produto;
 import excecoes.ProdutoNaoEncontrado;
 import excecoes.SemEstoque;
-import pagamento.Cartao;
 import pagamento.TipoCartao;
 import pagamento.TipoPagamento;
 

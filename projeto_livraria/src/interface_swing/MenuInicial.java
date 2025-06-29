@@ -3,7 +3,6 @@ package interface_swing;
 import Gerencia.Estoque.GerenciadorEstoque;
 import Gerencia.GerenciadorGeral;
 import pessoa.Cliente;
-import pessoa.Pessoa;
 import pessoa.UserManager;
 
 import javax.swing.*;

@@ -135,8 +135,8 @@ public class UserManager {
      * @return Um array de Boolean {login_exists, password_correct, isCliente, isFuncionario, isGerente}.
      */
     public static Boolean[] loginExists(String login, String senha){
-        boolean loginFound = false;
-        boolean senhaCorreta = false;
+        // boolean loginFound = false;
+        // boolean senhaCorreta = false;
         Boolean[] verify = new Boolean[]{false, false, false, false, false};
 
         try(BufferedReader reader = new BufferedReader(new FileReader(LogFile))) {
