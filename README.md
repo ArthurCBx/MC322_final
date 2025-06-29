@@ -67,6 +67,8 @@ MC322_final
 ├── README.md
 └── projeto_livraria
     ├── projeto_livraria.iml
+    └── assets
+        └── diagrama_livraria.drawio
     └── src
         ├── FileInputReader.java
         ├── Gerencia
