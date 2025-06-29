@@ -68,12 +68,12 @@ public class MenuGerente {
         // Menu de Realizar Compras:
 
         JPanel compra = iniciarMenuCompra();
-        container.add(compra, "Compra");
+        container.add(compra, "Comprag");
 
         // Menu de Realizar Vendas:
 
         JPanel venda = iniciarMenuVenda();
-        container.add(venda, "Venda");
+        container.add(venda, "Vendag");
 
         return panel;
 
@@ -86,13 +86,13 @@ public class MenuGerente {
 
     private static void mostrarMenuCompra() {
         frame.setSize(1200, 400);
-        cardLayout.show(container, "Compra");
+        cardLayout.show(container, "Comprag");
     }
 
     private static void mostrarMenuVenda() {
         frame.setSize(1200, 400);
         GerenciadorGeral.setCliente(null);
-        cardLayout.show(container, "Venda");
+        cardLayout.show(container, "Vendag");
     }
 
 
