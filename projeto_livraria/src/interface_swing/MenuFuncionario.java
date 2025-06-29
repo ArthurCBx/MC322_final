@@ -79,34 +79,28 @@ public class MenuFuncionario {
 
     private static JPanel iniciarMenuCompra() {
         JPanel compra = new JPanel();
-        compra.setLayout(new BorderLayout()); // Layout do painel como BorderLayout
+        compra.setLayout(new BorderLayout());
 
-        // Criar o DefaultListModel que irá armazenar os itens da lista
         DefaultListModel<CompraVenda> listaModel = new DefaultListModel<>();
-
-        // Criar o JList usando o DefaultListModel
         JList<CompraVenda> listaDeCompras = new JList<>(listaModel);
-        listaDeCompras.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Seleção de um item por vez
-
-        // Adicionar a JList dentro de um JScrollPane para rolagem
+        listaDeCompras.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPane = new JScrollPane(listaDeCompras);
-
-        // Adicionar o JScrollPane ao JFrame, em cima
         compra.add(scrollPane, BorderLayout.CENTER);
 
-        // Painel para os botões (Adicionar, Remover e Alterar Quantidade)
         JPanel painelBotoes = new JPanel();
-        compra.add(painelBotoes, BorderLayout.SOUTH); // O painel de botões fica na parte inferior
+        compra.add(painelBotoes, BorderLayout.SOUTH);
 
-        // Campo de texto para o nome do item
+        // Painel para labels e campos
+        JPanel painelCampos = new JPanel();
+        painelCampos.add(new JLabel("ID do Produto:"));
         JTextField campoTexto = new JTextField(15);
-        painelBotoes.add(campoTexto);
-
-        // Campo de texto para a quantidade do item
+        painelCampos.add(campoTexto);
+        painelCampos.add(new JLabel("Quantidade:"));
         JTextField campoQuantidade = new JTextField(5);
-        painelBotoes.add(campoQuantidade);
+        painelCampos.add(campoQuantidade);
 
-        // Botões relacionados a compra
+        painelBotoes.add(painelCampos);
+
         JButton adicionarButton = new JButton("Adicionar Produto");
         JButton removerButton = new JButton("Remover produto");
         JButton aumentarButton = new JButton("Aumentar Quantidade");
@@ -116,6 +110,11 @@ public class MenuFuncionario {
         painelBotoes.add(removerButton);
         painelBotoes.add(aumentarButton);
         painelBotoes.add(diminuirButton);
+
+        JButton btnConcluir = new JButton("Concluir Compra");
+        JButton btnCancelar = new JButton("Cancelar Compra");
+        painelBotoes.add(btnConcluir);
+        painelBotoes.add(btnCancelar);
 
         // Ação do botão "Adicionar"
         adicionarButton.addActionListener(new ActionListener() {
@@ -205,13 +204,6 @@ public class MenuFuncionario {
             }
         });
 
-        // Botões de Cancelar e Concluir a compra
-        JButton btnConcluir = new JButton("Concluir Compra");
-        JButton btnCancelar = new JButton("Cancelar Compra");
-
-        painelBotoes.add(btnConcluir);
-        painelBotoes.add(btnCancelar);
-
         btnConcluir.addActionListener(e -> {
             Caixa.registrarCompra();
             listaModel.clear();
@@ -229,33 +221,27 @@ public class MenuFuncionario {
 
     private static JPanel iniciarMenuVenda() {
         JPanel venda = new JPanel();
-        venda.setLayout(new BorderLayout()); // Layout do painel como BorderLayout
+        venda.setLayout(new BorderLayout());
 
-        // Criar o DefaultListModel que irá armazenar os itens da lista
         DefaultListModel<CompraVenda> listaModel = new DefaultListModel<>();
-
-        // Criar o JList usando o DefaultListModel
         JList<CompraVenda> listaDeCompras = new JList<>(listaModel);
-        listaDeCompras.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Seleção de um item por vez
-
-        // Adicionar a JList dentro de um JScrollPane para rolagem
+        listaDeCompras.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPane = new JScrollPane(listaDeCompras);
-
-        // Adicionar o JScrollPane ao JFrame, em cima
         venda.add(scrollPane, BorderLayout.CENTER);
 
-        // Painel para os botões (Adicionar, Remover e Alterar Quantidade)
         JPanel painelBotoes = new JPanel();
 
-        // Campo de texto para o nome do item
+        // Painel para labels e campos
+        JPanel painelCampos = new JPanel();
+        painelCampos.add(new JLabel("ID do Produto:"));
         JTextField campoTexto = new JTextField(15);
-        painelBotoes.add(campoTexto);
-
-        // Campo de texto para a quantidade do item
+        painelCampos.add(campoTexto);
+        painelCampos.add(new JLabel("Quantidade:"));
         JTextField campoQuantidade = new JTextField(5);
-        painelBotoes.add(campoQuantidade);
+        painelCampos.add(campoQuantidade);
 
-        // Botões relacionados a venda
+        painelBotoes.add(painelCampos);
+
         JButton adicionarButton = new JButton("Adicionar Produto");
         JButton removerButton = new JButton("Remover produto");
         JButton aumentarButton = new JButton("Aumentar Quantidade");
@@ -269,21 +255,16 @@ public class MenuFuncionario {
         // **Novo Painel de Botões para Cliente**
         JPanel painelCliente = new JPanel();
 
-        // Campo de texto para o nome do cliente
         JTextField campoCliente = new JTextField(15);
         campoCliente.setToolTipText("Digite o nome do cliente");
         painelCliente.add(campoCliente);
 
-        // Botão para selecionar cliente
         JButton selecionarClienteButton = new JButton("Selecionar Cliente");
         painelCliente.add(selecionarClienteButton);
 
-
-        // Botão para adicionar um novo cliente
         JButton adicionarClienteButton = new JButton("Adicionar Cliente");
         painelCliente.add(adicionarClienteButton);
 
-        // Display do cliente selecionado
         JLabel clienteSelecionadoLabel = new JLabel("Cliente selecionado: Nenhum");
         painelCliente.add(clienteSelecionadoLabel);
 
@@ -295,13 +276,11 @@ public class MenuFuncionario {
         painelCliente.add(new JLabel("Tipo de Cartão:"));
         painelCliente.add(tipoCartaoComboBox);
 
-        // Esconde inicialmente o combo de tipo de cartão
         tipoCartaoComboBox.setVisible(false);
 
         JPanel painelInferior = new JPanel(new BorderLayout());
         venda.add(painelInferior, BorderLayout.SOUTH);
 
-        // Adicione inicialmente o painel de botões
         painelInferior.add(painelBotoes, BorderLayout.CENTER);
 
         // Ação do botão "Adicionar"
