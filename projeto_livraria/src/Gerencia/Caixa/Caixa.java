@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+/*
+ * Classe responsável por gerênciar os ganhos da livraria
+ */
 public class Caixa {
 
     private static final String LogTransacoes = "projeto_livraria/src/arquivos/Transações.txt";
