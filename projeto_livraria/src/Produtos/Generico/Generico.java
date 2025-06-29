@@ -11,7 +11,11 @@ public class Generico implements Produto{
     private boolean isCompravel;
     private int secao;
 
-
+    /*
+        Classe Generico que herda de Produto. São outros produtos vendidos pela loja.
+        Representa um produto que pode ser vendido e não alugado, possuindo nome, preço,
+        uma quantidade no estoque, genero, possui um ID único.
+    */
     public Generico(String nome, double preco, String id,int quantidadeDisponivel, int secao) {
         this.nome = nome;
         this.preco = Math.round(preco * 100f) / 100f;
