@@ -10,6 +10,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
+/*
+ * Classe usada pelo Gerente para fazer o gerenciamento do arquivo de estoque de produtos
+ */
 public class GerenciadorEstoque {
 
     private static final String LogEstoque = "projeto_livraria/src/arquivos/Estoque.txt";
