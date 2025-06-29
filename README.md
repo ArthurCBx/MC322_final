@@ -102,14 +102,16 @@ MC322_final
 ## 1. Vá para o diretório onde salvou o projeto
 Para isso, no terminal vá até:
 ```bash
-cd MC322_final
+cd caminho/para/MC322_final
 ```
+substituindo caminho/para pelo caminho real em seu sistema
 ## 2. Compile o código
 ```bash
 find projeto_livraria/src -name "*.java" > sources.txt
+mkdir -p out
 javac -d out @sources.txt
 ```
 ## 3. Execute-o
 ```bash
-java -cp out src.Main
+java -cp out Main
 ```
