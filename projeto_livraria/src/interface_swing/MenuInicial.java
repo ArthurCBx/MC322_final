@@ -166,7 +166,6 @@ public class MenuInicial {
             } else if (confirmLogin[4]) {
                 JOptionPane.showMessageDialog(parent, "Login de gerente realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 mostrarMenuGerente();
-
             }
         }
     }

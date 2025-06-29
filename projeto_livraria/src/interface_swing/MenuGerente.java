@@ -62,7 +62,7 @@ public class MenuGerente {
         // Menu de Gerencia:
 
         JPanel gerencia = iniciarMenuGerencia();
-        container.add(gerencia, "gerencia");
+        container.add(gerencia, "Gerencia");
 
 
         // Menu de Realizar Compras:
