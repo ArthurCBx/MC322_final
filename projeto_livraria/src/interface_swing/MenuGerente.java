@@ -36,12 +36,14 @@ public class MenuGerente {
         JButton btnMoveFuncionario = new JButton("Adicionar/Remover Funcionário");
         JButton btnCompra = new JButton("Realizar Compra");
         JButton btnVenda = new JButton("Realizar Venda");
+        JButton btnverificaSaldo = new JButton("Verificar Saldo");
         JButton btnSair = new JButton("Sair");
 
         panel.add(btnMoveFuncionario);
         panel.add(btnCompra);
         panel.add(btnVenda);
         panel.add(btnSair);
+        panel.add(btnverificaSaldo);
 
         btnMoveFuncionario.addActionListener(e -> {
             String[] opcoes = {"Adicionar Funcionário", "Remover Funcionário", "Cancelar"};
@@ -96,6 +98,11 @@ public class MenuGerente {
 
         btnCompra.addActionListener(e -> {
             mostrarMenuCompra();
+        });
+
+        btnverificaSaldo.addActionListener(e -> {
+            String saldo = String.format("Saldo atual: R$ %.2f", Caixa.getSaldo());
+            JOptionPane.showMessageDialog(frame, saldo, "Saldo do Caixa", JOptionPane.INFORMATION_MESSAGE);
         });
 
         btnVenda.addActionListener(e -> {
