@@ -13,6 +13,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class FileInputReader {
+    /**
+     * Método estático para ler um arquivo e processar seus conteúdos
+     * @param file Arquivo a ser lido contendo informações de clientes, funcionários e produtos
+     */
     public static void read(File file){
         try(BufferedReader reader = new BufferedReader(new java.io.FileReader(file))) {
             String line;

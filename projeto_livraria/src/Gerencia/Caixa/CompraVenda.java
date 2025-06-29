@@ -2,6 +2,9 @@ package Gerencia.Caixa;
 
 import Produtos.Produto;
 
+/*
+ * Classe responsável por auxiliar no registro das compras e vendas no caixa
+ */
 public class CompraVenda {
 
     private Produto produto;
