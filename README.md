@@ -89,7 +89,6 @@ MC322_final
         │   ├── Livro
         │   │   └── Livro.java
         │   └── Produto.java
-        ├── Teste.java
         ├── arquivos
         │   ├── Estoque.txt
         │   └── teste.txt
