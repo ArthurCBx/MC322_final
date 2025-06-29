@@ -4,6 +4,10 @@ import Gerencia.Caixa.Caixa;
 import Gerencia.Caixa.CompraVenda;
 import Gerencia.Estoque.GerenciadorEstoque;
 import Gerencia.GerenciadorGeral;
+import Produtos.Filme.Filme;
+import Produtos.Generico.Generico;
+import Produtos.Genero;
+import Produtos.Livro.Livro;
 import Produtos.Produto;
 import excecoes.ProdutoNaoEncontrado;
 import pagamento.TipoCartao;
@@ -16,6 +20,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MenuGerente {
 
@@ -33,17 +38,35 @@ public class MenuGerente {
 
         JPanel panel = new JPanel();
 
+        JButton btnCadastrarProduto = new JButton("Cadastrar Produto");
+        JButton btnAdicionarProduto = new JButton("Adicionar Produto");
+        JButton btnRemoverProduto = new JButton("Remover Produto");
         JButton btnMoveFuncionario = new JButton("Adicionar/Remover Funcionário");
         JButton btnCompra = new JButton("Realizar Compra");
         JButton btnVenda = new JButton("Realizar Venda");
         JButton btnverificaSaldo = new JButton("Verificar Saldo");
         JButton btnSair = new JButton("Sair");
 
+        panel.add(btnCadastrarProduto);
+        panel.add(btnAdicionarProduto);
+        panel.add(btnRemoverProduto);
         panel.add(btnMoveFuncionario);
+        panel.add(btnverificaSaldo);
         panel.add(btnCompra);
         panel.add(btnVenda);
         panel.add(btnSair);
-        panel.add(btnverificaSaldo);
+
+        btnCadastrarProduto.addActionListener(e -> {
+            mostrarMenuCadP();
+        });
+
+        btnAdicionarProduto.addActionListener(e -> {
+
+        });
+
+        btnRemoverProduto.addActionListener(e -> {
+
+        });
 
         btnMoveFuncionario.addActionListener(e -> {
             String[] opcoes = {"Adicionar Funcionário", "Remover Funcionário", "Cancelar"};
@@ -113,6 +136,11 @@ public class MenuGerente {
             MenuInicial.mostrarMenuPrincipal();
         });
 
+        // Menu CadastrarProduto:
+
+        JPanel cadastrarP = iniciarMenuCadastroProduto();
+        container.add(cadastrarP, "cadastrarP");
+
         // Menu de Realizar Compras:
 
         JPanel compra = iniciarMenuCompra();
@@ -127,7 +155,15 @@ public class MenuGerente {
 
     }
 
+    private static void mostrarMenuCadP() {
+        frame.setSize(1200, 400);
+        cardLayout.show(container, "cadastrarP");
+    }
 
+    private static void mostrarMenuCadastraFuncioario(){
+        frame.setSize(1200, 400);
+        cardLayout.show(container, "Cadastra Funconario");
+    }
 
     private static void mostrarMenuCompra() {
         frame.setSize(1200, 400);
@@ -141,7 +177,7 @@ public class MenuGerente {
     }
 
 
-private static JPanel iniciarMenuGerencia() {
+    private static JPanel iniciarMenuGerencia() {
         JPanel gerencia = new JPanel();
         gerencia.setLayout(new BorderLayout()); // Layout do painel como BorderLayout
 
@@ -188,7 +224,155 @@ private static JPanel iniciarMenuGerencia() {
         return gerencia;
     }
 
+    private static JPanel iniciarMenuCadastroProduto() {
+        // Painel principal com BorderLayout
+        JPanel cadastroP = new JPanel(new BorderLayout(10, 10));
+        cadastroP.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        // === COMPONENTES ===
+
+        // Campos comuns
+        JTextField txtNome = new JTextField();
+        JTextField txtId = new JTextField();
+        JTextField txtPreco = new JTextField();
+        JTextField txtQuantidade = new JTextField();
+
+        // Campos adicionais
+        JTextField txtSecao = new JTextField();
+        JTextField txtGeneros = new JTextField();
+
+        // ComboBox de tipo de produto
+        String[] tipos = {"Livro", "Filme", "Genérico"};
+        JComboBox<String> comboTipo = new JComboBox<>(tipos);
+
+        // === TOPO ===
+        JPanel painelTopo = new JPanel(new BorderLayout());
+        painelTopo.add(new JLabel("Tipo de Produto:"), BorderLayout.NORTH);
+        painelTopo.add(comboTipo, BorderLayout.CENTER);
+        cadastroP.add(painelTopo, BorderLayout.NORTH);
+
+        // === CAMPOS COMUNS ===
+        JPanel painelNormal = new JPanel(new GridLayout(5, 2, 10, 10));
+        painelNormal.add(new JLabel("Nome:"));
+        painelNormal.add(txtNome);
+
+        painelNormal.add(new JLabel("ID:"));
+        painelNormal.add(txtId);
+
+        painelNormal.add(new JLabel("Preço:"));
+        painelNormal.add(txtPreco);
+
+        painelNormal.add(new JLabel("Quantidade:"));
+        painelNormal.add(txtQuantidade);
+
+        painelNormal.add(new JLabel("Seção:"));
+        painelNormal.add(txtSecao);
+
+        // === CAMPOS EXTRAS ===
+        JPanel painelExtras = new JPanel(new GridLayout(1, 2, 10, 10));
+        painelExtras.add(new JLabel("Gêneros:(Separados por ,)"));
+        painelExtras.add(txtGeneros);
+
+        // === CENTRO ===
+        JPanel painelCentro = new JPanel();
+        painelCentro.setLayout(new BoxLayout(painelCentro, BoxLayout.Y_AXIS));
+        painelCentro.add(painelNormal);
+        painelCentro.add(Box.createVerticalStrut(10));
+        painelCentro.add(painelExtras);
+        cadastroP.add(painelCentro, BorderLayout.CENTER);
+
+        // === BOTÕES ===
+        JButton btnRegistrar = new JButton("Registrar");
+        JButton btnVoltar = new JButton("Voltar");
+
+        JPanel painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        painelBotoes.add(btnRegistrar);
+        painelBotoes.add(btnVoltar);
+
+        cadastroP.add(painelBotoes, BorderLayout.SOUTH);
+
+        // === LÓGICA ===
+
+        // Mostrar ou ocultar campos extras
+        comboTipo.addActionListener(e -> {
+            String tipoSelecionado = (String) comboTipo.getSelectedItem();
+            painelExtras.setVisible(!tipoSelecionado.equals("Genérico"));
+        });
+
+        // Iniciar visível
+        painelExtras.setVisible(true);
+
+// Ação do botão Registrar
+        btnRegistrar.addActionListener(e -> {
+            String tipo = (String) comboTipo.getSelectedItem();
+            String nome = txtNome.getText().trim();
+            String id = txtId.getText().trim();
+            String precoStr = txtPreco.getText().trim();
+            String qtdStr = txtQuantidade.getText().trim();
+            String secaoStr = txtSecao.getText().trim();
+            String generos = txtGeneros.getText().trim();
+
+            Produto produto;
+
+            try {
+                double preco = Double.parseDouble(precoStr);
+                int quantidade = Integer.parseInt(qtdStr);
+                int secao = Integer.parseInt(secaoStr);
+
+                // Verificação de valores negativos
+                if (preco < 0 || quantidade < 0 || secao < 0) {
+                    JOptionPane.showMessageDialog(cadastroP,
+                            "Preço, quantidade e seção não podem ser negativos!",
+                            "Erro de validação", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (tipo.equals("Genérico")) {
+                    produto = new Generico(nome, preco, id, quantidade, secao);
+                    JOptionPane.showMessageDialog(cadastroP, "Produto Genérico criado com sucesso!");
+                } else {
+                    // Transformar gêneros em lista
+                    ArrayList<Genero> listaGeneros = new ArrayList<>();
+                    for (String generoStr : generos.split(",")) {
+                        if (!generoStr.trim().isEmpty()) {
+                            listaGeneros.add(Genero.fromString(generoStr.trim()));
+                        }
+                    }
+
+                    float precoFloat = (float) preco;
+
+                    if (tipo.equals("Livro")) {
+                        produto = new Livro(nome, precoFloat, id, quantidade, listaGeneros, secao);
+                        JOptionPane.showMessageDialog(cadastroP, "Livro criado com sucesso!");
+                    } else {
+                        produto = new Filme(nome, precoFloat, id, quantidade, listaGeneros, secao);
+                        JOptionPane.showMessageDialog(cadastroP, "Filme criado com sucesso!");
+                    }
+                }
+
+                GerenciadorEstoque.carregaProduto(produto);
+                GerenciadorEstoque.appendProduto();
+                MenuInicial.mostrarMenuGerente();
+
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(cadastroP,
+                        "Erro de conversão numérica: verifique os campos!",
+                        "Erro", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(cadastroP,
+                        "Erro ao criar produto: " + ex.getMessage(),
+                        "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        // Ação do botão Voltar
+        btnVoltar.addActionListener(e -> {
+            MenuInicial.mostrarMenuGerente();
+        });
+
+        return cadastroP;
+
+    }
 
     private static JPanel iniciarMenuCompra() {
         JPanel compra = new JPanel();
