@@ -33,18 +33,65 @@ public class MenuGerente {
 
         JPanel panel = new JPanel();
 
-        JButton btnGerencia = new JButton("Gerencia");
+        JButton btnMoveFuncionario = new JButton("Adicionar/Remover Funcionário");
         JButton btnCompra = new JButton("Realizar Compra");
         JButton btnVenda = new JButton("Realizar Venda");
         JButton btnSair = new JButton("Sair");
 
-        panel.add(btnGerencia);
+        panel.add(btnMoveFuncionario);
         panel.add(btnCompra);
         panel.add(btnVenda);
         panel.add(btnSair);
 
-        btnGerencia.addActionListener(e -> {
-            mostrarMenuGerencia();
+        btnMoveFuncionario.addActionListener(e -> {
+            String[] opcoes = {"Adicionar Funcionário", "Remover Funcionário", "Cancelar"};
+            int escolha = JOptionPane.showOptionDialog(
+                    frame,
+                    "O que deseja fazer?",
+                    "Gerenciar Funcionário",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    opcoes,
+                    opcoes[0]
+            );
+
+            if (escolha == 0) {
+                iniciarMenuGerencia();
+            } else if (escolha == 1) {
+                JPanel removerPanel = new JPanel();
+                removerPanel.setLayout(new BoxLayout(removerPanel, BoxLayout.Y_AXIS));
+                JTextField nomeField = new JTextField(20);
+                JTextField loginField = new JTextField(20);
+
+                removerPanel.add(new JLabel("Nome do Funcionário:"));
+                removerPanel.add(nomeField);
+                removerPanel.add(new JLabel("Login do Funcionário:"));
+                removerPanel.add(loginField);
+
+                int result = JOptionPane.showConfirmDialog(
+                        frame,
+                        removerPanel,
+                        "Remover Funcionário",
+                        JOptionPane.OK_CANCEL_OPTION
+                );
+
+                if (result == JOptionPane.OK_OPTION) {
+                    String nome = nomeField.getText().trim();
+                    String login = loginField.getText().trim();
+                    Funcionario funcionario = UserManager.getFuncionarios().stream()
+                            .filter(func -> func.getNome().equalsIgnoreCase(nome) && func.getLogin().equalsIgnoreCase(login))
+                            .findFirst()
+                            .orElse(null);
+                    if (nome.isEmpty() || login.isEmpty() || funcionario == null) {
+                        JOptionPane.showMessageDialog(frame, "Funcionário não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }else{
+                        UserManager.removeFuncionario(funcionario.getId());
+                    }
+                    JOptionPane.showMessageDialog(frame,nome+" foi removido do sistema com sucesso!", "Funcionário Removido", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
         });
 
         btnCompra.addActionListener(e -> {
@@ -79,10 +126,7 @@ public class MenuGerente {
 
     }
 
-    private static void mostrarMenuGerencia(){
-        frame.setSize(1200, 400);
-        cardLayout.show(container, "Gerencia");
-    }
+
 
     private static void mostrarMenuCompra() {
         frame.setSize(1200, 400);
@@ -138,7 +182,7 @@ private static JPanel iniciarMenuGerencia() {
 
             Funcionario funcionario = new Funcionario(nomeFuncionario, cpfFuncionario, dataNascimentoFuncionario, emailFuncionario, loginFuncionario, senhaFuncionario);
             UserManager.writeFuncionarioToFile(funcionario);
-            JOptionPane.showMessageDialog(frame, "Cadastro realizado com sucesso!");
+            JOptionPane.showMessageDialog(frame, "Cadastro de novo funcionário realizado com sucesso!");
         }
         return gerencia;
     }
