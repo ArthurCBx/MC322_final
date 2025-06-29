@@ -106,12 +106,6 @@ public class MenuGerente {
             MenuInicial.mostrarMenuPrincipal();
         });
 
-        // Menu de Gerencia:
-
-        JPanel gerencia = iniciarMenuGerencia();
-        container.add(gerencia, "Gerencia");
-
-
         // Menu de Realizar Compras:
 
         JPanel compra = iniciarMenuCompra();
