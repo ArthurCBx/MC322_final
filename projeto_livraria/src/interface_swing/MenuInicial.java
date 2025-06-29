@@ -167,7 +167,6 @@ public class MenuInicial {
                 JOptionPane.showMessageDialog(parent, "Login de gerente realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 GerenciadorGeral.setFuncionario(UserManager.getFuncionarios().stream().filter(funcionario -> funcionario.getLogin().equals(loginUsuario)).findFirst().get());
                 mostrarMenuGerente();
-
             }
         }
     }
