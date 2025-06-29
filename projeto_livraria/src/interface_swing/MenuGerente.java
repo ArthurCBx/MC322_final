@@ -163,12 +163,12 @@ public class MenuGerente {
     }
 
     private static void mostrarMenuCompra() {
-        frame.setSize(1200, 400);
+        frame.setSize(1500, 400);
         cardLayout.show(container, "Comprag");
     }
 
     private static void mostrarMenuVenda() {
-        frame.setSize(1200, 400);
+        frame.setSize(1500, 400);
         GerenciadorGeral.setCliente(null);
         cardLayout.show(container, "Vendag");
     }
