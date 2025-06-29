@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import Produtos.Genero;
 import Produtos.Produto;
 
+/*
+    Classe Generico que herda de Produto. São outros produtos vendidos pela loja.
+    Representa um produto que pode ser vendido e alugado, possuindo nome, preço,
+    uma quantidade no estoque, genero, possui um ID único.
+*/
 public class Livro implements Produto {
 
     private String nome;
