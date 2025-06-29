@@ -105,7 +105,7 @@ public class FileInputReader {
                         for (int i = 0; i < s.length; i++)
                             s[i] = s[i].substring(s[i].indexOf(' ') + 1);
 
-                        Generico generico = new Generico(s[0],Float.parseFloat(s[3]),s[1],Integer.parseInt(s[2]));
+                        Generico generico = new Generico(s[0],Float.parseFloat(s[3]),s[1],Integer.parseInt(s[4]));
                         GerenciadorEstoque.setProduto(generico);
                         GerenciadorEstoque.appendProduto();
 
