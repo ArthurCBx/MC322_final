@@ -200,7 +200,7 @@ public class MenuUsuario {
             if (!produtos.isEmpty()) {
                 StringBuilder lista = new StringBuilder("Produtos disponíveis:\n");
                 for (Produto produto : produtos) {
-                    lista.append("- ").append(produto.getNome()).append(". Disponível na seção ").append(produto.getSecao()).append(".\n");
+                    lista.append("- ").append(produto.getNome()).append(". Disponível por R$").append(produto.getPreco()).append(".\n");
                 }
                 JOptionPane.showMessageDialog(null, lista.toString());
             } else {
