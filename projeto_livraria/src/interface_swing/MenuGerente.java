@@ -162,11 +162,6 @@ public class MenuGerente {
         cardLayout.show(container, "alterarP");
     }
 
-    private static void mostrarMenuCadastraFuncioario() {
-        frame.setSize(1200, 400);
-        cardLayout.show(container, "Cadastra Funconario");
-    }
-
     private static void mostrarMenuCompra() {
         frame.setSize(1200, 400);
         cardLayout.show(container, "Comprag");
