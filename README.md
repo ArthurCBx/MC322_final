@@ -2,12 +2,12 @@
 
 ## Sumário
 - [Integrantes do Grupo](##-integrantes-do-grupo)
-- [Descrição Geral](##-descrição-geral)
-- [Manual de Instruções e Testes](##-manual-de-instruções-e-testes)
-  - [Formato do Arquivo de Entrada](##formato-do-arquivo-de-entrada)
-  - [Menus do Sistema](##menus-do-sistema)
+- [Descrição](##-descrição)
+- [Manual de Instruções para testes](##-manual-de-instruções-para-testes)
+  - [Formato do arquivo de input](###-formato-do-arquivo-de-input)
+- [Menus do Sistema](##-menus-do-sistema)
 - [Estrutura do Projeto](##-estrutura-do-projeto)
-- [Como Compilar e Executar](##-como-compilar-e-executar)
+- [Como compilar e executar nosso código](##-como-compilar-e-executar-o-nosso-codigo)
 
 ## Integrantes do grupo
 
@@ -44,6 +44,7 @@ Funcionario: Nome2, Login: usuario2, Senha: senha2, CPF: cpf2, dataNascimento: d
 Produto: TipoProduto1, Nome: nome1, ID: id1, Quantidade: 2, Preco 55.20, Secao: 20, Genero: Fantasia; Ficcao; ...
 ...
 
+## Menus do sistema
 ### Menu Principal
 No menu principal, existem 3 opções a seguir: 
 - Criar um novo cadastro (login só vai ser aceito se não existir um igual);
@@ -60,7 +61,7 @@ No menu do gerente, você poderá registrar novos produtos para a nossa bibliote
 #### Menu do Funcionário
 No menu do Funcionário, você poderá realizar compras e vendas dos produtos cadastrados, ou seja, um funcionário pode realizar compras de produtos para a livraria e pode realizar vendas para clientes. Durante a venda há a possibilidade de registro de um cliente caso esse não esteja cadastrado no sistema. As compras e vendas são registradas no arquivo Transações.txt.
 
-## Estruta do projeto
+## Estrutura do projeto
 ```
 MC322_final
 ├── README.md
