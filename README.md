@@ -7,6 +7,7 @@
   - [Formato do arquivo de input](###-formato-do-arquivo-de-input)
 - [Menus do Sistema](##-menus-do-sistema)
 - [Estrutura do Projeto](##-estrutura-do-projeto)
+- [Diagrama do sistema](##-diagrama-do-sistema)
 - [Como compilar e executar nosso código](##-como-compilar-e-executar-o-nosso-codigo)
 
 ## Integrantes do grupo
@@ -114,6 +115,10 @@ MC322_final
             ├── Pessoa.java
             └── UserManager.java
 ```
+
+## Diagrama do sistema
+Abaixo está o diagrama de classes do sistema, que representa de forma visual os principais componentes, suas responsabilidades e os relacionamentos entre as classes.
+![Diagrama](projeto_livraria/assets/diagrama_livraria.drawio.png)
 
 ## Como compilar e executar nosso código
 ## 1. Vá para o diretório onde salvou o projeto
