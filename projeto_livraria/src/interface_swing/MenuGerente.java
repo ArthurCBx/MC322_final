@@ -33,18 +33,18 @@ public class MenuGerente {
 
         JPanel panel = new JPanel();
 
-        JButton btnGerencia = new JButton("Gerencia");
+        JButton btnCadastraFuncioario = new JButton("Cadastra Funcionario");
         JButton btnCompra = new JButton("Realizar Compra");
         JButton btnVenda = new JButton("Realizar Venda");
         JButton btnSair = new JButton("Sair");
 
-        panel.add(btnGerencia);
+        panel.add(btnCadastraFuncioario);
         panel.add(btnCompra);
         panel.add(btnVenda);
         panel.add(btnSair);
 
-        btnGerencia.addActionListener(e -> {
-            mostrarMenuGerencia();
+        btnCadastraFuncioario.addActionListener(e -> {
+            mostrarMenuCadastraFuncioario();
         });
 
         btnCompra.addActionListener(e -> {
@@ -61,8 +61,8 @@ public class MenuGerente {
 
         // Menu de Gerencia:
 
-        JPanel gerencia = iniciarMenuGerencia();
-        container.add(gerencia, "gerencia");
+        JPanel cadastraFuncionario = iniciarMenuCadastraFuncioario();
+        container.add(cadastraFuncionario, "cadastra Funcionario");
 
 
         // Menu de Realizar Compras:
@@ -79,9 +79,9 @@ public class MenuGerente {
 
     }
 
-    private static void mostrarMenuGerencia(){
+    private static void mostrarMenuCadastraFuncioario(){
         frame.setSize(1200, 400);
-        cardLayout.show(container, "Gerencia");
+        cardLayout.show(container, "Cadastra Funconario");
     }
 
     private static void mostrarMenuCompra() {
@@ -96,9 +96,9 @@ public class MenuGerente {
     }
 
 
-private static JPanel iniciarMenuGerencia() {
-        JPanel gerencia = new JPanel();
-        gerencia.setLayout(new BorderLayout()); // Layout do painel como BorderLayout
+private static JPanel iniciarMenuCadastraFuncioario() {
+        JPanel cadastraFuncioario = new JPanel();
+        cadastraFuncioario.setLayout(new BorderLayout()); // Layout do painel como BorderLayout
 
         JTextField nome = new JTextField(30);
         JTextField cpf = new JTextField(15);
@@ -107,20 +107,20 @@ private static JPanel iniciarMenuGerencia() {
         JTextField login = new JTextField(15);
         JTextField senha = new JPasswordField(15);
 
-        gerencia.setLayout(new BoxLayout(gerencia, BoxLayout.Y_AXIS));
-        gerencia.add(new JLabel("Nome:"));
-        gerencia.add(nome);
-        gerencia.add(new JLabel("CPF:"));
-        gerencia.add(cpf);
-        gerencia.add(new JLabel("Data de Nascimento:"));
-        gerencia.add(dataNascimento);
-        gerencia.add(new JLabel("Email:"));
-        gerencia.add(email);
-        gerencia.add(new JLabel("Login:"));
-        gerencia.add(login);
-        gerencia.add(new JLabel("Senha:"));
-        gerencia.add(senha);
-        int result = JOptionPane.showConfirmDialog(frame, gerencia, "Cadastro de Funcionario", JOptionPane.OK_CANCEL_OPTION);
+        cadastraFuncioario.setLayout(new BoxLayout(cadastraFuncioario, BoxLayout.Y_AXIS));
+        cadastraFuncioario.add(new JLabel("Nome:"));
+        cadastraFuncioario.add(nome);
+        cadastraFuncioario.add(new JLabel("CPF:"));
+        cadastraFuncioario.add(cpf);
+        cadastraFuncioario.add(new JLabel("Data de Nascimento:"));
+        cadastraFuncioario.add(dataNascimento);
+        cadastraFuncioario.add(new JLabel("Email:"));
+        cadastraFuncioario.add(email);
+        cadastraFuncioario.add(new JLabel("Login:"));
+        cadastraFuncioario.add(login);
+        cadastraFuncioario.add(new JLabel("Senha:"));
+        cadastraFuncioario.add(senha);
+        int result = JOptionPane.showConfirmDialog(frame, cadastraFuncioario, "Cadastro de Funcionario", JOptionPane.OK_CANCEL_OPTION);
 
         if (result == JOptionPane.OK_OPTION) {
             String nomeFuncionario = nome.getText().trim();
@@ -140,7 +140,7 @@ private static JPanel iniciarMenuGerencia() {
             UserManager.writeFuncionarioToFile(funcionario);
             JOptionPane.showMessageDialog(frame, "Cadastro realizado com sucesso!");
         }
-        return gerencia;
+        return cadastraFuncioario;
     }
 
 
