@@ -55,6 +55,8 @@ public class MenuInicial {
         JPanel funcionario = MenuFuncionario.iniciarMenuFuncionario(frame, cardLayout, container);
         container.add(funcionario, "Funcionario");
 
+        JPanel gerente = MenuGerente.iniciarMenuGerente(frame, cardLayout, container);
+        container.add(gerente, "Gerente");
 
         frame.add(container);
         frame.setVisible(true);
@@ -84,7 +86,6 @@ public class MenuInicial {
     public static void mostrarMenuGerente() {
         frame.setTitle("Menu Gerente");
         cardLayout.show(container, "Gerente");
-
     }
 
     protected static void cadastroCliente(JFrame parent) {
@@ -164,7 +165,7 @@ public class MenuInicial {
 
             } else if (confirmLogin[4]) {
                 JOptionPane.showMessageDialog(parent, "Login de gerente realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                // Lógica de gerente aqui
+                mostrarMenuGerente();
 
             }
         }
