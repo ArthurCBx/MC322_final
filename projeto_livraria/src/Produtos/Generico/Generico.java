@@ -12,11 +12,11 @@ public class Generico implements Produto{
     private int secao;
 
 
-    public Generico(String nome, double preco, String id, int secao) {
+    public Generico(String nome, double preco, String id,int quantidadeDisponivel, int secao) {
         this.nome = nome;
         this.preco = Math.round(preco * 100f) / 100f;
         this.id = id;
-        this.quantidadeDisponivel = 1;
+        this.quantidadeDisponivel = quantidadeDisponivel;
         this.isAlugavel = false;
         this.isCompravel = true;
         this.secao = secao;
