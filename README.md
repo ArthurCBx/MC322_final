@@ -50,61 +50,6 @@ No menu do Funcionário, você poderá realizar compras e vendas dos produtos ca
 ```
 MC322_final
 ├── README.md
-├── out
-│   └── production
-│       └── projeto_livraria
-│           ├── FileInputReader.class
-│           ├── Gerencia
-│           │   ├── Caixa
-│           │   │   ├── Caixa.class
-│           │   │   └── CompraVenda.class
-│           │   ├── Estoque
-│           │   │   └── GerenciadorEstoque.class
-│           │   └── GerenciadorGeral.class
-│           ├── Main.class
-│           ├── Produtos
-│           │   ├── Filme
-│           │   │   └── Filme.class
-│           │   ├── Generico
-│           │   │   └── Generico.class
-│           │   ├── Livro
-│           │   │   ├── Genero.class
-│           │   │   └── Livro.class
-│           │   └── Produto.class
-│           ├── Teste.class
-│           ├── arquivos
-│           │   ├── Estoque.txt
-│           │   ├── login.txt
-│           │   └── teste.txt
-│           ├── excecoes
-│           │   ├── LivroNaoDisponivel.class
-│           │   ├── ProdutoNaoEncontrado.class
-│           │   ├── SaldoInsuficiente.class
-│           │   └── SemEstoque.class
-│           ├── interface_swing
-│           │   ├── MenuFuncionario$1.class
-│           │   ├── MenuFuncionario$10.class
-│           │   ├── MenuFuncionario$2.class
-│           │   ├── MenuFuncionario$3.class
-│           │   ├── MenuFuncionario$4.class
-│           │   ├── MenuFuncionario$5.class
-│           │   ├── MenuFuncionario$6.class
-│           │   ├── MenuFuncionario$7.class
-│           │   ├── MenuFuncionario$8.class
-│           │   ├── MenuFuncionario$9.class
-│           │   ├── MenuFuncionario.class
-│           │   ├── MenuInicial.class
-│           │   └── MenuUsuario.class
-│           ├── pagamento
-│           │   ├── Cartao.class
-│           │   ├── TipoCartao.class
-│           │   └── TipoPagamento.class
-│           └── pessoa
-│               ├── Cliente.class
-│               ├── Funcionario.class
-│               ├── Gerente.class
-│               ├── Pessoa.class
-│               └── UserManager.class
 └── projeto_livraria
     ├── projeto_livraria.iml
     └── src
