@@ -84,6 +84,7 @@ public class MenuInicial {
     }
 
     public static void mostrarMenuGerente() {
+        frame.setSize(1000, 300);
         frame.setTitle("Menu Gerente");
         cardLayout.show(container, "Gerente");
     }

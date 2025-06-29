@@ -39,8 +39,7 @@ public class MenuGerente {
         JPanel panel = new JPanel();
 
         JButton btnCadastrarProduto = new JButton("Cadastrar Produto");
-        JButton btnAdicionarProduto = new JButton("Adicionar Produto");
-        JButton btnRemoverProduto = new JButton("Remover Produto");
+        JButton btnAlterarProduto = new JButton("AlterarProduto");
         JButton btnMoveFuncionario = new JButton("Adicionar/Remover Funcionário");
         JButton btnCompra = new JButton("Realizar Compra");
         JButton btnVenda = new JButton("Realizar Venda");
@@ -48,8 +47,7 @@ public class MenuGerente {
         JButton btnSair = new JButton("Sair");
 
         panel.add(btnCadastrarProduto);
-        panel.add(btnAdicionarProduto);
-        panel.add(btnRemoverProduto);
+        panel.add(btnAlterarProduto);
         panel.add(btnMoveFuncionario);
         panel.add(btnverificaSaldo);
         panel.add(btnCompra);
@@ -60,12 +58,8 @@ public class MenuGerente {
             mostrarMenuCadP();
         });
 
-        btnAdicionarProduto.addActionListener(e -> {
-
-        });
-
-        btnRemoverProduto.addActionListener(e -> {
-
+        btnAlterarProduto.addActionListener(e -> {
+            mostrarAlterarP();
         });
 
         btnMoveFuncionario.addActionListener(e -> {
@@ -111,10 +105,10 @@ public class MenuGerente {
                     if (nome.isEmpty() || login.isEmpty() || funcionario == null) {
                         JOptionPane.showMessageDialog(frame, "Funcionário não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
                         return;
-                    }else{
+                    } else {
                         UserManager.removeFuncionario(funcionario.getId());
                     }
-                    JOptionPane.showMessageDialog(frame,nome+" foi removido do sistema com sucesso!", "Funcionário Removido", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, nome + " foi removido do sistema com sucesso!", "Funcionário Removido", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
@@ -141,6 +135,9 @@ public class MenuGerente {
         JPanel cadastrarP = iniciarMenuCadastroProduto();
         container.add(cadastrarP, "cadastrarP");
 
+        JPanel alterarP = iniciarAlterarQuantidade();
+        container.add(alterarP, "alterarP");
+
         // Menu de Realizar Compras:
 
         JPanel compra = iniciarMenuCompra();
@@ -158,6 +155,16 @@ public class MenuGerente {
     private static void mostrarMenuCadP() {
         frame.setSize(1200, 400);
         cardLayout.show(container, "cadastrarP");
+    }
+
+    private static void mostrarAlterarP() {
+        frame.setSize(1200, 400);
+        cardLayout.show(container, "alterarP");
+    }
+
+    private static void mostrarMenuCadastraFuncioario() {
+        frame.setSize(1200, 400);
+        cardLayout.show(container, "Cadastra Funconario");
     }
 
     private static void mostrarMenuCompra() {
@@ -366,6 +373,86 @@ public class MenuGerente {
         });
 
         return cadastroP;
+
+    }
+
+    public static JPanel iniciarAlterarQuantidade() {
+        JPanel painel = new JPanel(new BorderLayout(10, 10));
+        painel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // === COMPONENTES DE BUSCA E DISPLAY ===
+        JLabel lblBuscar = new JLabel("Buscar produto (ID): ");
+        JTextField txtBuscaId = new JTextField(10);
+        JButton btnBuscar = new JButton("Buscar");
+        JLabel lblProdutoInfo = new JLabel("Produto: (não encontrado)");
+
+        JPanel painelBusca = new JPanel();
+        painelBusca.setLayout(new BoxLayout(painelBusca, BoxLayout.X_AXIS));
+        painelBusca.add(lblBuscar);
+        painelBusca.add(Box.createHorizontalStrut(5));
+        painelBusca.add(txtBuscaId);
+        painelBusca.add(Box.createHorizontalStrut(5));
+        painelBusca.add(btnBuscar);
+        painelBusca.add(Box.createHorizontalStrut(20));
+        painelBusca.add(lblProdutoInfo);
+
+        painel.add(painelBusca, BorderLayout.NORTH);
+
+        // === CENTRO ===
+        JPanel painelCentro = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        painelCentro.add(new JLabel("Quantidade a adicionar (negativo remove):"));
+        JTextField txtQuantidade = new JTextField(10);
+        painelCentro.add(txtQuantidade);
+        painel.add(painelCentro, BorderLayout.CENTER);
+
+        // === BOTÕES ===
+        JButton btnAlterar = new JButton("Alterar");
+        JButton btnVoltar = new JButton("Voltar");
+
+        JPanel painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        painelBotoes.add(btnAlterar);
+        painelBotoes.add(btnVoltar);
+        painel.add(painelBotoes, BorderLayout.SOUTH);
+
+        // === AÇÕES ===
+        btnBuscar.addActionListener(e -> {
+            String idBuscado = txtBuscaId.getText().trim();
+
+            try {
+                GerenciadorEstoque.carregaProduto(
+                        GerenciadorEstoque.getProdutos().get(
+                                GerenciadorEstoque.buscaProduto(idBuscado)
+                        )
+                );
+                lblProdutoInfo.setText("Produto encontrado: " +
+                        GerenciadorEstoque.getProduto().getNome() +
+                        " (ID: " + GerenciadorEstoque.getProduto().getId() + ")");
+            } catch (ProdutoNaoEncontrado ex) {
+                lblProdutoInfo.setText("Produto: (não encontrado)");
+            }
+        });
+
+        btnAlterar.addActionListener(e -> {
+            if (lblProdutoInfo.getText().contains("não encontrado")) {
+                JOptionPane.showMessageDialog(painel, "Nenhum produto selecionado!", "Erro", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            String qtdStr = txtQuantidade.getText().trim();
+
+            try {
+                GerenciadorEstoque.alteraProduto(Integer.parseInt(qtdStr));
+                JOptionPane.showMessageDialog(painel, "Quantidade alterada com sucesso!");
+                MenuInicial.mostrarMenuGerente();
+
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(painel, "Informe um número válido!", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        btnVoltar.addActionListener(e -> MenuInicial.mostrarMenuGerente());
+
+        return painel;
 
     }
 
