@@ -121,6 +121,10 @@ Abaixo está o diagrama de classes do sistema, que representa de forma visual os
 ![Diagrama](projeto_livraria/assets/diagrama_livraria.drawio.png)
 
 ## Como compilar e executar nosso código
+
+IDE: Visual Studio Code
+Versão do Java: 21.0.6
+
 ## 1. Vá para o diretório onde salvou o projeto
 Para isso, no terminal vá até:
 ```bash
