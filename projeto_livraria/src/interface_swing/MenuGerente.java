@@ -96,7 +96,7 @@ public class MenuGerente {
     }
 
 
-private static JPanel iniciarMenuCadastraFuncioario() {
+    private static JPanel iniciarMenuCadastraFuncioario() {
         JPanel cadastraFuncioario = new JPanel();
         cadastraFuncioario.setLayout(new BorderLayout()); // Layout do painel como BorderLayout
 
@@ -490,14 +490,6 @@ private static JPanel iniciarMenuCadastraFuncioario() {
             listaModel.clear();
             Caixa.getComprasvendas().clear();
             MenuInicial.mostrarMenuGerente();
-        });
-
-// Ação do botão "Adicionar Funcionario"
-        adicionarClienteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MenuInicial.cadastroCliente(frame);  // Redireciona para o cadastro de cliente
-            }
         });
 
 
