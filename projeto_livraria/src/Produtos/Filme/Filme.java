@@ -5,6 +5,11 @@ import Produtos.Produto;
 
 import java.util.ArrayList;
 
+/*
+    Classe Filme que herda de Produto.
+    Representa um produto que pode ser vendido e alugado, possuindo nome, preço,
+    uma quantidade no estoque, genero, possui um ID único.
+ */
 public class Filme implements Produto {
 
     private String nome;
