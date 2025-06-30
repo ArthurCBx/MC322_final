@@ -1,0 +1,86 @@
+Produto: Livro
+Nome: Harry Potter 1
+ID: idharry
+Quantidade: 50
+Preco: 47.0
+Secao: 934
+Generos: Fantasia, Ficção, 
+;.;
+
+Produto: Livro
+Nome: Bíblia
+ID: idsagrado
+Quantidade: 49
+Preco: 66.6
+Secao: 666
+Generos: Religião / Espiritualidade, 
+;.;
+
+Produto: Livro
+Nome: Semiconductor Device Fundamentals
+ID: idsilicio
+Quantidade: 20
+Preco: 250.0
+Secao: 3
+Generos: Ciência, História, 
+;.;
+
+Produto: Filme
+Nome: Duna
+ID: idduna
+Quantidade: 15
+Preco: 29.99
+Secao: 10
+Generos: Ficção, Política, Aventura, 
+;.;
+
+Produto: Filme
+Nome: Vingadores Ultimato
+ID: idvingadores
+Quantidade: 30
+Preco: 40.0
+Secao: 12
+Generos: Aventura, Fantasia, Ficção, 
+;.;
+
+Produto: Filme
+Nome: Avatar
+ID: idavatar
+Quantidade: 40
+Preco: 45.0
+Secao: 80
+Generos: Aventura, Política, Fantasia, 
+;.;
+
+Produto: Generico
+Nome: Giftcard
+ID: idgift
+Quantidade: 100
+Preco: 50.0
+Secao: 10
+;.;
+
+Produto: Generico
+Nome: Café
+ID: idcafe
+Quantidade: 500
+Preco: 8.0
+Secao: 11
+;.;
+
+Produto: Generico
+Nome: Água
+ID: idagua
+Quantidade: 400
+Preco: 7.0
+Secao: 15
+;.;
+
+Produto: Generico
+Nome: Kindle
+ID: idkindle
+Quantidade: 10
+Preco: 600.0
+Secao: 2
+;.;
+

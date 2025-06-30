@@ -1,2 +1,5 @@
 \out
 *.class
+.\projeto_livraria\src\arquivos\login.txt
+.\projeto_livraria\src\arquivos\Transações.txt
+.\projeto_livraria\src\arquivos\Estoque.txt
