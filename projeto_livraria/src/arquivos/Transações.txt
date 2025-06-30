@@ -1,7 +1,0 @@
-VENDA realizada por: Karen, ID: 1
-Cliente: Heitor, Login: loginheitor, Metodo de Pagamento: DINHEIRO
-    Produto - Quantidade - Valor individual - Valor total:
-    Bíblia - 1 - 66.6 - 66.6
-Valor total da compra: 66
-Saldo resultante: 10066.0
-
