@@ -1,0 +1,12 @@
+Cliente: Heitor
+Login: loginheitor
+Senha: senha
+
+Funcionario: Karen - id: 1
+Login: loginkaren
+Senha: senha
+
+Gerente: Robson - id: 2
+Login: loginrobson
+Senha: senha
+
