@@ -118,7 +118,7 @@ MC322_final
 
 ## Diagrama do sistema
 Abaixo está o diagrama de classes do sistema, que representa de forma visual os principais componentes, suas responsabilidades e os relacionamentos entre as classes.
-![Diagrama](projeto_livraria/assets/diagrama_livraria.drawio.png)
+![Diagrama](projeto_livraria/assets/diagrama_livraria.png)
 
 ## Como compilar e executar nosso código
 
