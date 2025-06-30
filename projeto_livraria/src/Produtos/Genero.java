@@ -1,5 +1,8 @@
 package Produtos;
 
+/*
+ * Enumeração para especificar o gênero dos livros
+ */
 public enum Genero {
     // Ficção:
     Romance("Romance"),
