@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
     Contém o login e senha para autenticação.
     Possui métodos para obter a idade da pessoa e buscar produtos através do GerenciadorGeral.
  */
-
 public abstract class Pessoa {
     private String CPF;
     private final String data_nascimento;

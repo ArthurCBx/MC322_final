@@ -9,7 +9,6 @@ import Produtos.Produto;
     Representa um gerente do sistema, com a capacidade de adicionar livros já existentes (caso estivessem alugados),
     remover e comprar novos livros.
  */
-
 public class Gerente extends Funcionario{
 
     public Gerente(String nome, String CPF, String data_nascimento, String email, String login, String senha) {

@@ -5,7 +5,6 @@ package pagamento;
     Possui como atributos as informações de um cartão e o tipo (crédito ou débito).
     O seu metodo pedeSenha apenas verifica se o valor numa compra exige senha ou não.
  */
-
 public class Cartao{
     private final String numero;
     private final int codigo_de_seguranca;

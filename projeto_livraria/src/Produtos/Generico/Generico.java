@@ -3,10 +3,10 @@ package Produtos.Generico;
 import Produtos.Produto;
 
 /*
-        Classe Generico que herda de Produto. São outros produtos vendidos pela loja.
-        Representa um produto que pode ser vendido e não alugado, possuindo nome, preço,
-        uma quantidade no estoque, possui um ID único.
-    */
+    Classe Generico que herda de Produto. São outros produtos vendidos pela loja.
+    Representa um produto que pode ser vendido e não alugado, possuindo nome, preço,
+    uma quantidade no estoque, possui um ID único.
+*/
 public class Generico implements Produto{
     private String nome;
     private float preco;

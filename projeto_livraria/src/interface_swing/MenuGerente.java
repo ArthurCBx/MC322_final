@@ -22,6 +22,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/*
+ * Classe responsável pela representação do menu do gerente
+ * contendo as mesmas funcionalidades do funcionario
+ * e algumas extras, como gerenciamento de estoque de funcionarios
+ */
 public class MenuGerente {
 
     private static JFrame frame;

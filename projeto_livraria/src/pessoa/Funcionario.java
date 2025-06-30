@@ -12,7 +12,6 @@ import pagamento.TipoPagamento;
     Pode remover produtos do estoque, caso alguém deseje alugá-lo.
     Ele possui um ID único.
  */
-
 public class Funcionario extends Pessoa{
     private static int id_geral = 0;
     private final int id;
