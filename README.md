@@ -26,7 +26,7 @@ O processo de pagamento envolverá a transação entre o cliente e o estabelecim
 Além disso, será necessário o controle de livros dentro do estabelecimento de acordo com seções para gêneros diferentes.
 
 ## Vídeo de apresentação
-![Link do vídeo](https://youtu.be/R2XV3Sniksg)
+[Link do vídeo](https://youtu.be/R2XV3Sniksg)
 
 ## Manual de instruções para testes
 ### Formato do arquivo de input
