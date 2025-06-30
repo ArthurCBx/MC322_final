@@ -1,5 +1,8 @@
 package pagamento;
 
+/*
+ * Enumeração para especificar o cartão entre débito ou crédito e obter o limite
+ */
 public enum TipoCartao {
     CREDITO(200),
     DEBITO(300);
