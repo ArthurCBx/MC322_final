@@ -70,6 +70,8 @@ No menu do Funcionário, você poderá realizar compras e vendas dos produtos ca
 ```
 MC322_final
 ├── README.md
+└── MEMBROS.txt
+└── Video.txt
 └── projeto_livraria
     ├── projeto_livraria.iml
     └── assets
