@@ -3,6 +3,7 @@
 ## Sumário
 - [Integrantes do Grupo](##-integrantes-do-grupo)
 - [Descrição](##-descrição)
+- [Vídeo de apresentação](##-video-de-apresentacao)
 - [Manual de Instruções para testes](##-manual-de-instruções-para-testes)
   - [Formato do arquivo de input](###-formato-do-arquivo-de-input)
 - [Menus do Sistema](##-menus-do-sistema)
@@ -23,6 +24,9 @@ Esse é o sistema de uma livraria que inclui o cadastro de funcionários e clien
 O controle de estoque envolverá a compra de novos livros para uma fornecedora genérica, incluindo um saldo fictício para a nossa livraria que aumenta com venda de livros para clientes. 
 O processo de pagamento envolverá a transação entre o cliente e o estabelecimento e abordará as diferentes forma de pagamento possível.
 Além disso, será necessário o controle de livros dentro do estabelecimento de acordo com seções para gêneros diferentes.
+
+## Vídeo de apresentação
+![Link do vídeo](https://youtu.be/R2XV3Sniksg)
 
 ## Manual de instruções para testes
 ### Formato do arquivo de input
